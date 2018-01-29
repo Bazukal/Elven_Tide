@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuestCollection>
+  <Quests>
+    <Quest Name = "Hosgoth Trial">
+      <Stage>1</Stage>
+      <QuestGiver>Master</QuestGiver>
+      <QuestPart>1</QuestPart>
+      <QuestType>Find</QuestType>
+      <Find>Guardian</Find>
+      <StartScript>Remember, go into the cave and find the Guardian at the end.  He has the item I am waiting for, then return it back to me.</StartScript>
+      <InProgressChat>Return to me once you have gathered the item from the Guardian.</InProgressChat>
+      <FinishScript>Thank you for bringing me the news of what transpired in the cave.  Give me time to figure out what had happened.  Make sure you have sufficient supplies to travel back into the cave, and come back to me afterwards.</FinishScript>
+      <QuestDescription>Find the Guardian in the back of the cave.</QuestDescription>
+    </Quest>
+  </Quests>
+</QuestCollection>

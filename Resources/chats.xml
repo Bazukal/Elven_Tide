@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChatCollection>
+  <Chats>
+    <Chat Character ="Citizen1">
+      <QuestStage>1</QuestStage>
+      <ChatString>Congratulations on your graduation to become Hosgoth.  I wish you luck on completing the cave trial.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen1">
+      <QuestStage>2</QuestStage>
+      <ChatString>I heard what happened in the cave, this is bad tidings for our village.  Please ensure our safety.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen2">
+      <QuestStage>1</QuestStage>
+      <ChatString>I have seen too many Hosgoth fall into the Darkness.  I will be keeping an eye on each of you.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen2">
+      <QuestStage>2</QuestStage>
+      <ChatString>So, the guardian in the cave has fallen, has he.  Are we sure it wasn't one of you that fell him.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen3">
+      <QuestStage>1</QuestStage>
+      <ChatString>I have always wondered what the inside of the cave looks like.  Alas, not being a Hosgoth or a Guardian of the Cave, I am not allowed to go in.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen3">
+      <QuestStage>2</QuestStage>
+      <ChatString>Can you tell me what the cave looks like?  Please, I don't know how much longer I can stand the temptation.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen4">
+      <QuestStage>1</QuestStage>
+      <ChatString>Please leave us be, we are in a private conversation that our future Hosgoth should not have to worry about.</ChatString>
+    </Chat>
+    <Chat Character ="Citizen4">
+      <QuestStage>2</QuestStage>
+      <ChatString>Are we going to be safe from what ever it is that is coming through the cave?</ChatString>
+    </Chat>
+  </Chats>
+</ChatCollection>
