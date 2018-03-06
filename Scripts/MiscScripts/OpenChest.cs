@@ -15,9 +15,11 @@ public class OpenChest : MonoBehaviour {
     public GameObject gainedDisplayPanel;
     public Text gainedDisplayText;
 
+    //opens chest that player is next to
 	public void open()
     {
         gainedDisplayPanel.SetActive(true);
+        StoreFinds.stored.activate();
 
         //random roll to see what kind of item or gold comes out of the chest
         int chestHolds = Random.Range(0, 101);
@@ -26,19 +28,21 @@ public class OpenChest : MonoBehaviour {
         {
             int itemEarned = Random.Range(0, equipNames.Count);
             EquipableItemClass itemGained = GameItems.gItems.findEquipItem(equipNames[itemEarned]);
-            itemGained.changeQuantity(equipQuantity[itemEarned]);
+            int itemAmount = equipQuantity[itemEarned];
+            itemGained.setQuantity(itemAmount);
             CharacterInventory.charInven.addEquipableToInventory(itemGained);
 
-            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemGained.getQuantity(), itemGained.getName());
+            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.getName());
         }
         else if(chestHolds > 70)
         {
             int itemEarned = Random.Range(0, useNames.Count);
             UsableItemClass itemGained = GameItems.gItems.findUseItem(useNames[itemEarned]);
-            itemGained.changeQuantity(useQuantity[itemEarned]);
+            int itemAmount = useQuantity[itemEarned];
+            itemGained.setQuantity(itemAmount);
             CharacterInventory.charInven.addUsableToInventory(itemGained);
 
-            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemGained.getQuantity(), itemGained.getName());
+            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.getName());
         }
         else
         {
@@ -47,5 +51,12 @@ public class OpenChest : MonoBehaviour {
             
             gainedDisplayText.text = string.Format("Found {0} Gold.", goldGained);
         }
+    }
+
+    //closes chest and destroys chest
+    public void closeChest()
+    {
+        StoreFinds.stored.activate();
+        Destroy(gameObject);
     }
 }

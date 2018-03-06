@@ -14,9 +14,7 @@ public class LoadGame : MonoBehaviour {
     public Text save3Info;
 
     BinaryFormatter bf;
-    FileStream fsSave1;
-    FileStream fsSave2;
-    FileStream fsSave3;
+    FileStream fsSave;
 
     public Button load1;
     public Button load2;
@@ -28,123 +26,82 @@ public class LoadGame : MonoBehaviour {
     public Slider loadingSlider;
     public Text progressText;
 
-    // Use this for initialization
+    Dictionary<int, string> saveSlot = new Dictionary<int, string>();
+
+    //pulls data from save files if there are any, and displays to player character information for save
     void Start () {
+        saveSlot.Add(1, "/saveSlot1.dat");
+        saveSlot.Add(2, "/saveSlot2.dat");
+        saveSlot.Add(3, "/saveSlot3.dat");
+
         bf = new BinaryFormatter();
 
         load1.interactable = false;
         load2.interactable = false;
         load3.interactable = false;
 
-        if (File.Exists(Application.persistentDataPath + "/saveSlot1.dat"))
+        for(int i = 1; i <= 3;i++)
         {
-            fsSave1 = File.Open(Application.persistentDataPath + "/saveSlot1.dat", FileMode.Open);
-            data = (PlayerData)bf.Deserialize(fsSave1);
-            fsSave1.Close();
+            if (File.Exists(Application.persistentDataPath + saveSlot[i]))
+            {
+                fsSave = File.Open(Application.persistentDataPath + saveSlot[i], FileMode.Open);
+                data = (PlayerData)bf.Deserialize(fsSave);
+                fsSave.Close();
 
-            save1Info.text = "Save 1 slot loaded";
+                string char1Name = data.character1.GetCharName();
+                string char2Name = data.character2.GetCharName();
+                string char3Name = data.character3.GetCharName();
+                string char4Name = data.character4.GetCharName();
 
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
+                int char1Lvl = data.character1.GetCharLevel();
+                int char2Lvl = data.character2.GetCharLevel();
+                int char3Lvl = data.character3.GetCharLevel();
+                int char4Lvl = data.character4.GetCharLevel();
 
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
+                string char1Class = data.character1.GetCharClass();
+                string char2Class = data.character2.GetCharClass();
+                string char3Class = data.character3.GetCharClass();
+                string char4Class = data.character4.GetCharClass();
 
-            int gold = data.gold;
+                int gold = data.gold;
 
-            save1Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);
+                if(i == 1)
+                {
+                    save1Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                    "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                    char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);
 
-            load1.interactable = true;
-        }
+                    load1.interactable = true;
+                }
+                else if(i == 2)
+                {
+                    save2Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);
 
-        if (File.Exists(Application.persistentDataPath + "/saveSlot2.dat"))
-        {
-            fsSave2 = File.Open(Application.persistentDataPath + "/saveSlot2.dat", FileMode.Open);
-            data = (PlayerData)bf.Deserialize(fsSave2);
-            fsSave2.Close();
+                    load2.interactable = true;
+                }
+                else
+                {
+                    save3Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);
 
-            save2Info.text = "Save 2 slot loaded";
-
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
-
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
-
-            int gold = data.gold;
-
-            save2Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);
-
-            load2.interactable = true;
-        }
-
-        if (File.Exists(Application.persistentDataPath + "/saveSlot3.dat"))
-        {
-            save3Info.text = "Save 3 slot loaded";
-
-            fsSave3 = File.Open(Application.persistentDataPath + "/saveSlot3.dat", FileMode.Open);
-            data = (PlayerData)bf.Deserialize(fsSave3);
-            fsSave3.Close();            
-
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
-
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
-
-            int gold = data.gold;
-
-            save3Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);
-
-            load3.interactable = true;
-        }
+                    load3.interactable = true;
+                }
+            }
+        }        
     }
 	
+    //loads game from save slot that player selected
 	public void LoadData(int slot)
     {
-
-        switch (slot)
+        if (File.Exists(Application.persistentDataPath + saveSlot[slot]))
         {
-            case 1:
-                if (File.Exists(Application.persistentDataPath + "/saveSlot1.dat"))
-                {
-                    fsSave1 = File.Open(Application.persistentDataPath + "/saveSlot1.dat", FileMode.Open);
-                    data = (PlayerData)bf.Deserialize(fsSave1);
-                    fsSave1.Close();
-                }
-                    break;
-            case 2:
-                if (File.Exists(Application.persistentDataPath + "/saveSlot2.dat"))
-                {
-                    fsSave2 = File.Open(Application.persistentDataPath + "/saveSlot2.dat", FileMode.Open);
-                    data = (PlayerData)bf.Deserialize(fsSave2);
-                    fsSave2.Close();
-                }
-                break;
-            case 3:
-                if (File.Exists(Application.persistentDataPath + "/saveSlot3.dat"))
-                {
-                    fsSave3 = File.Open(Application.persistentDataPath + "/saveSlot3.dat", FileMode.Open);
-                    data = (PlayerData)bf.Deserialize(fsSave3);
-                    fsSave3.Close();
-                }
-                break;
-        }
+            fsSave = File.Open(Application.persistentDataPath + saveSlot[slot], FileMode.Open);
+            data = (PlayerData)bf.Deserialize(fsSave);
+            fsSave.Close();
+        }        
 
         //set data to in game classes
         CharacterManager.charManager.character1 = data.character1;
@@ -166,16 +123,12 @@ public class LoadGame : MonoBehaviour {
         int stage = data.questStage;
         CharacterManager.charManager.setQuestStage(stage);
 
-        string char1Class = CharacterManager.charManager.character1.GetCharClass();
-        string char2Class = CharacterManager.charManager.character2.GetCharClass();
-        string char3Class = CharacterManager.charManager.character3.GetCharClass();
-        string char4Class = CharacterManager.charManager.character4.GetCharClass();
-
-        CharacterManager.charManager.setSprites(char1Class, char2Class, char3Class, char4Class);
+        CharacterManager.charManager.character1.ChangeCharCurrentHp(-10);
 
         StartCoroutine(loaded());
     }
 
+    //cancels load and goes back to title screen
     public void cancelLoad()
     {
         StartCoroutine(canceled());

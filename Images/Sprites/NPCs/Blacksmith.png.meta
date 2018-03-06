@@ -1,0 +1,640 @@
+fileFormatVersion: 2
+guid: 9c2b9760ddb4144408be6930bec4ec6d
+timeCreated: 1513639921
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Blacksmith_0
+    21300002: Blacksmith_1
+    21300004: Blacksmith_2
+    21300006: Blacksmith_3
+    21300008: Blacksmith_4
+    21300010: Blacksmith_5
+    21300012: Blacksmith_6
+    21300014: Blacksmith_7
+    21300016: Blacksmith_8
+    21300018: Blacksmith_9
+    21300020: Blacksmith_10
+    21300022: Blacksmith_11
+    21300024: Blacksmith_12
+    21300026: Blacksmith_13
+    21300028: Blacksmith_14
+    21300030: Blacksmith_15
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Blacksmith_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 146
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 145
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 146
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 145
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 98
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 98
+        width: 20
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 98
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 98
+        width: 22
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 50
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_9
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 50
+        width: 20
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 50
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_11
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 50
+        width: 22
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 2
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_13
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 3
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_14
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 2
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blacksmith_15
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 2
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -60, y: -48}
+      - {x: -63, y: -56}
+      - {x: -63, y: -92}
+      - {x: -59, y: -96}
+      - {x: -34, y: -96}
+      - {x: -32, y: -88}
+      - {x: -32, y: -59}
+      - {x: -40, y: -48}
+    - - {x: 25, y: -48}
+      - {x: 8, y: -48}
+      - {x: 1, y: -60}
+      - {x: 1, y: -81}
+      - {x: 7, y: -96}
+      - {x: 27, y: -96}
+      - {x: 32, y: -84}
+      - {x: 32, y: -53}
+      - {x: 31, y: -50}
+    - - {x: 54, y: -49}
+      - {x: 40, y: -49}
+      - {x: 34, y: -58}
+      - {x: 34, y: -87}
+      - {x: 40, y: -96}
+      - {x: 57, y: -96}
+      - {x: 60, y: -94}
+      - {x: 62, y: -85}
+      - {x: 62, y: -60}
+      - {x: 61, y: -53}
+    - - {x: -6, y: -49}
+      - {x: -24, y: -49}
+      - {x: -29, y: -52}
+      - {x: -29, y: -79}
+      - {x: -23, y: -95}
+      - {x: -14, y: -95}
+      - {x: -4, y: -90}
+      - {x: -1, y: -85}
+      - {x: -1, y: -58}
+    - - {x: -44, y: 0}
+      - {x: -57, y: 0}
+      - {x: -61, y: -10}
+      - {x: -61, y: -35}
+      - {x: -59, y: -47}
+      - {x: -54, y: -48}
+      - {x: -43, y: -48}
+      - {x: -39, y: -44}
+      - {x: -36, y: -16}
+      - {x: -36, y: -5}
+    - - {x: -26, y: -1}
+      - {x: -28, y: -7}
+      - {x: -28, y: -47}
+      - {x: -25, y: -48}
+      - {x: -10, y: -48}
+      - {x: -4, y: -45}
+      - {x: -4, y: -4}
+      - {x: -9, y: -1}
+    - - {x: 20, y: 0}
+      - {x: 9, y: 0}
+      - {x: 3, y: -7}
+      - {x: 3, y: -34}
+      - {x: 5, y: -47}
+      - {x: 10, y: -48}
+      - {x: 21, y: -48}
+      - {x: 25, y: -44}
+      - {x: 28, y: -21}
+      - {x: 28, y: -5}
+    - - {x: 52, y: -1}
+      - {x: 41, y: -1}
+      - {x: 34, y: -10}
+      - {x: 34, y: -42}
+      - {x: 37, y: -48}
+      - {x: 58, y: -48}
+      - {x: 60, y: -43}
+      - {x: 60, y: -7}
+      - {x: 53, y: -2}
+    - - {x: -53, y: 48}
+      - {x: -60, y: 45}
+      - {x: -60, y: 25}
+      - {x: -55, y: 4}
+      - {x: -50, y: 0}
+      - {x: -38, y: 0}
+      - {x: -35, y: 10}
+      - {x: -35, y: 41}
+      - {x: -39, y: 48}
+    - - {x: -23, y: 47}
+      - {x: -28, y: 41}
+      - {x: -28, y: 3}
+      - {x: -24, y: 0}
+      - {x: -5, y: 0}
+      - {x: -4, y: 1}
+      - {x: -4, y: 45}
+      - {x: -9, y: 47}
+    - - {x: 12, y: 48}
+      - {x: 4, y: 45}
+      - {x: 4, y: 25}
+      - {x: 9, y: 5}
+      - {x: 12, y: 0}
+      - {x: 22, y: 0}
+      - {x: 27, y: 1}
+      - {x: 29, y: 17}
+      - {x: 29, y: 40}
+      - {x: 24, y: 48}
+    - - {x: 59, y: 47}
+      - {x: 44, y: 47}
+      - {x: 36, y: 44}
+      - {x: 36, y: 2}
+      - {x: 37, y: 0}
+      - {x: 53, y: 0}
+      - {x: 58, y: 1}
+      - {x: 62, y: 3}
+      - {x: 62, y: 45}
+    - - {x: -22, y: 95}
+      - {x: -30, y: 90}
+      - {x: -30, y: 63}
+      - {x: -25, y: 49}
+      - {x: -21, y: 47}
+      - {x: 0, y: 47}
+      - {x: 0, y: 95}
+    - - {x: 58, y: 95}
+      - {x: 42, y: 95}
+      - {x: 33, y: 90}
+      - {x: 33, y: 67}
+      - {x: 38, y: 52}
+      - {x: 45, y: 47}
+      - {x: 56, y: 47}
+      - {x: 62, y: 65}
+      - {x: 63, y: 71}
+      - {x: 63, y: 86}
+    - - {x: -39, y: 96}
+      - {x: -53, y: 96}
+      - {x: -61, y: 93}
+      - {x: -63, y: 81}
+      - {x: -63, y: 63}
+      - {x: -57, y: 48}
+      - {x: -38, y: 48}
+      - {x: -32, y: 58}
+      - {x: -32, y: 80}
+      - {x: -35, y: 92}
+    - - {x: 6, y: 96}
+      - {x: 2, y: 94}
+      - {x: 1, y: 85}
+      - {x: 1, y: 60}
+      - {x: 5, y: 48}
+      - {x: 29, y: 48}
+      - {x: 32, y: 57}
+      - {x: 32, y: 85}
+      - {x: 26, y: 96}
+    physicsShape:
+    - - {x: -32, y: -65}
+      - {x: -37, y: -53}
+      - {x: -43, y: -48}
+      - {x: -54, y: -48}
+      - {x: -63, y: -59}
+      - {x: -63, y: -82}
+      - {x: -56, y: -96}
+      - {x: -41, y: -96}
+      - {x: -37, y: -94}
+      - {x: -32, y: -80}
+    - - {x: 29, y: -52}
+      - {x: 22, y: -48}
+      - {x: 12, y: -48}
+      - {x: 5, y: -53}
+      - {x: 1, y: -64}
+      - {x: 1, y: -81}
+      - {x: 7, y: -96}
+      - {x: 25, y: -96}
+      - {x: 28, y: -94}
+      - {x: 32, y: -79}
+      - {x: 32, y: -61}
+    - - {x: 54, y: -49}
+      - {x: 41, y: -49}
+      - {x: 34, y: -59}
+      - {x: 34, y: -85}
+      - {x: 41, y: -96}
+      - {x: 57, y: -96}
+      - {x: 60, y: -94}
+      - {x: 62, y: -85}
+      - {x: 62, y: -61}
+      - {x: 61, y: -53}
+    - - {x: -3, y: -53}
+      - {x: -7, y: -49}
+      - {x: -21, y: -49}
+      - {x: -29, y: -52}
+      - {x: -29, y: -79}
+      - {x: -23, y: -95}
+      - {x: -14, y: -95}
+      - {x: -4, y: -90}
+      - {x: -1, y: -81}
+      - {x: -1, y: -62}
+    - - {x: -44, y: 0}
+      - {x: -57, y: 0}
+      - {x: -61, y: -10}
+      - {x: -61, y: -35}
+      - {x: -59, y: -47}
+      - {x: -54, y: -48}
+      - {x: -43, y: -48}
+      - {x: -39, y: -44}
+      - {x: -36, y: -16}
+      - {x: -36, y: -5}
+    - - {x: -4, y: -17}
+      - {x: -4, y: -4}
+      - {x: -12, y: -1}
+      - {x: -24, y: -1}
+      - {x: -27, y: -5}
+      - {x: -28, y: -11}
+      - {x: -28, y: -47}
+      - {x: -25, y: -48}
+      - {x: -10, y: -48}
+      - {x: -4, y: -45}
+      - {x: -4, y: -33}
+      - {x: -5, y: -21}
+    - - {x: 20, y: 0}
+      - {x: 9, y: 0}
+      - {x: 3, y: -7}
+      - {x: 3, y: -34}
+      - {x: 5, y: -47}
+      - {x: 10, y: -48}
+      - {x: 21, y: -48}
+      - {x: 25, y: -44}
+      - {x: 28, y: -21}
+      - {x: 28, y: -5}
+    - - {x: 52, y: -1}
+      - {x: 41, y: -1}
+      - {x: 34, y: -10}
+      - {x: 34, y: -42}
+      - {x: 37, y: -48}
+      - {x: 58, y: -48}
+      - {x: 60, y: -43}
+      - {x: 60, y: -7}
+      - {x: 53, y: -2}
+    - - {x: -40, y: 48}
+      - {x: -52, y: 48}
+      - {x: -60, y: 45}
+      - {x: -60, y: 25}
+      - {x: -55, y: 4}
+      - {x: -50, y: 0}
+      - {x: -38, y: 0}
+      - {x: -35, y: 12}
+      - {x: -35, y: 41}
+      - {x: -37, y: 44}
+    - - {x: -23, y: 47}
+      - {x: -28, y: 41}
+      - {x: -28, y: 3}
+      - {x: -24, y: 0}
+      - {x: -5, y: 0}
+      - {x: -4, y: 1}
+      - {x: -4, y: 45}
+      - {x: -9, y: 47}
+    - - {x: 24, y: 48}
+      - {x: 12, y: 48}
+      - {x: 4, y: 45}
+      - {x: 4, y: 25}
+      - {x: 9, y: 5}
+      - {x: 12, y: 0}
+      - {x: 22, y: 0}
+      - {x: 27, y: 1}
+      - {x: 29, y: 17}
+      - {x: 29, y: 40}
+      - {x: 26, y: 44}
+    - - {x: 56, y: 47}
+      - {x: 44, y: 47}
+      - {x: 36, y: 44}
+      - {x: 36, y: 2}
+      - {x: 37, y: 0}
+      - {x: 53, y: 0}
+      - {x: 58, y: 1}
+      - {x: 62, y: 5}
+      - {x: 62, y: 35}
+    - - {x: -7, y: 95}
+      - {x: -22, y: 95}
+      - {x: -30, y: 89}
+      - {x: -30, y: 63}
+      - {x: -25, y: 49}
+      - {x: -21, y: 47}
+      - {x: -11, y: 47}
+      - {x: -5, y: 52}
+      - {x: 0, y: 67}
+      - {x: 0, y: 81}
+    - - {x: 58, y: 95}
+      - {x: 42, y: 95}
+      - {x: 33, y: 90}
+      - {x: 33, y: 67}
+      - {x: 38, y: 52}
+      - {x: 45, y: 47}
+      - {x: 56, y: 47}
+      - {x: 62, y: 65}
+      - {x: 63, y: 71}
+      - {x: 63, y: 86}
+    - - {x: -40, y: 96}
+      - {x: -53, y: 96}
+      - {x: -61, y: 93}
+      - {x: -63, y: 81}
+      - {x: -63, y: 63}
+      - {x: -57, y: 48}
+      - {x: -38, y: 48}
+      - {x: -32, y: 61}
+      - {x: -32, y: 79}
+      - {x: -37, y: 91}
+    - - {x: 32, y: 79}
+      - {x: 28, y: 92}
+      - {x: 25, y: 96}
+      - {x: 9, y: 96}
+      - {x: 2, y: 94}
+      - {x: 1, y: 85}
+      - {x: 1, y: 61}
+      - {x: 7, y: 48}
+      - {x: 23, y: 48}
+      - {x: 27, y: 50}
+      - {x: 32, y: 64}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

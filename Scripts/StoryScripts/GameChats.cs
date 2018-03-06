@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//holds all npc chats in game
 public class GameChats : MonoBehaviour {
 
     public static GameChats gChats;

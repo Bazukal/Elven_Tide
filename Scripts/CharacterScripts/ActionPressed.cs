@@ -22,7 +22,9 @@ public class ActionPressed : MonoBehaviour {
                 QuestAccept.qAccept.displayQuest();
                 break;
             case "Chest":
-                
+                GameObject openChest = CharacterManager.charManager.getChest();
+                Debug.Log(openChest.name);
+                openChest.GetComponent<OpenChest>().open();
                 break;
             case "Cave":
                 LevelLoad.lLoad.prepareLevelLoad();
@@ -39,7 +41,9 @@ public class ActionPressed : MonoBehaviour {
             case "Citizen4":
                 npcChat.chat.startChat("Citizen4");
                 break;
-            
+            case "CaveExit":
+                ExitDungeon.exit.activatePanel();
+                break;
         }
     }
 

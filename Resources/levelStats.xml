@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StatCollection>
+  <Stats>
+    <Stat CharClass ="Archer">
+      <HPMinValue>6</HPMinValue>
+      <HPMaxValue>10</HPMaxValue>
+      <MPMinValue>2</MPMinValue>
+      <MPMaxValue>4</MPMaxValue>
+      <StrMinValue>2</StrMinValue>
+      <StrMaxValue>4</StrMaxValue>
+      <AgiMinValue>2</AgiMinValue>
+      <AgiMaxValue>5</AgiMaxValue>
+      <MindMinValue>1</MindMinValue>
+      <MindMaxValue>2</MindMaxValue>
+      <SoulMinValue>1</SoulMinValue>
+      <SoulMaxValue>3</SoulMaxValue>
+      <DefMinValue>1</DefMinValue>
+      <DefMaxValue>4</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="Black Mage">
+      <HPMinValue>3</HPMinValue>
+      <HPMaxValue>8</HPMaxValue>
+      <MPMinValue>4</MPMinValue>
+      <MPMaxValue>7</MPMaxValue>
+      <StrMinValue>1</StrMinValue>
+      <StrMaxValue>3</StrMaxValue>
+      <AgiMinValue>1</AgiMinValue>
+      <AgiMaxValue>3</AgiMaxValue>
+      <MindMinValue>3</MindMinValue>
+      <MindMaxValue>6</MindMaxValue>
+      <SoulMinValue>2</SoulMinValue>
+      <SoulMaxValue>4</SoulMaxValue>
+      <DefMinValue>1</DefMinValue>
+      <DefMaxValue>3</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="Monk">
+      <HPMinValue>6</HPMinValue>
+      <HPMaxValue>11</HPMaxValue>
+      <MPMinValue>2</MPMinValue>
+      <MPMaxValue>5</MPMaxValue>
+      <StrMinValue>2</StrMinValue>
+      <StrMaxValue>5</StrMaxValue>
+      <AgiMinValue>2</AgiMinValue>
+      <AgiMaxValue>4</AgiMaxValue>
+      <MindMinValue>1</MindMinValue>
+      <MindMaxValue>2</MindMaxValue>
+      <SoulMinValue>1</SoulMinValue>
+      <SoulMaxValue>3</SoulMaxValue>
+      <DefMinValue>2</DefMinValue>
+      <DefMaxValue>4</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="Paladin">
+      <HPMinValue>8</HPMinValue>
+      <HPMaxValue>13</HPMaxValue>
+      <MPMinValue>2</MPMinValue>
+      <MPMaxValue>3</MPMaxValue>
+      <StrMinValue>1</StrMinValue>
+      <StrMaxValue>4</StrMaxValue>
+      <AgiMinValue>1</AgiMinValue>
+      <AgiMaxValue>3</AgiMaxValue>
+      <MindMinValue>1</MindMinValue>
+      <MindMaxValue>2</MindMaxValue>
+      <SoulMinValue>2</SoulMinValue>
+      <SoulMaxValue>5</SoulMaxValue>
+      <DefMinValue>3</DefMinValue>
+      <DefMaxValue>6</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="Thief">
+      <HPMinValue>5</HPMinValue>
+      <HPMaxValue>10</HPMaxValue>
+      <MPMinValue>3</MPMinValue>
+      <MPMaxValue>4</MPMaxValue>
+      <StrMinValue>2</StrMinValue>
+      <StrMaxValue>4</StrMaxValue>
+      <AgiMinValue>3</AgiMinValue>
+      <AgiMaxValue>6</AgiMaxValue>
+      <MindMinValue>1</MindMinValue>
+      <MindMaxValue>2</MindMaxValue>
+      <SoulMinValue>1</SoulMinValue>
+      <SoulMaxValue>3</SoulMaxValue>
+      <DefMinValue>1</DefMinValue>
+      <DefMaxValue>4</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="Warrior">
+      <HPMinValue>7</HPMinValue>
+      <HPMaxValue>12</HPMaxValue>
+      <MPMinValue>3</MPMinValue>
+      <MPMaxValue>5</MPMaxValue>
+      <StrMinValue>3</StrMinValue>
+      <StrMaxValue>6</StrMaxValue>
+      <AgiMinValue>1</AgiMinValue>
+      <AgiMaxValue>4</AgiMaxValue>
+      <MindMinValue>1</MindMinValue>
+      <MindMaxValue>2</MindMaxValue>
+      <SoulMinValue>1</SoulMinValue>
+      <SoulMaxValue>4</SoulMaxValue>
+      <DefMinValue>2</DefMinValue>
+      <DefMaxValue>5</DefMaxValue>
+    </Stat>
+    <Stat CharClass ="White Mage">
+      <HPMinValue>3</HPMinValue>
+      <HPMaxValue>8</HPMaxValue>
+      <MPMinValue>4</MPMinValue>
+      <MPMaxValue>7</MPMaxValue>
+      <StrMinValue>1</StrMinValue>
+      <StrMaxValue>3</StrMaxValue>
+      <AgiMinValue>2</AgiMinValue>
+      <AgiMaxValue>3</AgiMaxValue>
+      <MindMinValue>2</MindMinValue>
+      <MindMaxValue>4</MindMaxValue>
+      <SoulMinValue>3</SoulMinValue>
+      <SoulMaxValue>6</SoulMaxValue>
+      <DefMinValue>1</DefMinValue>
+      <DefMaxValue>4</DefMaxValue>
+    </Stat>
+  </Stats>
+</StatCollection>

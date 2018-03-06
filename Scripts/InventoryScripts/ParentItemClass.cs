@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-
+[Serializable]
 public class ParentItemClass {
 
     protected string name;
@@ -50,10 +48,10 @@ public class ParentItemClass {
 
     //change the quantity amount for item
     public void changeQuantity(int change) { quantity += change; }
-    public void buyQuantity(int amount) { quantity = amount; }
+    public void setQuantity(int amount) { quantity = amount; }
 }
 
-
+[Serializable]
 public class UsableItemClass : ParentItemClass
 {
     private string cureAilment;
@@ -74,7 +72,7 @@ public class UsableItemClass : ParentItemClass
     public int getHeal() { return healAmount; }
 }
 
-
+[Serializable]
 public class EquipableItemClass : ParentItemClass
 {
     private string weaponType;

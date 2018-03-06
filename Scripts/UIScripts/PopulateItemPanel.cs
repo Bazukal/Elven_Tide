@@ -37,6 +37,16 @@ public class PopulateItemPanel : MonoBehaviour {
     //activates equip item stat window with item
     public void itemToStat()
     {
+        try
+        {
+            Debug.Log(usableSent.getName());
+        }
+        catch
+        {
+            Debug.Log(equipableSent.getName());
+        }
+        
+
         if (equipableSent != null)
             UseEquipItem.equipItem.activateEquipItemStat(equipableSent);
         else

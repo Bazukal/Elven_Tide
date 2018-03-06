@@ -17,8 +17,11 @@ public class QuestInfo : MonoBehaviour {
 
     private QuestClass currentQuest;
 
+    //opens players quest log and displays quest info
 	public void openQuestLog()
     {
+        StoreFinds.stored.activate();
+
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
         gameObject.GetComponent<CanvasGroup>().interactable = true;
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -72,10 +75,13 @@ public class QuestInfo : MonoBehaviour {
         }
     }
 
+    //closes quest log
     public void closeQuestPanel()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
         gameObject.GetComponent<CanvasGroup>().interactable = false;
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        StoreFinds.stored.activate();
     }
 }

@@ -253,13 +253,6 @@ public class ChosenClasses : MonoBehaviour {
 
             CharacterManager.charManager.loadCharacters(character1, character2, character3, character4);
 
-            string class1 = CharacterManager.charManager.character1.GetCharClass();
-            string class2 = CharacterManager.charManager.character2.GetCharClass();
-            string class3 = CharacterManager.charManager.character3.GetCharClass();
-            string class4 = CharacterManager.charManager.character4.GetCharClass();
-
-            CharacterManager.charManager.setSprites(class1, class2, class3, class4);        
-
             CharacterManager.charManager.setGold(100);
 
             QuestClass currentClass = QuestListing.qListing.getQuest(1, "Master");
@@ -295,20 +288,20 @@ public class ChosenClasses : MonoBehaviour {
         switch(charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 12, 0, 4, 4, 1, 2, 2, 0, 25, 
-                    null, archerWeap, null, archerArmor, archerAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                    archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 12, 0, 4, 4, 1, 2, 2, 0, 25, 
-                    null, archerWeap, null, archerArmor, archerAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                    archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 12, 0, 4, 4, 1, 2, 2, 0, 25, 
-                    null, archerWeap, null, archerArmor, archerAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                    archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 12, 0, 4, 4, 1, 2, 2, 0, 25, 
-                    null, archerWeap, null, archerArmor, archerAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                    archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
         }
 
@@ -318,9 +311,6 @@ public class ChosenClasses : MonoBehaviour {
     private CharacterClass BlackMageChosen (int charNum)
     {
         CharacterClass charClass;
-        List<string> skillList = new List<string>();
-        skillList.Add("Flameshot");
-        skillList.Add("Poison");
 
         EquipableItemClass blackWeap = null;
         EquipableItemClass blackArmor = null;
@@ -343,20 +333,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:                
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 0, 25, 
-                    skillList, blackWeap, null, blackArmor, blackAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 
+                    blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 0, 25, 
-                    skillList, blackWeap, null, blackArmor, blackAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2,  
+                    blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 0, 25, 
-                    skillList, blackWeap, null, blackArmor, blackAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2,  
+                    blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 0, 25, 
-                    skillList, blackWeap, null, blackArmor, blackAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 
+                    blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
         }
 
@@ -384,20 +374,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 0, 5, 3, 1, 1, 3, 0, 25, 
-                    null, null, null, monkArmor, monkAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3, 
+                    null, null, monkArmor, monkAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 0, 5, 3, 1, 1, 3, 0, 25, 
-                    null, null, null, monkArmor, monkAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3,  
+                    null, null, monkArmor, monkAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 0, 5, 3, 1, 1, 3, 0, 25, 
-                    null, null, null, monkArmor, monkAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3,  
+                    null, null, monkArmor, monkAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 0, 5, 3, 1, 1, 3, 0, 25, 
-                    null, null, null, monkArmor, monkAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3, 
+                    null, null, monkArmor, monkAccessory);
                 return charClass;
         }
 
@@ -407,8 +397,6 @@ public class ChosenClasses : MonoBehaviour {
     private CharacterClass PaladinChosen(int charNum)
     {
         CharacterClass charClass;
-        List<string> skillList = new List<string>();
-        skillList.Add("Minor Shield");
 
         EquipableItemClass palWeap = null;
         EquipableItemClass palOffHand = null;
@@ -435,20 +423,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 0, 25, 
-                    skillList, palWeap, palOffHand, palArmor, palAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 
+                    palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 0, 25, 
-                    skillList, palWeap, palOffHand, palArmor, palAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5,  
+                    palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 0, 25, 
-                    skillList, palWeap, palOffHand, palArmor, palAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 
+                    palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 0, 25, 
-                    skillList, palWeap, palOffHand, palArmor, palAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5,  
+                    palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
         }
 
@@ -484,20 +472,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 0, 3, 5, 1, 2, 3, 0, 25, 
-                    null, thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3,  
+                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 0, 3, 5, 1, 2, 3, 0, 25, 
-                    null, thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3, 
+                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 0, 3, 5, 1, 2, 3, 0, 25, 
-                    null, thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3, 
+                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 0, 3, 5, 1, 2, 3, 0, 25, 
-                    null, thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3,
+                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
         }
 
@@ -533,20 +521,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 17, 0, 5, 3, 1, 2, 4, 0, 25, 
-                    null, warWeap, warOffHand, warArmor, warAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                    warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 17, 0, 5, 3, 1, 2, 4, 0, 25, 
-                    null, warWeap, warOffHand, warArmor, warAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                    warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 17, 0, 5, 3, 1, 2, 4, 0, 25, 
-                    null, warWeap, warOffHand, warArmor, warAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                    warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 17, 0, 5, 3, 1, 2, 4, 0, 25, 
-                    null, warWeap, warOffHand, warArmor, warAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                    warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
         }
 
@@ -556,9 +544,6 @@ public class ChosenClasses : MonoBehaviour {
     private CharacterClass WhiteMageChosen(int charNum)
     {
         CharacterClass charClass;
-        List<string> skillList = new List<string>();
-        skillList.Add("Minor Heal");
-        skillList.Add("Cure Poison");
 
         EquipableItemClass whiteWeap = null;
         EquipableItemClass whiteArmor = null;
@@ -581,20 +566,20 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 0, 25, 
-                    skillList, whiteWeap, null, whiteArmor, whiteAccessory);
+                charClass = new CharacterClass(char1Name, char1Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                    whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 0, 25, 
-                    skillList, whiteWeap, null, whiteArmor, whiteAccessory);
+                charClass = new CharacterClass(char2Name, char2Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2,  
+                    whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 0, 25, 
-                    skillList, whiteWeap, null, whiteArmor, whiteAccessory);
+                charClass = new CharacterClass(char3Name, char3Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                    whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 0, 25, 
-                    skillList, whiteWeap, null, whiteArmor, whiteAccessory);
+                charClass = new CharacterClass(char4Name, char4Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                    whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
         }
 

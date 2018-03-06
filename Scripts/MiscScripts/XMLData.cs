@@ -9,6 +9,8 @@ public class XMLData : MonoBehaviour {
     public const string ITEMPATH = "items";
     public const string QUESTPATH = "quests";
     public const string CHATPATH = "chats";
+    public const string SKILLPATH = "skills";
+    public const string STATPATH = "levelStats";
     
     private List<EquipableItemClass> equipableItems = new List<EquipableItemClass>();
     private List<UsableItemClass> usableItems = new List<UsableItemClass>();
@@ -20,12 +22,37 @@ public class XMLData : MonoBehaviour {
 
     private List<QuestClass> allQuests = new List<QuestClass>();
 
+    private List<SkillClass> enemySkills = new List<SkillClass>();
+    private List<SkillClass> archerSkills = new List<SkillClass>();
+    private List<SkillClass> blackSkills = new List<SkillClass>();
+    private List<SkillClass> monkSkills = new List<SkillClass>();
+    private List<SkillClass> paladinSkills = new List<SkillClass>();
+    private List<SkillClass> thiefSkills = new List<SkillClass>();
+    private List<SkillClass> warriorSkills = new List<SkillClass>();
+    private List<SkillClass> whiteSkills = new List<SkillClass>();
+
+
     public Slider loadingSlider;
     public Text progressText;
 
     // Use this for initialization
     void Start () {
+        
+        SetChats();
 
+        SetItems();
+
+        SetQuests();
+
+        SetSkills();
+
+        SetStats();
+
+        StartCoroutine(loadXML());
+	}
+
+    private void SetChats()
+    {
         //Reading npc chats from XML file, and storing in manager
         ChatClass newChat;
 
@@ -53,11 +80,11 @@ public class XMLData : MonoBehaviour {
                     break;
             }
         }
-
         GameChats.gChats.setAllChats(citizen1, citizen2, citizen3, citizen4);
+    }
 
-
-
+    private void SetItems()
+    {
         //reads items from xml file, and stores into lists
         UsableItemClass newUsable;
         EquipableItemClass newEquipable;
@@ -68,7 +95,7 @@ public class XMLData : MonoBehaviour {
         {
             string typeCheck = item.type;
 
-            switch(typeCheck)
+            switch (typeCheck)
             {
                 case "Weapon":
                 case "Armor":
@@ -90,9 +117,10 @@ public class XMLData : MonoBehaviour {
         }
 
         GameItems.gItems.setItems(equipableItems, usableItems);
+    }
 
-
-
+    private void SetQuests()
+    {
         //Reading Quests from XML file, and storing in manager
         QuestClass newQuest;
 
@@ -126,12 +154,72 @@ public class XMLData : MonoBehaviour {
             }
         }
         QuestListing.qListing.setQuests(allQuests);
+    }
 
-        StartCoroutine(loadXML());
-	}
-	
+    private void SetSkills()
+    {
+        //reading skills from XML, and store in manager
+        SkillClass newSkill;
+
+        SkillContainer sc = SkillContainer.Load(SKILLPATH);
+
+        foreach (Skill skill in sc.skills)
+        {
+            string charClass = skill.charClass;
+
+            newSkill = new SkillClass(skill.name, skill.charClass, skill.type, skill.target, skill.desc, skill.cure,
+                skill.stat, skill.strength, skill.plus, skill.turns, skill.level, skill.mana, skill.aoe);
+
+            switch(charClass)
+            {
+                case "Enemy":
+                    enemySkills.Add(newSkill);
+                    break;
+                case "Archer":
+                    archerSkills.Add(newSkill);
+                    break;
+                case "Black Mage":
+                    blackSkills.Add(newSkill);
+                    break;
+                case "Monk":
+                    monkSkills.Add(newSkill);
+                    break;
+                case "Paladin":
+                    paladinSkills.Add(newSkill);
+                    break;
+                case "Thief":
+                    thiefSkills.Add(newSkill);
+                    break;
+                case "Warrior":
+                    warriorSkills.Add(newSkill);
+                    break;
+                case "White Mage":
+                    whiteSkills.Add(newSkill);
+                    break;
+            }
+        }
+
+        GameSkills.skills.SetSkills(enemySkills, archerSkills, blackSkills, monkSkills, paladinSkills, thiefSkills,
+            warriorSkills, whiteSkills);
+    }
+
+    private void SetStats()
+    {
+        StatClass newStats;
+        LevelStatContainer lc = LevelStatContainer.Load(STATPATH);
+        foreach(Stat stats in lc.stats)
+        {
+            string charClass = stats.charClass;
+            newStats = new StatClass(stats.hpMinValue, stats.hpMaxValue, stats.mpMinValue, stats.mpMaxValue,
+                stats.strMinValue, stats.strMaxValue, stats.agiMinValue, stats.agiMaxValue, stats.mindMinValue,
+                stats.mindMaxValue, stats.soulMinValue, stats.soulMaxValue, stats.defMinValue, stats.defMaxValue);
+            
+            LevelGrowth.growth.addDictionary(charClass, newStats);
+        }
+    }
+
     //loads xml files, while displaying a loading bar during the process
-	IEnumerator loadXML()
+    IEnumerator loadXML()
     {       
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TitleScreen");
 

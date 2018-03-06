@@ -15,6 +15,7 @@ public class npcChat : MonoBehaviour {
         chat = this;
     }
 
+    //activates chat with npc that player is next to
     public void startChat(string citi)
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -81,6 +82,7 @@ public class npcChat : MonoBehaviour {
         }
     }
 
+    //closes chat
     public void closeChat()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0;

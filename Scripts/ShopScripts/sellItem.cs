@@ -29,6 +29,7 @@ public class sellItem : MonoBehaviour {
         sItem = this;
     }
 
+    //opens sell shop
     public void sellPanel(EquipableItemClass equipTtem, UsableItemClass useItem)
     {
         if (equipTtem != null)
@@ -64,6 +65,7 @@ public class sellItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
+    //increases number of items player is selling
     public void quantityUp()
     {
         sellQuantity++;
@@ -81,6 +83,7 @@ public class sellItem : MonoBehaviour {
             sellButton.interactable = true;
     }
 
+    //decreases number of items player is selling
     public void quantityDown()
     {
         sellQuantity--;
@@ -99,6 +102,7 @@ public class sellItem : MonoBehaviour {
             quantityUpButton.interactable = true;
     }
 
+    //closes shop
     public void closePanel()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
@@ -106,6 +110,7 @@ public class sellItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
+    //sells selected item at quantity set by arrows
     public void sellItemQuantity()
     {
         if(sellingEquipItem != null)

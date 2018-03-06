@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SkillCollection>
+  <Skills>
+    <Skill Name ="Quick Shot">
+      <Class>Archer</Class>
+      <Level>1</Level>
+      <Type>Damage</Type>
+      <Mana>2</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>1.2</Strength>
+      <Plus>2</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Deals Minor Damage to Enemy.</Desc>
+    </Skill>
+    <Skill Name ="Flame Shot">
+      <Class>Black Mage</Class>
+      <Level>1</Level>
+      <Type>Damage</Type>
+      <Mana>3</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>1.0</Strength>
+      <Plus>2</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Deals a Small Amount of Damage to an Enemy.</Desc>
+    </Skill>
+    <Skill Name ="Poison">
+      <Class>Black Mage</Class>
+      <Level>1</Level>
+      <Type>Damage</Type>
+      <Mana>4</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>0.4</Strength>
+      <Plus>1</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>3</Turns>
+      <Desc>Deals Minor Damage to Enemy over Time.</Desc>
+    </Skill>
+    <Skill Name ="Kick">
+      <Class>Monk</Class>
+      <Level>1</Level>
+      <Type>Buff</Type>
+      <Mana>2</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>1.4</Strength>
+      <Plus>3</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Kick at an Enemy for small damage.</Desc>
+    </Skill>
+    <Skill Name ="Minor Shield">
+      <Class>Paladin</Class>
+      <Level>1</Level>
+      <Type>Buff</Type>
+      <Mana>3</Mana>
+      <AOE>false</AOE>
+      <Target>Player</Target>
+      <Strength>0</Strength>
+      <Plus>3</Plus>
+      <Cure></Cure>
+      <Stat>Defense</Stat>
+      <Turns>3</Turns>
+      <Desc>Boosts one Characters Defense by 3 for three rounds.</Desc>
+    </Skill>
+    <Skill Name ="Stab">
+      <Class>Thief</Class>
+      <Level>1</Level>
+      <Type>Damage</Type>
+      <Mana>3</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>1.3</Strength>
+      <Plus>2</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Take a stab at an enemy for small damage.</Desc>
+    </Skill>
+    <Skill Name ="Bash">
+      <Class>Warrior</Class>
+      <Level>1</Level>
+      <Type>Damage</Type>
+      <Mana>2</Mana>
+      <AOE>false</AOE>
+      <Target>Enemy</Target>
+      <Strength>1.1</Strength>
+      <Plus>1</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Bash an enemy for minor damage.</Desc>
+    </Skill>
+    <Skill Name ="Minor Heal">
+      <Class>White Mage</Class>
+      <Level>1</Level>
+      <Type>Heal</Type>
+      <Mana>3</Mana>
+      <AOE>false</AOE>
+      <Target>Player</Target>
+      <Strength>1.0</Strength>
+      <Plus>3</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Heals player by a small amount.</Desc>
+    </Skill>
+    <Skill Name ="Cure Poison">
+      <Class>White Mage</Class>
+      <Level>1</Level>
+      <Type>Cure</Type>
+      <Mana>2</Mana>
+      <AOE>false</AOE>
+      <Target>Player</Target>
+      <Strength>0</Strength>
+      <Plus>0</Plus>
+      <Cure>Poison</Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Cures player of Poison.</Desc>
+    </Skill>
+    <Skill Name ="Revive">
+      <Class>White Mage</Class>
+      <Level>5</Level>
+      <Type>Revive</Type>
+      <Mana>25</Mana>
+      <AOE>false</AOE>
+      <Target>Player</Target>
+      <Strength>0.25</Strength>
+      <Plus>0</Plus>
+      <Cure></Cure>
+      <Stat></Stat>
+      <Turns>0</Turns>
+      <Desc>Revives a fallen character with 25% life.</Desc>
+    </Skill>
+  </Skills>
+</SkillCollection>

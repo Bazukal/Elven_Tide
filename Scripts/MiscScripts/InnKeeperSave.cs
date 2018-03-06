@@ -38,6 +38,7 @@ public class InnKeeperSave : MonoBehaviour {
         }
     }
 
+    //opens save screen
     public void openSave()
     {
         saveScreen.SetActive(true);
@@ -60,10 +61,17 @@ public class InnKeeperSave : MonoBehaviour {
             int char3Lvl = data.character3.GetCharLevel();
             int char4Lvl = data.character4.GetCharLevel();
 
+            string char1Class = data.character1.GetCharClass();
+            string char2Class = data.character2.GetCharClass();
+            string char3Class = data.character3.GetCharClass();
+            string char4Class = data.character4.GetCharClass();
+
+
             int gold = data.gold;
 
-            save1Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);            
+            save1Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);            
         }
 
         if (File.Exists(Application.persistentDataPath + "/saveSlot2.dat"))
@@ -82,10 +90,16 @@ public class InnKeeperSave : MonoBehaviour {
             int char3Lvl = data.character3.GetCharLevel();
             int char4Lvl = data.character4.GetCharLevel();
 
+            string char1Class = data.character1.GetCharClass();
+            string char2Class = data.character2.GetCharClass();
+            string char3Class = data.character3.GetCharClass();
+            string char4Class = data.character4.GetCharClass();
+
             int gold = data.gold;
 
-            save2Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);
+            save2Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);
         }
         else
 
@@ -105,13 +119,20 @@ public class InnKeeperSave : MonoBehaviour {
             int char3Lvl = data.character3.GetCharLevel();
             int char4Lvl = data.character4.GetCharLevel();
 
+            string char1Class = data.character1.GetCharClass();
+            string char2Class = data.character2.GetCharClass();
+            string char3Class = data.character3.GetCharClass();
+            string char4Class = data.character4.GetCharClass();
+
             int gold = data.gold;
 
-            save3Info.text = string.Format("{0}: Level {1},   {2}: Level {3},   {4}: Level {5},   {6}: Level {7}" +
-                "\n\nGold: {8}", char1Name, char1Lvl, char2Name, char2Lvl, char3Name, char3Lvl, char4Name, char4Lvl, gold);            
+            save3Info.text = string.Format("{0}: Level {1} {2},   {3}: Level {4} {5},   {6}: Level {7} {8}," +
+                "   {9}: Level {10} {11}\n\nGold: {12}", char1Name, char1Lvl, char1Class, char2Name, char2Lvl, char2Class,
+                char3Name, char3Lvl, char3Class, char4Name, char4Lvl, char4Class, gold);            
         }
     }
 
+    //saves game into save slot based on option player selected
     public void Save(int slot)
     {
         BinaryFormatter bfS = new BinaryFormatter();
@@ -122,15 +143,15 @@ public class InnKeeperSave : MonoBehaviour {
         {
             case 1:
                 fs = File.Create(Application.persistentDataPath + "/saveSlot1.dat");
-                showToastMessage("Saved Game to Slot 1");
+                //showToastMessage("Saved Game to Slot 1");
                 break;
             case 2:
                 fs = File.Create(Application.persistentDataPath + "/saveSlot2.dat");
-                showToastMessage("Saved Game to Slot 2");
+                //showToastMessage("Saved Game to Slot 2");
                 break;
             case 3:
                 fs = File.Create(Application.persistentDataPath + "/saveSlot3.dat");
-                showToastMessage("Saved Game to Slot 3");
+                //showToastMessage("Saved Game to Slot 3");
                 break;
         }
         //stores player data to the PlayerData class
@@ -154,11 +175,11 @@ public class InnKeeperSave : MonoBehaviour {
         bfS.Serialize(fs, data);
 
         fs.Close();
-
-        showToast();
+        
         closeSave();
     }
 
+    //shows toast about game being saved
     private void showToastMessage(string toastString)
     {
         toastMessage = toastString;

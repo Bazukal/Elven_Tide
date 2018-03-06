@@ -30,6 +30,7 @@ public class PurchaseItem : MonoBehaviour {
         pItem = this;
     }
 
+    //opens equipment shop
     public void purchaseEquipPanel(EquipableItemClass item)
     {
         quantity = 1;
@@ -64,6 +65,7 @@ public class PurchaseItem : MonoBehaviour {
         stats.text = strb.ToString();
     }
 
+    //opens usable shop
     public void purchaseUseItem(UsableItemClass item)
     {
         quantity = 1;
@@ -101,6 +103,7 @@ public class PurchaseItem : MonoBehaviour {
         }
     }
 
+    //increases the amount of items player is going to buy
     public void quantityUp()
     {
         quantity++;
@@ -118,6 +121,7 @@ public class PurchaseItem : MonoBehaviour {
             buyButton.interactable = true;
     }
 
+    //reduces amount of items player is going to buy
     public void quantityDown()
     {
         quantity--;
@@ -136,20 +140,21 @@ public class PurchaseItem : MonoBehaviour {
             quantityUpButton.interactable = true;
     }
 
+    //purchases selected item with the quantity set from arrows
     public void purchaseItem()
     {
         string npc = CharacterManager.charManager.getInRange();
 
         if(npc.Equals("Blacksmith"))
         {
-            buyEquipItem.buyQuantity(quantity);
+            buyEquipItem.setQuantity(quantity);
             CharacterInventory.charInven.addEquipableToInventory(buyEquipItem);
             CharacterManager.charManager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();
         }
         else
         {            
-            buyUseItem.buyQuantity(quantity);
+            buyUseItem.setQuantity(quantity);
             CharacterInventory.charInven.addUsableToInventory(buyUseItem);
             CharacterManager.charManager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();
@@ -158,6 +163,7 @@ public class PurchaseItem : MonoBehaviour {
         closePanel();
     }
 
+    //closes shop
     public void closePanel()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0;

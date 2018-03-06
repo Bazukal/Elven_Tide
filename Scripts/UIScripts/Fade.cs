@@ -13,6 +13,7 @@ public class Fade : MonoBehaviour {
         fade = this;
     }
 
+    //fades screen
     public void fadeNow()
     {
         fading.SetTrigger("Fade");

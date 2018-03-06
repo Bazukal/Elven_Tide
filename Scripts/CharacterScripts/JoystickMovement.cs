@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class JoystickMovement : MonoBehaviour {
 
     private float moveSpeed = 0.1f;
+    private float perBattleTime = 0.25f;
+    private float battleTime;
 
     private Animator animator;
 
@@ -14,17 +15,42 @@ public class JoystickMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = gameObject.GetComponentInChildren<Animator>();
+        battleTime = perBattleTime;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Movement Controlls
+    void Update () {
         Vector3 moveVec = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical")) * moveSpeed;
         gameObject.transform.Translate(moveVec);
 
         float horiz = CrossPlatformInputManager.GetAxis("Horizontal");
-        float vert = CrossPlatformInputManager.GetAxis("Vertical");        
+        float vert = CrossPlatformInputManager.GetAxis("Vertical");
 
-        if(Mathf.Abs(horiz) > Mathf.Abs(vert))
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        //check to see if player gets into a battle
+        if (horiz > 0 || vert > 0)
+        {
+            if (sceneName != "Town")
+            {
+                battleTime -= Time.deltaTime;
+
+                if(battleTime <= 0)
+                {
+                    int battleCheck = Random.Range(0, 101);
+                    if (battleCheck > 95)
+                        ActivateBattle.active.battle();
+
+                    battleTime = perBattleTime;
+                }
+
+                
+            }
+        }
+
+        //plays animations based on direction player is moving
+        if (Mathf.Abs(horiz) > Mathf.Abs(vert))
         {
             if(horiz > 0)
             {
@@ -72,9 +98,15 @@ public class JoystickMovement : MonoBehaviour {
         }
     }
 
-
+    //checks if certain objects come within range of player
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "CaveExit")
+        {
+            CharacterManager.charManager.setInRange("CaveExit");
+            return;
+        }
+
         if (other.tag == "InnKeeper")
         {
             CharacterManager.charManager.setInRange("InnKeeper");
@@ -95,12 +127,14 @@ public class JoystickMovement : MonoBehaviour {
 
         if (other.tag == "Cave")
         {
+            
             CharacterManager.charManager.setInRange("Cave");
             return;
         }
 
         if (other.tag == "Chest")
         {
+            CharacterManager.charManager.setChest(other.gameObject);
             CharacterManager.charManager.setInRange("Chest");
             return;
         }
@@ -137,8 +171,15 @@ public class JoystickMovement : MonoBehaviour {
 
     }
 
+    //checks if certain objects leaves range of player
     private void OnTriggerExit(Collider other)
     {
+        if (other.tag == "CaveExit")
+        {
+            CharacterManager.charManager.setInRange("");
+            return;
+        }
+
         if (other.tag == "InnKeeper")
         {
             CharacterManager.charManager.setInRange("");
@@ -159,7 +200,7 @@ public class JoystickMovement : MonoBehaviour {
 
         if (other.tag == "Chest")
         {
-            CharacterManager.charManager.setInRange("");
+            CharacterManager.charManager.removeChest();
             return;
         }
 

@@ -56,7 +56,9 @@ public class CharacterInventory : MonoBehaviour
     //opens or closes the inventory window
     public void displayInvScreen()
     {
-        if(gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        StoreFinds.stored.activate();
+
+        if (gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
             gameObject.GetComponent<CanvasGroup>().interactable = false;
@@ -81,16 +83,16 @@ public class CharacterInventory : MonoBehaviour
 
     //changes which character is selected from button press
     public void changeChar(int charNum)
-    {        
-        character1 = FindObjectOfType<CharacterManager>().character1;
-        character2 = FindObjectOfType<CharacterManager>().character2;
-        character3 = FindObjectOfType<CharacterManager>().character3;
-        character4 = FindObjectOfType<CharacterManager>().character4;
+    {
+        character1 = CharacterManager.charManager.character1;
+        character2 = CharacterManager.charManager.character2;
+        character3 = CharacterManager.charManager.character3;
+        character4 = CharacterManager.charManager.character4;
 
-        char1.GetComponent<Image>().sprite = CharacterManager.charManager.getChar1Sprite();
-        char2.GetComponent<Image>().sprite = CharacterManager.charManager.getChar2Sprite();
-        char3.GetComponent<Image>().sprite = CharacterManager.charManager.getChar3Sprite();
-        char4.GetComponent<Image>().sprite = CharacterManager.charManager.getChar4Sprite();
+        char1.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character1.GetCharClass());
+        char2.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character2.GetCharClass());
+        char3.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character3.GetCharClass());
+        char4.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character4.GetCharClass());
 
         switch (charNum)
         {
@@ -363,6 +365,7 @@ public class CharacterInventory : MonoBehaviour
     public void removeUsableFromInventory(UsableItemClass item)
     {
         int index = heldUsableInventory.IndexOf(item);
+
         int quantityAmount = heldUsableInventory[index].getQuantity();
 
         if(quantityAmount <= 0)
@@ -396,7 +399,7 @@ public class CharacterInventory : MonoBehaviour
     }
 
 
-
+    //removed the item from the inventory when it is being equipped
     public void removeEquippedFromInven(EquipableItemClass item)
     {
         int index = heldEquipableInventory.IndexOf(item);
@@ -410,11 +413,12 @@ public class CharacterInventory : MonoBehaviour
         populateInvList();
     }
 
+    //refreshes inventory after item is equipped
     public void afterEquipRefresh()
     {
         foreach (Transform child in scrollContent.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
 
         populateInvList();

@@ -22,6 +22,7 @@ public class QuestAccept : MonoBehaviour {
         qAccept = this;
     }
 
+    //display quest information
     public void displayQuest()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -64,6 +65,7 @@ public class QuestAccept : MonoBehaviour {
         }
     }
 
+    //accepts quest
     public void AcceptQuest()
     {
         int step = currentClass.getQuestPart();

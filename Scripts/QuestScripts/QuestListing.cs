@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//holds quest data
 public class QuestListing : MonoBehaviour {
 
     public static QuestListing qListing;
