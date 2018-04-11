@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ActivateBattle : MonoBehaviour {
 
@@ -11,17 +9,14 @@ public class ActivateBattle : MonoBehaviour {
     private void Start()
     {
         active = this;
+        battleScreen.SetActive(false);
     }
     
     //activates battle and spawns enemies
     public void battle()
     {
-        battleScreen.GetComponent<CanvasGroup>().alpha = 1;
-        battleScreen.GetComponent<CanvasGroup>().interactable = true;
-        battleScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        battleScreen.SetActive(true);
 
         StoreFinds.stored.battleActivate();
-
-        Battle.battle.spawnEnemies();
     }
 }

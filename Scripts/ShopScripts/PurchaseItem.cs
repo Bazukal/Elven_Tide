@@ -35,7 +35,7 @@ public class PurchaseItem : MonoBehaviour {
     {
         quantity = 1;
         buyEquipItem = item;
-        itemCost = item.getBuyPrice();
+        itemCost = item.GetBuyPrice();
         goldAvail = CharacterManager.charManager.getGold();
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -43,24 +43,24 @@ public class PurchaseItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         quantityText.text = quantity.ToString();
-        nameText.text = item.getName();
+        nameText.text = item.GetName();
         totalCost = itemCost * quantity;
         costText.text = string.Format("Total Cost: {0:n0}", totalCost);
 
         StringBuilder strb = new StringBuilder();
-        if (item.getDamage() > 0)
-            strb.Append("Attack: " + item.getDamage() + "\n");
-        if (item.getArmor() > 0)
-            strb.Append("Armor: " + item.getArmor() + "\n");
-        if (item.getStr() > 0)
-            strb.Append("Strength: " + item.getStr() + "\n");
-        if (item.getAgi() > 0)
-            strb.Append("Agility: " + item.getAgi() + "\n");
-        if (item.getMind() > 0)
-            strb.Append("Mind: " + item.getMind() + "\n");
-        if (item.getSoul() > 0)
-            strb.Append("Soul: " + item.getSoul() + "\n");
-        strb.Append("\nCost: " + item.getBuyPrice());
+        if (item.GetDamage() > 0)
+            strb.Append("Attack: " + item.GetDamage() + "\n");
+        if (item.GetArmor() > 0)
+            strb.Append("Armor: " + item.GetArmor() + "\n");
+        if (item.GetStr() > 0)
+            strb.Append("Strength: " + item.GetStr() + "\n");
+        if (item.GetAgi() > 0)
+            strb.Append("Agility: " + item.GetAgi() + "\n");
+        if (item.GetMind() > 0)
+            strb.Append("Mind: " + item.GetMind() + "\n");
+        if (item.GetSoul() > 0)
+            strb.Append("Soul: " + item.GetSoul() + "\n");
+        strb.Append("\nCost: " + item.GetBuyPrice());
 
         stats.text = strb.ToString();
     }
@@ -70,7 +70,7 @@ public class PurchaseItem : MonoBehaviour {
     {
         quantity = 1;
         buyUseItem = item;
-        itemCost = item.getBuyPrice();
+        itemCost = item.GetBuyPrice();
         goldAvail = CharacterManager.charManager.getGold();
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -78,28 +78,28 @@ public class PurchaseItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         quantityText.text = quantity.ToString();
-        nameText.text = item.getName();
+        nameText.text = item.GetName();
         totalCost = itemCost * quantity;
         costText.text = string.Format("Total Cost: {0:n0}", totalCost);
 
-        int healAmount = item.getHeal();
-        string cure = item.getCure();
-        bool revive = item.getRevive();
+        int healAmount = item.GetHeal();
+        string cure = item.GetCure();
+        bool revive = item.GetRevive();
 
         if (healAmount > 0)
         {
             if (revive == false)
             {
-                stats.text = string.Format("Heals Ally for {0} Health\n\nCost: {1:n0}", healAmount, item.getBuyPrice());
+                stats.text = string.Format("Heals Ally for {0} Health\n\nCost: {1:n0}", healAmount, item.GetBuyPrice());
             }
             else
             {
-                stats.text = string.Format("Revives Ally, and heals for {0} Health\n\nCost: {1:n0}", healAmount, item.getBuyPrice());
+                stats.text = string.Format("Revives Ally, and heals for {0} Health\n\nCost: {1:n0}", healAmount, item.GetBuyPrice());
             }
         }
         else
         {
-            stats.text = string.Format("Cures Ally of {0}\n\nCost: {1:n0}", cure, item.getBuyPrice());
+            stats.text = string.Format("Cures Ally of {0}\n\nCost: {1:n0}", cure, item.GetBuyPrice());
         }
     }
 
@@ -147,14 +147,14 @@ public class PurchaseItem : MonoBehaviour {
 
         if(npc.Equals("Blacksmith"))
         {
-            buyEquipItem.setQuantity(quantity);
+            buyEquipItem.SetQuantity(quantity);
             CharacterInventory.charInven.addEquipableToInventory(buyEquipItem);
             CharacterManager.charManager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();
         }
         else
         {            
-            buyUseItem.setQuantity(quantity);
+            buyUseItem.SetQuantity(quantity);
             CharacterInventory.charInven.addUsableToInventory(buyUseItem);
             CharacterManager.charManager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();

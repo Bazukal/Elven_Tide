@@ -12,8 +12,8 @@ public class PopulateBuyPanel : MonoBehaviour {
     {
         equipBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = equipBuying.getName();
-        itemTexts[1].text = "Cost: " + equipBuying.getBuyPrice();        
+        itemTexts[0].text = equipBuying.GetName();
+        itemTexts[1].text = "Cost: " + equipBuying.GetBuyPrice();        
     }
 
     //adds name of equipable item in inventory to button
@@ -21,8 +21,8 @@ public class PopulateBuyPanel : MonoBehaviour {
     {
         useBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = useBuying.getName();
-        itemTexts[1].text = "Cost: " + useBuying.getBuyPrice();
+        itemTexts[0].text = useBuying.GetName();
+        itemTexts[1].text = "Cost: " + useBuying.GetBuyPrice();
     }
 
     public void purchaseEquipWindow()

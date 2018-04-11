@@ -18,6 +18,18 @@ public class Skill {
     [XmlElement("Type")]
     public string type;
 
+    //what type of damage skill is this, physical or magical
+    [XmlElement("DamageType")]
+    public string damageType;
+
+    //determines if the skill has a debuff, and what type of debuff
+    [XmlElement("DebuffType")]
+    public string debuffType;
+
+    //determines the chance the debuff will take effect
+    [XmlElement("DebuffChance")]
+    public float debuffChance;
+
     //how much mana does the skill cost
     [XmlElement("Mana")]
     public int mana;

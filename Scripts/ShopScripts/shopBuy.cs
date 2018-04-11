@@ -43,7 +43,7 @@ public class shopBuy : MonoBehaviour {
                 //populates items available for sell into the scroll view
                 foreach (UsableItemClass item in usableItems)
                 {
-                    string bought = item.getBoughtOrDrop();
+                    string bought = item.GetBoughtOrDrop();
 
                     if(bought == "Bought" || bought == "Both")
                     {
@@ -74,9 +74,9 @@ public class shopBuy : MonoBehaviour {
                                 
                 foreach (EquipableItemClass item in equipableItems)
                 {
-                    string itemType = item.getType();
+                    string itemType = item.GetItemType();
 
-                    string bought = item.getBoughtOrDrop();
+                    string bought = item.GetBoughtOrDrop();
 
                     if (bought == "Bought" || bought == "Both")
                     {

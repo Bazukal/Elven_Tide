@@ -159,15 +159,15 @@ public class CharacterInventory : MonoBehaviour
     {
         try
         {
-            weaponName.text = charWeap.getName();
+            weaponName.text = charWeap.GetName();
 
             StringBuilder stats = new StringBuilder();
 
-            int damage = charWeap.getDamage();
-            int str = charWeap.getStr();
-            int agi = charWeap.getAgi();
-            int mind = charWeap.getMind();
-            int soul = charWeap.getSoul();
+            int damage = charWeap.GetDamage();
+            int str = charWeap.GetStr();
+            int agi = charWeap.GetAgi();
+            int mind = charWeap.GetMind();
+            int soul = charWeap.GetSoul();
 
             stats.Append("Attack: " + damage + ",");
 
@@ -198,16 +198,16 @@ public class CharacterInventory : MonoBehaviour
     {
         try
         {
-            offHandName.text = charOffHand.getName();
+            offHandName.text = charOffHand.GetName();
 
             StringBuilder stats = new StringBuilder();
 
-            int damage = charOffHand.getDamage();
-            int armor = charOffHand.getArmor();
-            int str = charOffHand.getStr();
-            int agi = charOffHand.getAgi();
-            int mind = charOffHand.getMind();
-            int soul = charOffHand.getSoul();
+            int damage = charOffHand.GetDamage();
+            int armor = charOffHand.GetArmor();
+            int str = charOffHand.GetStr();
+            int agi = charOffHand.GetAgi();
+            int mind = charOffHand.GetMind();
+            int soul = charOffHand.GetSoul();
 
             if (damage > 0)
                 stats.Append("Attack: " + damage + ",");
@@ -239,15 +239,15 @@ public class CharacterInventory : MonoBehaviour
     //populates character armor data
     public void displayArmor()
     {
-        armorName.text = charArmor.getName();
+        armorName.text = charArmor.GetName();
 
         StringBuilder stats = new StringBuilder();
         
-        int armor = charArmor.getArmor();
-        int str = charArmor.getStr();
-        int agi = charArmor.getAgi();
-        int mind = charArmor.getMind();
-        int soul = charArmor.getSoul();
+        int armor = charArmor.GetArmor();
+        int str = charArmor.GetStr();
+        int agi = charArmor.GetAgi();
+        int mind = charArmor.GetMind();
+        int soul = charArmor.GetSoul();
         
         stats.Append("Armor: " + armor + ",");
 
@@ -270,16 +270,16 @@ public class CharacterInventory : MonoBehaviour
     //populates character accessory data
     public void displayAccess()
     {     
-        accName.text = charAccess.getName();
+        accName.text = charAccess.GetName();
 
         StringBuilder stats = new StringBuilder();
 
-        int damage = charAccess.getDamage();
-        int armor = charAccess.getArmor();
-        int str = charAccess.getStr();
-        int agi = charAccess.getAgi();
-        int mind = charAccess.getMind();
-        int soul = charAccess.getSoul();
+        int damage = charAccess.GetDamage();
+        int armor = charAccess.GetArmor();
+        int str = charAccess.GetStr();
+        int agi = charAccess.GetAgi();
+        int mind = charAccess.GetMind();
+        int soul = charAccess.GetSoul();
 
         if (damage > 0)
             stats.Append("Attack: " + damage + ",");
@@ -334,9 +334,9 @@ public class CharacterInventory : MonoBehaviour
         try
         {            
             int index = heldUsableInventory.IndexOf(itemAdded);
-            int quantity = itemAdded.getQuantity();
+            int quantity = itemAdded.GetQuantity();
 
-            heldUsableInventory[index].changeQuantity(quantity);
+            heldUsableInventory[index].ChangeQuantity(quantity);
         }
         catch
         {
@@ -350,9 +350,9 @@ public class CharacterInventory : MonoBehaviour
         try
         {
             int index = heldEquipableInventory.IndexOf(itemAdded);
-            int quantity = itemAdded.getQuantity();
+            int quantity = itemAdded.GetQuantity();
 
-            heldEquipableInventory[index].changeQuantity(quantity);
+            heldEquipableInventory[index].ChangeQuantity(quantity);
         }
         catch
         {
@@ -366,7 +366,7 @@ public class CharacterInventory : MonoBehaviour
     {
         int index = heldUsableInventory.IndexOf(item);
 
-        int quantityAmount = heldUsableInventory[index].getQuantity();
+        int quantityAmount = heldUsableInventory[index].GetQuantity();
 
         if(quantityAmount <= 0)
         {
@@ -384,7 +384,7 @@ public class CharacterInventory : MonoBehaviour
     public void removeEquipableFromInventory(EquipableItemClass item)
     {
         int index = heldEquipableInventory.IndexOf(item);
-        int quantityAmount = heldEquipableInventory[index].getQuantity();
+        int quantityAmount = heldEquipableInventory[index].GetQuantity();
 
         if (quantityAmount <= 0)
         {
@@ -414,7 +414,7 @@ public class CharacterInventory : MonoBehaviour
     }
 
     //refreshes inventory after item is equipped
-    public void afterEquipRefresh()
+    public void afterUseRefresh()
     {
         foreach (Transform child in scrollContent.transform)
         {

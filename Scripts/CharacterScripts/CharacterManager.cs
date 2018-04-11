@@ -41,6 +41,8 @@ public class CharacterManager : MonoBehaviour {
     private List<UsableItemClass> heldUsableInventory = new List<UsableItemClass>();
     private List<EquipableItemClass> heldEquipableInventory = new List<EquipableItemClass>();
 
+    private bool adWatched = false;
+
     //do not destroy game object when loading scenes
     void Awake()
     {
@@ -66,6 +68,15 @@ public class CharacterManager : MonoBehaviour {
         battleSprites.Add("Warrior", warriorBattleSprite);
         battleSprites.Add("White Mage", whiteBattleSprite);
     }
+
+    //sets if player watched an ad or not
+    public void setAd(bool watched)
+    {
+        adWatched = watched;
+    }
+
+    //gets if player watched an ad or not
+    public bool getAd() { return adWatched; }
 
     //sets what chest the character is next to
     public void setChest(GameObject nearChest)

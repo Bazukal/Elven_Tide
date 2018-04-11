@@ -123,8 +123,6 @@ public class LoadGame : MonoBehaviour {
         int stage = data.questStage;
         CharacterManager.charManager.setQuestStage(stage);
 
-        CharacterManager.charManager.character1.ChangeCharCurrentHp(-10);
-
         StartCoroutine(loaded());
     }
 

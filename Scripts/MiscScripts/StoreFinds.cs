@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 using System.Collections.Generic;
 
 public class StoreFinds : MonoBehaviour {

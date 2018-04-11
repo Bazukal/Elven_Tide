@@ -99,7 +99,7 @@
 			<Strength>0</Strength>
 			<Agility>0</Agility>
 			<Mind>0</Mind>
-			<Soul>0</Soul>
+			<Soul>2</Soul>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>5</MaxLevel>
 			<BoughtOrDrop>Both</BoughtOrDrop>
@@ -119,7 +119,7 @@
 			<Armor>0</Armor>
 			<Strength>0</Strength>
 			<Agility>0</Agility>
-			<Mind>0</Mind>
+			<Mind>2</Mind>
 			<Soul>0</Soul>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>5</MaxLevel>

@@ -29,20 +29,20 @@ public class OpenChest : MonoBehaviour {
             int itemEarned = Random.Range(0, equipNames.Count);
             EquipableItemClass itemGained = GameItems.gItems.findEquipItem(equipNames[itemEarned]);
             int itemAmount = equipQuantity[itemEarned];
-            itemGained.setQuantity(itemAmount);
+            itemGained.SetQuantity(itemAmount);
             CharacterInventory.charInven.addEquipableToInventory(itemGained);
 
-            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.getName());
+            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.GetName());
         }
         else if(chestHolds > 70)
         {
             int itemEarned = Random.Range(0, useNames.Count);
             UsableItemClass itemGained = GameItems.gItems.findUseItem(useNames[itemEarned]);
             int itemAmount = useQuantity[itemEarned];
-            itemGained.setQuantity(itemAmount);
+            itemGained.SetQuantity(itemAmount);
             CharacterInventory.charInven.addUsableToInventory(itemGained);
 
-            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.getName());
+            gainedDisplayText.text = string.Format("Found {0}x {1}.", itemAmount, itemGained.GetName());
         }
         else
         {

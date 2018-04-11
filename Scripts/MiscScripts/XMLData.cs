@@ -167,8 +167,9 @@ public class XMLData : MonoBehaviour {
         {
             string charClass = skill.charClass;
 
-            newSkill = new SkillClass(skill.name, skill.charClass, skill.type, skill.target, skill.desc, skill.cure,
-                skill.stat, skill.strength, skill.plus, skill.turns, skill.level, skill.mana, skill.aoe);
+            newSkill = new SkillClass(skill.name, skill.charClass, skill.type, skill.damageType, 
+                skill.debuffType, skill.target, skill.desc, skill.cure, skill.stat, skill.debuffChance,
+                skill.strength, skill.plus, skill.turns, skill.level, skill.mana, skill.aoe);
 
             switch(charClass)
             {

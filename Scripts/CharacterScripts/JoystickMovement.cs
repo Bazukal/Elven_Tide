@@ -16,10 +16,16 @@ public class JoystickMovement : MonoBehaviour {
     void Start () {
         animator = gameObject.GetComponentInChildren<Animator>();
         battleTime = perBattleTime;
+
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        Transform cameraTrans = mainCamera.transform;
+        cameraTrans.transform.SetParent(gameObject.transform);
+        mainCamera.GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
+        mainCamera.GetComponent<Transform>().localPosition = new Vector3(0, 0, -3.5f);
     }
 
     // Movement Controlls
-    void Update () {
+    void FixedUpdate () {
         Vector3 moveVec = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical")) * moveSpeed;
         gameObject.transform.Translate(moveVec);
 

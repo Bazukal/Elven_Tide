@@ -42,4 +42,16 @@ public class GameSkills : MonoBehaviour {
         }
         return tempSkills;
     }
+
+    public List<SkillClass> GetEnemySkills(int level, List<string> skill)
+    {
+        List<SkillClass> enemySkills = new List<SkillClass>();
+
+        foreach(SkillClass enemySkill in classSkills["Enemy"])
+        {
+            if (enemySkill.GetSkillName().Equals(skill))
+                enemySkills.Add(enemySkill);
+        }
+        return enemySkills;
+    }
 }

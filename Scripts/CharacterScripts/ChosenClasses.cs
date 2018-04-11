@@ -273,7 +273,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach(EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Cracked Bow"))
                 archerWeap = item;
@@ -288,19 +288,19 @@ public class ChosenClasses : MonoBehaviour {
         switch(charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
                     archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
                     archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
                     archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 2,  
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
                     archerWeap, null, archerArmor, archerAccessory);
                 return charClass;
         }
@@ -318,7 +318,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Cracked Rod"))
                 blackWeap = item;
@@ -333,19 +333,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:                
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 
+                charClass = new CharacterClass(char1Name, char1Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3, 
                     blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2,  
+                charClass = new CharacterClass(char2Name, char2Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3,  
                     blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2,  
+                charClass = new CharacterClass(char3Name, char3Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3,  
                     blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 2, 
+                charClass = new CharacterClass(char4Name, char4Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3, 
                     blackWeap, null, blackArmor, blackAccessory);
                 return charClass;
         }
@@ -362,7 +362,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Cloth Shirt"))
                 monkArmor = item;
@@ -374,19 +374,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3, 
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5, 
                     null, null, monkArmor, monkAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3,  
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5,  
                     null, null, monkArmor, monkAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3,  
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5,  
                     null, null, monkArmor, monkAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 3, 
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5, 
                     null, null, monkArmor, monkAccessory);
                 return charClass;
         }
@@ -405,7 +405,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Rusty Mace"))
                 palWeap = item;
@@ -423,19 +423,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 
+                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7, 
                     palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5,  
+                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7,  
                     palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5, 
+                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7, 
                     palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 5,  
+                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7,  
                     palWeap, palOffHand, palArmor, palAccessory);
                 return charClass;
         }
@@ -454,7 +454,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Rusty Dagger"))
                 thiefWeap = item;
@@ -472,19 +472,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3,  
+                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5,  
                     thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3, 
+                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5, 
                     thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3, 
+                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5, 
                     thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 3,
+                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5,
                     thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
                 return charClass;
         }
@@ -503,7 +503,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Rusty Sword"))
                 warWeap = item;
@@ -521,19 +521,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
                     warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
                     warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
                     warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 4,  
+                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
                     warWeap, warOffHand, warArmor, warAccessory);
                 return charClass;
         }
@@ -551,7 +551,7 @@ public class ChosenClasses : MonoBehaviour {
 
         foreach (EquipableItemClass item in equipables)
         {
-            string name = item.getName();
+            string name = item.GetName();
 
             if (name.Equals("Cracked Staff"))
                 whiteWeap = item;
@@ -566,19 +566,19 @@ public class ChosenClasses : MonoBehaviour {
         switch (charNum)
         {
             case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                charClass = new CharacterClass(char1Name, char1Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
                     whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2,  
+                charClass = new CharacterClass(char2Name, char2Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4,  
                     whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                charClass = new CharacterClass(char3Name, char3Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
                     whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
             case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 2, 
+                charClass = new CharacterClass(char4Name, char4Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
                     whiteWeap, null, whiteArmor, whiteAccessory);
                 return charClass;
         }

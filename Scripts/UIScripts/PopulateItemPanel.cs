@@ -10,43 +10,33 @@ public class PopulateItemPanel : MonoBehaviour {
 	public void populateUsableData(UsableItemClass item)
     {
         usableSent = item;
-        gameObject.GetComponentInChildren<Text>().text = usableSent.getName() + " x " + usableSent.getQuantity();        
+        gameObject.GetComponentInChildren<Text>().text = usableSent.GetName() + " x " + usableSent.GetQuantity();        
     }
 
     //adds name of item in inventory to button
     public void populateEquipableData(EquipableItemClass item)
     {
         equipableSent = item;
-        gameObject.GetComponentInChildren<Text>().text = equipableSent.getName() + " x " + equipableSent.getQuantity();
+        gameObject.GetComponentInChildren<Text>().text = equipableSent.GetName() + " x " + equipableSent.GetQuantity();
     }
 
     //adds name of item to sell shop button
     public void populateUsableSellData(UsableItemClass item)
     {
         usableSent = item;
-        gameObject.GetComponentInChildren<Text>().text = usableSent.getName();
+        gameObject.GetComponentInChildren<Text>().text = usableSent.GetName();
     }
 
     //adds name of item to sell shop button
     public void populateEquipSellData(EquipableItemClass item)
     {
         equipableSent = item;
-        gameObject.GetComponentInChildren<Text>().text = equipableSent.getName();
+        gameObject.GetComponentInChildren<Text>().text = equipableSent.GetName();
     }
 
     //activates equip item stat window with item
     public void itemToStat()
     {
-        try
-        {
-            Debug.Log(usableSent.getName());
-        }
-        catch
-        {
-            Debug.Log(equipableSent.getName());
-        }
-        
-
         if (equipableSent != null)
             UseEquipItem.equipItem.activateEquipItemStat(equipableSent);
         else

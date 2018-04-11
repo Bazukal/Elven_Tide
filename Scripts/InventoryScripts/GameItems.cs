@@ -30,9 +30,9 @@ public class GameItems : MonoBehaviour {
         
         foreach(EquipableItemClass item in equipableItems)
         {
-            bool isEquip = item.getEquipable();
-            int min = item.getMinLevel();
-            int max = item.getMaxLevel();
+            bool isEquip = item.GetEquipable();
+            int min = item.GetMinLevel();
+            int max = item.GetMaxLevel();
 
             if( isEquip == true && aveLvl >= min && aveLvl <= max)
             {
@@ -50,9 +50,9 @@ public class GameItems : MonoBehaviour {
 
         foreach (UsableItemClass item in usableItems)
         {
-            bool isUsable = item.getUsable();
-            int min = item.getMinLevel();
-            int max = item.getMaxLevel();
+            bool isUsable = item.GetUsable();
+            int min = item.GetMinLevel();
+            int max = item.GetMaxLevel();
 
             if (isUsable == true && aveLvl >= min && aveLvl <= max)
             {
@@ -67,7 +67,7 @@ public class GameItems : MonoBehaviour {
     {
         foreach (EquipableItemClass item in equipableItems)
         {
-            if (item.getName().Equals(name))
+            if (item.GetName().Equals(name))
             {
                 return item;
             }
@@ -79,7 +79,7 @@ public class GameItems : MonoBehaviour {
     {
         foreach (UsableItemClass item in usableItems)
         {
-            if (item.getName().Equals(name))
+            if (item.GetName().Equals(name))
             {
                 return item;
             }

@@ -16,24 +16,15 @@ public class CharacterClass{
     private int charCurrentMp;
     private int charBaseStr;
     private int charEquipStr;
-    private int buffStr;
-    private int buffStrDur;
     private int charBaseAgi;
     private int charEquipAgi;
-    private int buffAgi;
-    private int buffAgiDur;
     private int charBaseMind;
     private int charEquipMind;
-    private int buffMind;
-    private int buffMindDur;
     private int charBaseSoul;
     private int charEquipSoul;
-    private int buffSoul;
-    private int buffSoulDur;
     private int charDef;
     private int charEquipArmor;
-    private int buffDef;
-    private int buffDefDur;
+    private int defendAmount;
     private int charCurExp;
     private int charLvlExp;
     private List<SkillClass> charSkills = new List<SkillClass>();
@@ -41,22 +32,8 @@ public class CharacterClass{
     private EquipableItemClass offHand;
     private EquipableItemClass armor;
     private EquipableItemClass accessory;
-
-    private bool isPoisoned = false;
-    private int poisonStr = 0;
-    private int poisonRounds = 0;
-
-    private bool isConfused = false;
-    private int confusedRounds = 0;
-
-    private bool isParalyzed = false;
-    private int paralyzedRounds = 0;
-
-    private bool isBlind = false;
-    private int blindRounds = 0;
-
-    private bool isMute = false;
-    private int muteRounds = 0;
+    private Dictionary<string, DebuffClass> debuffs = new Dictionary<string, DebuffClass>();
+    private Dictionary<string, BuffClass> buffs = new Dictionary<string, BuffClass>();
 
     //constructors for Character Class
     public CharacterClass()
@@ -92,6 +69,18 @@ public class CharacterClass{
 
         updateEquipStats();
         updateSkills();
+
+        debuffs.Add("Poison", new DebuffClass());
+        debuffs.Add("Confused", new DebuffClass());
+        debuffs.Add("Paralyzed", new DebuffClass());
+        debuffs.Add("Blind", new DebuffClass());
+        debuffs.Add("Mute", new DebuffClass());
+
+        buffs.Add("Strength", new BuffClass());
+        buffs.Add("Agility", new BuffClass());
+        buffs.Add("Mind", new BuffClass());
+        buffs.Add("Soul", new BuffClass());
+        buffs.Add("Defense", new BuffClass());
     }
 
     //getters and setters of Character Class
@@ -130,55 +119,50 @@ public class CharacterClass{
             charCurrentMp = 0;
     }
 
-    public int GetCharStr() { return charBaseStr; }
-    public int GetEquipStr() { return charEquipStr; }
     public int GetTotalStr()
     {
-        int totalStr = charBaseStr + charEquipStr + buffStr;
+        int totalStr = charBaseStr + charEquipStr + buffs["Strength"].GetStrength();
         return totalStr;
     }
-
-    public int GetCharAgi() { return charBaseAgi; }
-    public int GetEquipAgi() { return charEquipAgi; }
+    
     public int GetTotalAgi()
     {
-        int totalAgi = charBaseAgi + charEquipAgi + buffAgi;
+        int totalAgi = charBaseAgi + charEquipAgi + buffs["Agility"].GetStrength();
         return totalAgi;
     }
-
-    public int GetCharMind() { return charBaseMind; }
-    public int GetEquipMind() { return charEquipMind; }
+    
     public int GetTotalMind()
     {
-        int totalMind = charBaseMind + charEquipMind + buffMind;
+        int totalMind = charBaseMind + charEquipMind + buffs["Mind"].GetStrength();
         return totalMind;
     }
-
-    public int GetCharSoul() { return charBaseSoul; }
-    public int GetEquipSoul() { return charEquipSoul; }
+    
     public int GetTotalSoul()
     {
-        int totalSoul = charBaseSoul + charEquipSoul + buffSoul;
+        int totalSoul = charBaseSoul + charEquipSoul + buffs["Soul"].GetStrength();
         return totalSoul;
     }
-
-    public int GetCharDef() { return charDef; }
-    public int GetEquipArmor() { return charEquipArmor; }
+    
+    public void SetDefendAmount() { defendAmount = Mathf.RoundToInt(charDef * 1.5f); }
+    public void ResetDefendAmount() { defendAmount = 0; }
     public int GetTotalDef()
     {
-        int totalDef = charDef + charEquipArmor + buffDef;
+        int totalDef = charDef + charEquipArmor + buffs["Defense"].GetStrength() + defendAmount;
         return totalDef;
     }
 
     public int GetCurExp() { return charCurExp; }
-    public void AddCurExp(int expGain)
+    public bool AddCurExp(int expGain)
     {
         charCurExp += expGain;
 
-        if(charCurExp >= charLvlExp)
+        if (charCurExp >= charLvlExp)
         {
             CharLevelUp();
+            return true;
         }
+        else
+            return false;
     }
     public int GetLvlExp() { return charLvlExp; }
 
@@ -190,112 +174,82 @@ public class CharacterClass{
     public EquipableItemClass GetAccessory() { return accessory; }
 
     //apply buffs to character
-    public void SetBuffStr(int str, int dur) { buffStr = str; buffStrDur = dur; }
-    public void SetBuffAgi(int agi, int dur) { buffAgi = agi; buffAgiDur = dur; }
-    public void SetBuffMind(int mind, int dur) { buffMind = mind; buffMindDur = dur; }
-    public void SetBuffSoul(int soul, int dur) { buffSoul = soul; buffSoulDur = dur; }
-    public void SetBuffDef(int def, int dur) { buffDef = def; buffDefDur = dur; }
-
-    //apply status ailments to character
-    public void playerPoisoned(int str, int dur)
+    public void SetBuff(string stat, int str, int dur)
     {
-        isPoisoned = true;
-        poisonStr = str;
-        poisonRounds = dur;
+        buffs[stat].SetBuffed(true);
+        buffs[stat].SetStrength(str);
+        buffs[stat].SetRounds(dur);
     }
 
-    public void playerConfused(int dur)
+    //afflict character with a debuff
+    public void AfflictStatus(string type, int rounds, int strength)
     {
-        isConfused = true;
-        confusedRounds = dur;
+        debuffs[type].SetRounds(rounds);
+        debuffs[type].SetStrength(strength);
+        debuffs[type].SetEffected(true);
     }
 
-    public void playerParalyzed(int dur)
+    //check if character is afflicted with a debuff
+    public bool CheckAffliction(string affliction)
     {
-        isParalyzed = true;
-        paralyzedRounds = dur;
+        return debuffs[affliction].GetEffected();
     }
 
-    public void playerBlind(int dur)
+    //cures status ailment
+    public void CureStatus(string type)
     {
-        isBlind = true;
-        blindRounds = dur;
+        debuffs[type].SetEffected(false);
+        debuffs[type].SetStrength(0);
+        debuffs[type].SetRounds(0);
     }
 
-    public void playerMute(int dur)
+    //get listing of chars debuffs
+    public Dictionary<string, DebuffClass> GetDebuffs()
     {
-        isMute = true;
-        muteRounds = dur;
+        return debuffs;
     }
 
-    //checks if player has any ailments at end of round
-    public void checkAilments()
+    //clears all status at the end of battle
+    public void ResetStatus()
     {
-        if (isPoisoned)
+        foreach(KeyValuePair<string, DebuffClass> debuff in debuffs)
         {
-            charCurrentHp -= poisonStr;
-            poisonRounds--;
-            if (poisonRounds == 0)
-                isPoisoned = false;
-        }
-        if (isConfused)
-        {
-            confusedRounds--;
-            if (confusedRounds == 0)
-                isConfused = false;
-        }
-        if (isParalyzed)
-        {
-            paralyzedRounds--;
-            if (paralyzedRounds == 0)
-                isParalyzed = false;
-        }
-        if (isBlind)
-        {
-            blindRounds--;
-            if (blindRounds == 0)
-                isBlind = false;
-        }
-        if (isMute)
-        {
-            muteRounds--;
-            if (muteRounds == 0)
-                isMute = false;
+            string key = debuff.Key;
+
+            debuffs[key].SetEffected(false);
+            debuffs[key].SetStrength(0);
+            debuffs[key].SetRounds(0);
         }
     }
 
-    //checks if buffs are active, if so decrease duration by one round.  if duration equals 0, remove buff
-    public void checkBuffs()
+    //reduces buffs by one round.  if buff is finished, remove buff
+    public void BuffCounter()
     {
-        if(buffStrDur > 0)
+        foreach (KeyValuePair<string, BuffClass> buff in buffs)
         {
-            buffStrDur--;
-            if (buffStrDur == 0)
-                buffStr = 0;
+            string key = buff.Key;
+
+            if (buffs[key].GetBuffed() == true)
+            {
+                buffs[key].UpdateRounds();
+            }
         }
-        if (buffAgiDur > 0)
+    }
+
+    //reduce debuffs by one round.  check if debuff is finished, removed if so
+    public void DebuffCounter()
+    {
+        foreach (KeyValuePair<string, DebuffClass> debuff in debuffs)
         {
-            buffAgiDur--;
-            if (buffAgiDur == 0)
-                buffAgi = 0;
-        }
-        if (buffMindDur > 0)
-        {
-            buffMindDur--;
-            if (buffMindDur == 0)
-                buffMind = 0;
-        }
-        if (buffSoulDur > 0)
-        {
-            buffSoulDur--;
-            if (buffSoulDur == 0)
-                buffSoul = 0;
-        }
-        if (buffDefDur > 0)
-        {
-            buffDefDur--;
-            if (buffDefDur == 0)
-                buffDef = 0;
+            string key = debuff.Key;
+
+            if (debuffs[key].GetEffected() == true)
+            {
+                if (key.Equals("Poison"))
+                    ChangeCharCurrentHp(-debuffs[key].GetStrength());
+
+                debuffs[key].reduceRound();
+            }
         }
     }
 
@@ -342,19 +296,32 @@ public class CharacterClass{
     //updates the amount of stats that all the equipment gives the character
     private void updateEquipStats()
     {
-        int tempStr = weapon.getStr() + armor.getStr() + accessory.getStr();
-        int tempAgi = weapon.getAgi() + armor.getAgi() + accessory.getAgi();
-        int tempMind = weapon.getMind() + armor.getMind() + accessory.getMind();
-        int tempSoul = weapon.getSoul() + armor.getSoul() + accessory.getSoul();
-        int tempArmor = weapon.getArmor() + armor.getArmor() + accessory.getArmor();
+        int tempStr = armor.GetStr() + accessory.GetStr();
+        int tempAgi = armor.GetAgi() + accessory.GetAgi();
+        int tempMind = armor.GetMind() + accessory.GetMind();
+        int tempSoul = armor.GetSoul() + accessory.GetSoul();
+        int tempArmor = armor.GetArmor() + accessory.GetArmor();
+
+        try
+        {
+            tempStr += weapon.GetStr();
+            tempAgi += weapon.GetAgi();
+            tempMind += weapon.GetMind();
+            tempSoul += weapon.GetSoul();
+            tempArmor += weapon.GetArmor();
+        }
+        catch
+        {
+
+        }
                 
         try
         {
-            tempStr += offHand.getStr();
-            tempAgi += offHand.getAgi();
-            tempMind += offHand.getMind();
-            tempSoul += offHand.getSoul();
-            tempArmor += offHand.getArmor();
+            tempStr += offHand.GetStr();
+            tempAgi += offHand.GetAgi();
+            tempMind += offHand.GetMind();
+            tempSoul += offHand.GetSoul();
+            tempArmor += offHand.GetArmor();
         }
         catch
         {

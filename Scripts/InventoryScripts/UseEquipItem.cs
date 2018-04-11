@@ -92,11 +92,11 @@ public class UseEquipItem : MonoBehaviour {
     //populate item data into stat window
 	private void UseItem()
     {
-        string name = useSelected.getName();
-        int healAmount = useSelected.getHeal();
-        string cure = useSelected.getCure();
-        bool revive = useSelected.getRevive();
-        int quantity = useSelected.getQuantity();
+        string name = useSelected.GetName();
+        int healAmount = useSelected.GetHeal();
+        string cure = useSelected.GetCure();
+        bool revive = useSelected.GetRevive();
+        int quantity = useSelected.GetQuantity();
 
         if (healAmount > 0)
         {
@@ -169,12 +169,12 @@ public class UseEquipItem : MonoBehaviour {
 
         char1Name.text = chars["char1"].GetCharName();
         char2Name.text = chars["char2"].GetCharName();
-        char3Name.text = chars["char4"].GetCharName();
+        char3Name.text = chars["char3"].GetCharName();
         char4Name.text = chars["char4"].GetCharName();
 
         healSlider();
 
-        if (useSelected.getRevive())
+        if (useSelected.GetRevive())
             reviveButtonInteract();
         else
             healButtonInteract();
@@ -270,14 +270,14 @@ public class UseEquipItem : MonoBehaviour {
                 break;
         }
 
-        string name = equipSelected.getName();
-        int damage = equipSelected.getDamage();
-        int armor = equipSelected.getArmor();
-        int str = equipSelected.getStr();
-        int agi = equipSelected.getAgi();
-        int mind = equipSelected.getMind();
-        int soul = equipSelected.getSoul();
-        string type = equipSelected.getType();
+        string name = equipSelected.GetName();
+        int damage = equipSelected.GetDamage();
+        int armor = equipSelected.GetArmor();
+        int str = equipSelected.GetStr();
+        int agi = equipSelected.GetAgi();
+        int mind = equipSelected.GetMind();
+        int soul = equipSelected.GetSoul();
+        string type = equipSelected.GetItemType();
 
         StringBuilder stats = new StringBuilder();
 
@@ -308,7 +308,7 @@ public class UseEquipItem : MonoBehaviour {
         {
 
             case "Weapon":
-                string weaponType = equipSelected.getWeaponType();
+                string weaponType = equipSelected.GetWeaponType();
                 string charClass = usingChar.GetCharClass();
 
                 switch (weaponType)
@@ -353,7 +353,7 @@ public class UseEquipItem : MonoBehaviour {
 
                 break;
             case "Armor":
-                string armorType = equipSelected.getArmorType();
+                string armorType = equipSelected.GetArmorType();
                 string maxArmor = usingChar.GetMaxArmor();
                 bool canShield = usingChar.GetShield();
 
@@ -394,20 +394,32 @@ public class UseEquipItem : MonoBehaviour {
     //heals characters hp and uses item
     public void healChar(string character)
     {
-        chars[character].ChangeCharCurrentHp(useSelected.getHeal());
-        useSelected.changeQuantity(-1);
+        chars[character].ChangeCharCurrentHp(useSelected.GetHeal());
+        useSelected.ChangeQuantity(-1);
+        healSlider();
+
+        int quantity = useSelected.GetQuantity();
+
+        if(quantity <= 0)
+        {
+            CharacterInventory.charInven.removeUsableFromInventory(useSelected);
+            closeHealPanel();
+            closeItemStat();
+        }
+
+        CharacterInventory.charInven.afterUseRefresh();
     }
 
     //equips item selected
     public void EquipItem()
     {
         EquipableItemClass equippedItem = null;
-        string itemType = equipSelected.getType();
+        string itemType = equipSelected.GetItemType();
 
         switch (itemType)
         {
             case "Weapon":
-                string weaponType = equipSelected.getWeaponType();
+                string weaponType = equipSelected.GetWeaponType();
 
                 if (weaponType == "Sword" || weaponType == "Dagger")
                 {
@@ -423,7 +435,7 @@ public class UseEquipItem : MonoBehaviour {
 
                 break;
             case "Armor":
-                if (equipSelected.getArmorType() == "Shield")
+                if (equipSelected.GetArmorType() == "Shield")
                     equippedItem = usingChar.ChangeOffHand(equipSelected);
                 else
                     equippedItem = usingChar.ChangeArmor(equipSelected);
@@ -432,13 +444,13 @@ public class UseEquipItem : MonoBehaviour {
                 break;
             case "Accessory":
                 equippedItem = usingChar.ChangeAccessory(equipSelected);
-                Debug.Log(usingChar.GetAccessory().getName() + " " + usingChar.GetAccessory().getQuantity());
+                Debug.Log(usingChar.GetAccessory().GetName() + " " + usingChar.GetAccessory().GetQuantity());
                 closeItemStat();
                 break;
         }
         CharacterInventory.charInven.addEquipableToInventory(equippedItem);
         CharacterInventory.charInven.removeEquippedFromInven(equipSelected);
-        CharacterInventory.charInven.afterEquipRefresh();
+        CharacterInventory.charInven.afterUseRefresh();
     }
 
     //equip item into main slot
@@ -453,7 +465,7 @@ public class UseEquipItem : MonoBehaviour {
         weaponEquip.GetComponent<CanvasGroup>().interactable = false;
         weaponEquip.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        CharacterInventory.charInven.afterEquipRefresh();
+        CharacterInventory.charInven.afterUseRefresh();
 
         closeItemStat();
     }
@@ -470,7 +482,7 @@ public class UseEquipItem : MonoBehaviour {
         weaponEquip.GetComponent<CanvasGroup>().interactable = false;
         weaponEquip.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        CharacterInventory.charInven.afterEquipRefresh();
+        CharacterInventory.charInven.afterUseRefresh();
 
         closeItemStat();
     }

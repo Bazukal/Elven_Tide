@@ -34,21 +34,21 @@ public class ParentItemClass {
     }
 
     //getters and setters for Item Class
-    public string getName() { return name; }
-    public string getType() { return type; }
-    public bool getEquipable() { return equipable; }
-    public bool getUsable() { return usable; }
-    public bool getRevive() { return revive; }
-    public int getMinLevel() { return minLevel; }
-    public int getMaxLevel() { return maxLevel; }
-    public string getBoughtOrDrop() { return boughtOrDrop; }
-    public int getBuyPrice() { return buyPrice; }
-    public int getSellPrice() { return sellPrice; }
-    public int getQuantity() { return quantity; }
+    public string GetName() { return name; }
+    public string GetItemType() { return type; }
+    public bool GetEquipable() { return equipable; }
+    public bool GetUsable() { return usable; }
+    public bool GetRevive() { return revive; }
+    public int GetMinLevel() { return minLevel; }
+    public int GetMaxLevel() { return maxLevel; }
+    public string GetBoughtOrDrop() { return boughtOrDrop; }
+    public int GetBuyPrice() { return buyPrice; }
+    public int GetSellPrice() { return sellPrice; }
+    public int GetQuantity() { return quantity; }
 
     //change the quantity amount for item
-    public void changeQuantity(int change) { quantity += change; }
-    public void setQuantity(int amount) { quantity = amount; }
+    public void ChangeQuantity(int change) { quantity += change; }
+    public void SetQuantity(int amount) { quantity = amount; }
 }
 
 [Serializable]
@@ -68,8 +68,8 @@ public class UsableItemClass : ParentItemClass
     }
 
     //getters
-    public string getCure() { return cureAilment; }
-    public int getHeal() { return healAmount; }
+    public string GetCure() { return cureAilment; }
+    public int GetHeal() { return healAmount; }
 }
 
 [Serializable]
@@ -102,12 +102,12 @@ public class EquipableItemClass : ParentItemClass
     }
 
     //getters
-    public string getWeaponType() { return weaponType; }
-    public string getArmorType() { return armorType; }
-    public int getDamage() { return damage; }
-    public int getArmor() { return armor; }
-    public int getStr() { return strength; }
-    public int getAgi() { return agility; }
-    public int getMind() { return mind; }
-    public int getSoul() { return soul; }
+    public string GetWeaponType() { return weaponType; }
+    public string GetArmorType() { return armorType; }
+    public int GetDamage() { return damage; }
+    public int GetArmor() { return armor; }
+    public int GetStr() { return strength; }
+    public int GetAgi() { return agility; }
+    public int GetMind() { return mind; }
+    public int GetSoul() { return soul; }
 }

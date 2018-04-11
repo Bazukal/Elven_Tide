@@ -13,16 +13,16 @@ public class populateSellPanel : MonoBehaviour {
     {
         equipSelling = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = equipSelling.getName() + " x " + equipSelling.getQuantity();
-        itemTexts[1].text = "Sell Price: " + equipSelling.getSellPrice();
+        itemTexts[0].text = equipSelling.GetName() + " x " + equipSelling.GetQuantity();
+        itemTexts[1].text = "Sell Price: " + equipSelling.GetSellPrice();
     }
 
     public void populateUseButtonData(UsableItemClass item)
     {
         useSelling = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = useSelling.getName() + " x " + useSelling.getQuantity();
-        itemTexts[1].text = "Sell Price: " + useSelling.getSellPrice();
+        itemTexts[0].text = useSelling.GetName() + " x " + useSelling.GetQuantity();
+        itemTexts[1].text = "Sell Price: " + useSelling.GetSellPrice();
     }
 
     public void purchaseWindow()

@@ -5,6 +5,9 @@
       <Class>Archer</Class>
       <Level>1</Level>
       <Type>Damage</Type>
+      <DamageType>Physical</DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
@@ -19,10 +22,13 @@
       <Class>Black Mage</Class>
       <Level>1</Level>
       <Type>Damage</Type>
+      <DamageType>Magic</DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.0</Strength>
+      <Strength>1.3</Strength>
       <Plus>2</Plus>
       <Cure></Cure>
       <Stat></Stat>
@@ -33,11 +39,14 @@
       <Class>Black Mage</Class>
       <Level>1</Level>
       <Type>Damage</Type>
+      <DamageType>Magic</DamageType>
+      <DebuffType>Poison</DebuffType>
+      <DebuffChance>1</DebuffChance>
       <Mana>4</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
       <Strength>0.4</Strength>
-      <Plus>1</Plus>
+      <Plus>0</Plus>
       <Cure></Cure>
       <Stat></Stat>
       <Turns>3</Turns>
@@ -46,7 +55,10 @@
     <Skill Name ="Kick">
       <Class>Monk</Class>
       <Level>1</Level>
-      <Type>Buff</Type>
+      <Type>Damage</Type>
+      <DamageType>Physical</DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
@@ -61,6 +73,9 @@
       <Class>Paladin</Class>
       <Level>1</Level>
       <Type>Buff</Type>
+      <DamageType></DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
@@ -75,6 +90,9 @@
       <Class>Thief</Class>
       <Level>1</Level>
       <Type>Damage</Type>
+      <DamageType>Physical</DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
@@ -89,6 +107,9 @@
       <Class>Warrior</Class>
       <Level>1</Level>
       <Type>Damage</Type>
+      <DamageType>Physical</DamageType>
+      <DebuffType>Confused</DebuffType>
+      <DebuffChance>0.15</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
@@ -97,12 +118,15 @@
       <Cure></Cure>
       <Stat></Stat>
       <Turns>0</Turns>
-      <Desc>Bash an enemy for minor damage.</Desc>
+      <Desc>Bash an enemy for minor damage. Very small chance to confuse enemy.</Desc>
     </Skill>
     <Skill Name ="Minor Heal">
       <Class>White Mage</Class>
       <Level>1</Level>
       <Type>Heal</Type>
+      <DamageType></DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
@@ -117,6 +141,9 @@
       <Class>White Mage</Class>
       <Level>1</Level>
       <Type>Cure</Type>
+      <DamageType></DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
@@ -131,6 +158,9 @@
       <Class>White Mage</Class>
       <Level>5</Level>
       <Type>Revive</Type>
+      <DamageType></DamageType>
+      <DebuffType></DebuffType>
+      <DebuffChance>0</DebuffChance>
       <Mana>25</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>

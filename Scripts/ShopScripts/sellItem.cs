@@ -35,26 +35,26 @@ public class sellItem : MonoBehaviour {
         if (equipTtem != null)
         {
             sellingEquipItem = equipTtem;
-            itemCost = sellingEquipItem.getSellPrice();
+            itemCost = sellingEquipItem.GetSellPrice();
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
-            itemQuantity = sellingEquipItem.getQuantity();
+            itemQuantity = sellingEquipItem.GetQuantity();
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
-            nameText.text = sellingEquipItem.getName();
-            sellEach.text = sellingEquipItem.getSellPrice().ToString();
+            nameText.text = sellingEquipItem.GetName();
+            sellEach.text = sellingEquipItem.GetSellPrice().ToString();
         }            
         else
         {
             sellingUseItem = useItem;
-            itemCost = sellingUseItem.getSellPrice();
+            itemCost = sellingUseItem.GetSellPrice();
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
-            itemQuantity = sellingUseItem.getQuantity();
+            itemQuantity = sellingUseItem.GetQuantity();
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
-            nameText.text = sellingUseItem.getName();
-            sellEach.text = sellingUseItem.getSellPrice().ToString();
+            nameText.text = sellingUseItem.GetName();
+            sellEach.text = sellingUseItem.GetSellPrice().ToString();
         }
 
         if (sellQuantity == itemQuantity)
@@ -115,7 +115,7 @@ public class sellItem : MonoBehaviour {
     {
         if(sellingEquipItem != null)
         {
-            sellingEquipItem.changeQuantity(-sellQuantity);
+            sellingEquipItem.ChangeQuantity(-sellQuantity);
             CharacterInventory.charInven.removeEquipableFromInventory(sellingEquipItem);
             CharacterManager.charManager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
@@ -123,7 +123,7 @@ public class sellItem : MonoBehaviour {
         }
         else
         {
-            sellingUseItem.changeQuantity(-sellQuantity);
+            sellingUseItem.ChangeQuantity(-sellQuantity);
             CharacterInventory.charInven.removeUsableFromInventory(sellingUseItem);
             CharacterManager.charManager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
