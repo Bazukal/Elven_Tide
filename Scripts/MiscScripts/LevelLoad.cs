@@ -3,8 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Text;
+using UnityEngine.Advertisements;
 
 public class LevelLoad : MonoBehaviour {
+
+    [SerializeField] string adID = "1641104";
 
     public static LevelLoad lLoad;
 
@@ -23,12 +26,10 @@ public class LevelLoad : MonoBehaviour {
     public GameObject normalButton;
     public GameObject adButton;
 
-    GameObject player;
-
     // Use this for initialization
     void Start () {
         lLoad = this;
-        player = GameObject.FindGameObjectWithTag("Player");
+        Advertisement.Initialize(adID, true);
     }
 
     //opens window for player to select how they want to enter dungeon, or cancel and go back to town
@@ -36,10 +37,7 @@ public class LevelLoad : MonoBehaviour {
     {
         levelPrepare.SetActive(true);
 
-        player.GetComponentInChildren<CanvasGroup>().alpha = 0;
-        player.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
-
-        int qStage = CharacterManager.charManager.getQuestStage();
+        int qStage = Manager.manager.getQuestStage();
         QuestClass current = QuestListing.qListing.getCurrentQuest(qStage);
 
         if(current != null)
@@ -57,32 +55,62 @@ public class LevelLoad : MonoBehaviour {
         
     }
 	
-    //loads level based on which quest stage the player is on, using no drop buffs
-	public void loadLevelNormal()
-    {
-        questStage = CharacterManager.charManager.getQuestStage();
-        StartCoroutine(loadDungeon());
-    }
-
     //cancels selection to go into dungeon
     public void cancelLoad()
     {
         levelPrepare.SetActive(false);
+    }
 
-        player.GetComponentInChildren<CanvasGroup>().alpha = 1;
-        player.GetComponentInChildren<CanvasGroup>().blocksRaycasts = true;
+    //loads ad
+    public void watchAd(string zone = "")
+    {
+        if (string.Equals(zone, ""))
+            zone = null;
+
+        ShowOptions options = new ShowOptions();
+        options.resultCallback = adResult;
+
+        if(Advertisement.IsReady(zone))
+            Advertisement.Show(zone, options);
+    }
+
+    private void adResult(ShowResult result)
+    {
+        switch(result)
+        {
+            case ShowResult.Finished:
+                loadAdLevel();
+                break;
+            case ShowResult.Skipped:
+                loadLevelNormal();
+                break;
+            case ShowResult.Failed:
+                loadLevelNormal();
+                break;
+        }
+    }
+
+
+    //loads level based on which quest stage the player is on, using no drop buffs
+    public void loadLevelNormal()
+    {
+        questStage = Manager.manager.getQuestStage();
+        Manager.manager.setAd(false);
+        StartCoroutine(loadDungeon());
     }
 
     //loads level based on which quest stage the player is on, using drop buffs
-    public void loadAdLevel()
+    private void loadAdLevel()
     {
-
+        questStage = Manager.manager.getQuestStage();
+        Manager.manager.setAd(true);
+        StartCoroutine(loadDungeon());
     }
 
     //loads dungeon
     IEnumerator loadDungeon()
     {
-        CharacterManager.charManager.setInRange("");
+        Manager.manager.setInRange("");
 
         StringBuilder sb = new StringBuilder();
         sb.Append("Level" + questStage);

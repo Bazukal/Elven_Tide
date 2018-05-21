@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //holds quest data
+[Serializable]
 public class QuestListing : MonoBehaviour {
 
     public static QuestListing qListing;

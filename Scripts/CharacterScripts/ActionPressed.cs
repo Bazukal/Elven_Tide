@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using Devdog.QuestSystemPro;
 
 public class ActionPressed : MonoBehaviour {    
 
     //open panel depending on what object is in range
     public void buttonPressed()
     {
-        string whosInRange = CharacterManager.charManager.getInRange();
+        string whosInRange = Manager.manager.getInRange();
 
         switch(whosInRange)
         {
@@ -22,7 +23,7 @@ public class ActionPressed : MonoBehaviour {
                 QuestAccept.qAccept.displayQuest();
                 break;
             case "Chest":
-                GameObject openChest = CharacterManager.charManager.getChest();
+                GameObject openChest = Manager.manager.getChest();
                 Debug.Log(openChest.name);
                 openChest.GetComponent<OpenChest>().open();
                 break;
@@ -45,7 +46,5 @@ public class ActionPressed : MonoBehaviour {
                 ExitDungeon.exit.activatePanel();
                 break;
         }
-    }
-
-    
+    }    
 }

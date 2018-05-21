@@ -10,20 +10,19 @@ public class CharacterInventory : MonoBehaviour
     public Text charName;
     public Text goldText;
 
-    CharacterClass character1;
-    CharacterClass character2;
-    CharacterClass character3;
-    CharacterClass character4;
+    private Dictionary<int, PlayerClass> characters = new Dictionary<int, PlayerClass>();
 
     public Button char1;
     public Button char2;
     public Button char3;
     public Button char4;
 
-    EquipableItemClass charWeap;
-    EquipableItemClass charOffHand;
-    EquipableItemClass charArmor;
-    EquipableItemClass charAccess;
+    private Dictionary<int, Button> charButtons = new Dictionary<int, Button>();
+
+    EquipmentClass charWeap;
+    EquipmentClass charOffHand;
+    EquipmentClass charArmor;
+    EquipmentClass charAccess;
 
     public Text weaponName;
     public Text weaponStats;
@@ -40,8 +39,8 @@ public class CharacterInventory : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject scrollContent;
 
-    private List<UsableItemClass> heldUsableInventory = new List<UsableItemClass>();
-    private List<EquipableItemClass> heldEquipableInventory = new List<EquipableItemClass>();
+    private List<ItemClass> heldUsableInventory = new List<ItemClass>();
+    private List<EquipmentClass> heldEquipableInventory = new List<EquipmentClass>();
 
     private int charSelected;
 
@@ -49,104 +48,74 @@ public class CharacterInventory : MonoBehaviour
     {
         charInven = this;
 
-        heldUsableInventory = CharacterManager.charManager.getUsableInventory();
-        heldEquipableInventory = CharacterManager.charManager.getEquipableInventory();
+        heldUsableInventory = Manager.manager.getUsableInventory();
+        heldEquipableInventory = Manager.manager.getEquipableInventory();
+
+        characters.Add(1, Manager.manager.GetPlayer("Player1"));
+        characters.Add(2, Manager.manager.GetPlayer("Player2"));
+        characters.Add(3, Manager.manager.GetPlayer("Player3"));
+        characters.Add(4, Manager.manager.GetPlayer("Player4"));
+
+        charButtons.Add(1, char1);
+        charButtons.Add(2, char2);
+        charButtons.Add(3, char3);
+        charButtons.Add(4, char4);
+
+        char1.GetComponent<Image>().sprite = Manager.manager.getCharSprite(characters[1].GetClass());
+        char2.GetComponent<Image>().sprite = Manager.manager.getCharSprite(characters[2].GetClass());
+        char3.GetComponent<Image>().sprite = Manager.manager.getCharSprite(characters[3].GetClass());
+        char4.GetComponent<Image>().sprite = Manager.manager.getCharSprite(characters[4].GetClass());
     }
 
-    //opens or closes the inventory window
+    //opens the inventory window
     public void displayInvScreen()
     {
-        StoreFinds.stored.activate();
+        goldText.text = "Gold: " + Manager.manager.GetGold().ToString();
+        clearInventory();
+        populateInvList();
 
-        if (gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        StoreFinds.stored.BattleActivate();
+
+        gameObject.GetComponent<CanvasGroup>().alpha = 1;
+        gameObject.GetComponent<CanvasGroup>().interactable = true;
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        changeChar(1);
+    }
+
+    //clears out the inventory list
+    private void clearInventory()
+    {
+        foreach (Transform child in scrollContent.transform)
         {
-            gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            gameObject.GetComponent<CanvasGroup>().interactable = false;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            foreach (Transform child in scrollContent.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+            Destroy(child.gameObject);
         }
-        else
-        {
-            gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            gameObject.GetComponent<CanvasGroup>().interactable = true;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
 
-            changeChar(1);
-            populateInvList();
-            goldText.text = "Gold: " + FindObjectOfType<CharacterManager>().getGold().ToString();
-        }
+    //closes the inventory window
+    public void closeInventory()
+    {
+        StoreFinds.stored.BattleDeactivate();
+
+        gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        gameObject.GetComponent<CanvasGroup>().interactable = false;
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     //changes which character is selected from button press
     public void changeChar(int charNum)
-    {
-        character1 = CharacterManager.charManager.character1;
-        character2 = CharacterManager.charManager.character2;
-        character3 = CharacterManager.charManager.character3;
-        character4 = CharacterManager.charManager.character4;
+    {        
+        //fill in screen data with char info
+        charName.text = characters[charNum].GetName();
 
-        char1.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character1.GetCharClass());
-        char2.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character2.GetCharClass());
-        char3.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character3.GetCharClass());
-        char4.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character4.GetCharClass());
+        charWeap = characters[charNum].GetEquipment("Weapon");
+        charOffHand = characters[charNum].GetEquipment("Offhand");
+        charArmor = characters[charNum].GetEquipment("Armor");
+        charAccess = characters[charNum].GetEquipment("Accessory");
 
-        switch (charNum)
-        {
-            case 1:
-                //fill in screen data with char info
-                charName.text = character1.GetCharName();
-
-                charWeap = character1.GetWeapon();
-                charOffHand = character1.GetOffHand();
-                charArmor = character1.GetArmor();
-                charAccess = character1.GetAccessory();
-
-                //make char1 button selected
-                charSelected = 1;
-                char1.Select();
-
-                break;
-            case 2:
-                charName.text = character2.GetCharName();
-
-                charWeap = character2.GetWeapon();
-                charOffHand = character2.GetOffHand();
-                charArmor = character2.GetArmor();
-                charAccess = character2.GetAccessory();
-
-                charSelected = 2;
-                char2.Select();
-
-                break;
-            case 3:
-                charName.text = character3.GetCharName();
-
-                charWeap = character3.GetWeapon();
-                charOffHand = character3.GetOffHand();
-                charArmor = character3.GetArmor();
-                charAccess = character3.GetAccessory();
-
-                charSelected = 3;
-                char3.Select();
-
-                break;
-            case 4:
-                charName.text = character4.GetCharName();
-
-                charWeap = character4.GetWeapon();
-                charOffHand = character4.GetOffHand();
-                charArmor = character4.GetArmor();
-                charAccess = character4.GetAccessory();
-
-                charSelected = 4;
-                char4.Select();
-
-                break;
-        }
+        //make char button selected
+        charSelected = charNum;
+        charButtons[charNum].Select();        
 
         displayWeap();
         displayOff();
@@ -307,7 +276,7 @@ public class CharacterInventory : MonoBehaviour
     //adds items in inventory list, and populates scroll view with these items
     private void populateInvList()
     {
-        foreach(UsableItemClass item in heldUsableInventory)
+        foreach (ItemClass item in heldUsableInventory)
         {
             GameObject invenItem = (GameObject)Instantiate(inventoryPanel) as GameObject;
             invenItem.transform.SetParent(scrollContent.transform, false);
@@ -317,7 +286,7 @@ public class CharacterInventory : MonoBehaviour
             popItem.populateUsableData(item);
         }
 
-        foreach (EquipableItemClass item in heldEquipableInventory)
+        foreach (EquipmentClass item in heldEquipableInventory)
         {
             GameObject invenItem = (GameObject)Instantiate(inventoryPanel) as GameObject;
             invenItem.transform.SetParent(scrollContent.transform, false);
@@ -329,40 +298,34 @@ public class CharacterInventory : MonoBehaviour
     }
 
     //add usable item to the inventory
-    public void addUsableToInventory(UsableItemClass itemAdded)
+    public void addUsableToInventory(ItemClass itemAdded)
     {
-        try
-        {            
-            int index = heldUsableInventory.IndexOf(itemAdded);
-            int quantity = itemAdded.GetQuantity();
+        string addName = itemAdded.GetName();
+        int addQuant = itemAdded.GetQuantity();
 
-            heldUsableInventory[index].ChangeQuantity(quantity);
-        }
-        catch
+        foreach(ItemClass item in heldUsableInventory)
         {
-            heldUsableInventory.Add(itemAdded);
+            string currentName = item.GetName();
+
+            if(currentName.Equals(addName))
+            {
+                item.ChangeQuantity(addQuant);
+                return;
+            }
         }
+
+        heldUsableInventory.Add(itemAdded);        
     }
 
     //add equipable item to the inventory
-    public void addEquipableToInventory(EquipableItemClass itemAdded)
-    {
-        try
-        {
-            int index = heldEquipableInventory.IndexOf(itemAdded);
-            int quantity = itemAdded.GetQuantity();
-
-            heldEquipableInventory[index].ChangeQuantity(quantity);
-        }
-        catch
-        {
-            heldEquipableInventory.Add(itemAdded);
-        }
+    public void addEquipableToInventory(EquipmentClass itemAdded)
+    {        
+        heldEquipableInventory.Add(itemAdded);
     }
 
 
     //removes usable item from inventory
-    public void removeUsableFromInventory(UsableItemClass item)
+    public void removeUsableFromInventory(ItemClass item)
     {
         int index = heldUsableInventory.IndexOf(item);
 
@@ -371,55 +334,26 @@ public class CharacterInventory : MonoBehaviour
         if(quantityAmount <= 0)
         {
             heldUsableInventory.RemoveAt(index);
-            
-            foreach (Transform child in scrollContent.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+
+            clearInventory();
             populateInvList();
         }
     }
 
     //removes equipable item from inventory
-    public void removeEquipableFromInventory(EquipableItemClass item)
+    public void removeEquipableFromInventory(EquipmentClass item)
     {
         int index = heldEquipableInventory.IndexOf(item);
-        int quantityAmount = heldEquipableInventory[index].GetQuantity();
-
-        if (quantityAmount <= 0)
-        {
-            heldEquipableInventory.RemoveAt(index);
-
-            foreach (Transform child in scrollContent.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            populateInvList();
-        }
-    }
-
-
-    //removed the item from the inventory when it is being equipped
-    public void removeEquippedFromInven(EquipableItemClass item)
-    {
-        int index = heldEquipableInventory.IndexOf(item);
-
         heldEquipableInventory.RemoveAt(index);
 
-        foreach (Transform child in scrollContent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+        clearInventory();
         populateInvList();
     }
 
     //refreshes inventory after item is equipped
     public void afterUseRefresh()
     {
-        foreach (Transform child in scrollContent.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        clearInventory();
 
         populateInvList();
 
@@ -428,6 +362,6 @@ public class CharacterInventory : MonoBehaviour
 
     //gets which character was selected
     public int getCharSelected() { return charSelected; }
-    public List<UsableItemClass> getUsableInventory() { return heldUsableInventory; }
-    public List<EquipableItemClass> getEquipableInventory() { return heldEquipableInventory; }
+    public List<ItemClass> getUsableInventory() { return heldUsableInventory; }
+    public List<EquipmentClass> getEquipableInventory() { return heldEquipableInventory; }
 }

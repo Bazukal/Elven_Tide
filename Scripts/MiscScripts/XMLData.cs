@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class XMLData : MonoBehaviour {
 
     public const string ITEMPATH = "items";
+    public const string EQUIPPATH = "equips";
     public const string QUESTPATH = "quests";
     public const string CHATPATH = "chats";
     public const string SKILLPATH = "skills";
     public const string STATPATH = "levelStats";
     
-    private List<EquipableItemClass> equipableItems = new List<EquipableItemClass>();
-    private List<UsableItemClass> usableItems = new List<UsableItemClass>();
+    private List<EquipmentClass> equipableItems = new List<EquipmentClass>();
+    private List<ItemClass> usableItems = new List<ItemClass>();
 
     private List<ChatClass> citizen1 = new List<ChatClass>();
     private List<ChatClass> citizen2 = new List<ChatClass>();
@@ -31,6 +32,7 @@ public class XMLData : MonoBehaviour {
     private List<SkillClass> warriorSkills = new List<SkillClass>();
     private List<SkillClass> whiteSkills = new List<SkillClass>();
 
+    public List<GameObject> skillAnimations = new List<GameObject>();
 
     public Slider loadingSlider;
     public Text progressText;
@@ -86,34 +88,29 @@ public class XMLData : MonoBehaviour {
     private void SetItems()
     {
         //reads items from xml file, and stores into lists
-        UsableItemClass newUsable;
-        EquipableItemClass newEquipable;
+        ItemClass newUsable;
+        EquipmentClass newEquipable;
 
         ItemContainer ic = ItemContainer.Load(ITEMPATH);
+        EquipContainer ec = EquipContainer.Load(EQUIPPATH);
 
         foreach (Item item in ic.items)
         {
-            string typeCheck = item.type;
+            newUsable = new ItemClass(item.name, item.type, item.rarity, item.cureAilment, item.description,
+                item.healAmount, item.minLevel, item.maxLevel, item.buyPrice, item.sellPrice, item.revive,
+                item.bought, item.dropped, item.chest);
 
-            switch (typeCheck)
-            {
-                case "Weapon":
-                case "Armor":
-                case "Accessory":
-                    newEquipable = new EquipableItemClass(item.name, item.type, item.equipable, item.usable, item.revive,
-                        item.minLevel, item.maxLevel, item.boughtOrDrop, item.buyPrice, item.sellPrice, 1, item.weaponType,
-                        item.armorType, item.damage, item.armor, item.strength, item.agility, item.mind, item.soul);
+            usableItems.Add(newUsable);
+        }
 
-                    equipableItems.Add(newEquipable);
-                    break;
-                case "Usable":
-                    newUsable = new UsableItemClass(item.name, item.type, item.equipable, item.usable, item.revive,
-                        item.minLevel, item.maxLevel, item.boughtOrDrop, item.buyPrice, item.sellPrice, 1, item.cureAilment,
-                        item.healAmount);
+        foreach(Equip equip in ec.equips)
+        {
+            newEquipable = new EquipmentClass(equip.name, equip.type, equip.equipType, equip.rarity, 
+                equip.damage, equip.armor, equip.strength, equip.agility, equip.mind, equip.soul,
+                equip.minLevel, equip.maxLevel, equip.buyPrice, equip.sellPrice, equip.bought, equip.dropped,
+                equip.chest);
 
-                    usableItems.Add(newUsable);
-                    break;
-            }
+            equipableItems.Add(newEquipable);
         }
 
         GameItems.gItems.setItems(equipableItems, usableItems);
@@ -166,10 +163,12 @@ public class XMLData : MonoBehaviour {
         foreach (Skill skill in sc.skills)
         {
             string charClass = skill.charClass;
+            
+            string skillName = skill.name;
 
-            newSkill = new SkillClass(skill.name, skill.charClass, skill.type, skill.damageType, 
-                skill.debuffType, skill.target, skill.desc, skill.cure, skill.stat, skill.debuffChance,
-                skill.strength, skill.plus, skill.turns, skill.level, skill.mana, skill.aoe);
+            newSkill = new SkillClass(skillName, skill.type, charClass, skill.target, skill.stat,
+                skill.ailment, skill.damageType, skill.desc, skill.level, skill.mana, skill.skillBase,
+                skill.turns, skill.debuffChance, skill.modifier, skill.aoe);
 
             switch(charClass)
             {
@@ -200,8 +199,8 @@ public class XMLData : MonoBehaviour {
             }
         }
 
-        GameSkills.skills.SetSkills(enemySkills, archerSkills, blackSkills, monkSkills, paladinSkills, thiefSkills,
-            warriorSkills, whiteSkills);
+        GameSkills.skills.SetSkills(enemySkills, archerSkills, blackSkills, monkSkills, paladinSkills,
+            thiefSkills, warriorSkills, whiteSkills);        
     }
 
     private void SetStats()
@@ -221,7 +220,7 @@ public class XMLData : MonoBehaviour {
 
     //loads xml files, while displaying a loading bar during the process
     IEnumerator loadXML()
-    {       
+    {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TitleScreen");
 
         while (!asyncLoad.isDone)

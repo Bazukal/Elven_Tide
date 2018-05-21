@@ -27,12 +27,12 @@ public class ExitDungeon : MonoBehaviour {
         if(exitPanel.activeSelf == true)
         {
             exitPanel.SetActive(false);
-            StoreFinds.stored.activate();
+            StoreFinds.stored.BattleActivate();
         }
         else
         {
             exitPanel.SetActive(true);
-            StoreFinds.stored.activate();
+            StoreFinds.stored.BattleDeactivate();
         }
     }
 
@@ -44,7 +44,7 @@ public class ExitDungeon : MonoBehaviour {
 
     IEnumerator townTravel()
     {
-        CharacterManager.charManager.setInRange("");
+        Manager.manager.setInRange("");
 
        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town");
 

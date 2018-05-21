@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 public class populateSellPanel : MonoBehaviour {
 
-    EquipableItemClass equipSelling = null;
-    UsableItemClass useSelling = null;
+    EquipmentClass equipSelling = null;
+    ItemClass useSelling = null;
     Text[] itemTexts;
 
-    public void populateEquipButtonData(EquipableItemClass item)
+    public void populateEquipButtonData(EquipmentClass item)
     {
         equipSelling = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = equipSelling.GetName() + " x " + equipSelling.GetQuantity();
+        itemTexts[0].text = equipSelling.GetName();
         itemTexts[1].text = "Sell Price: " + equipSelling.GetSellPrice();
     }
 
-    public void populateUseButtonData(UsableItemClass item)
+    public void populateUseButtonData(ItemClass item)
     {
         useSelling = item;
         itemTexts = this.GetComponentsInChildren<Text>();
         itemTexts[0].text = useSelling.GetName() + " x " + useSelling.GetQuantity();
-        itemTexts[1].text = "Sell Price: " + useSelling.GetSellPrice();
+        itemTexts[1].text = "Sell Price: " + useSelling.GetSell();
     }
 
     public void purchaseWindow()

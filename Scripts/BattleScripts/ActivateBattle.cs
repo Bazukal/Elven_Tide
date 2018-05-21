@@ -16,7 +16,6 @@ public class ActivateBattle : MonoBehaviour {
     public void battle()
     {
         battleScreen.SetActive(true);
-
-        StoreFinds.stored.battleActivate();
+        StateMachine.state.StartBattle(false);
     }
 }

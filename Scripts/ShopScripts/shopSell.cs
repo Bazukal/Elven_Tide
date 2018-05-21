@@ -19,15 +19,15 @@ public class shopSell : MonoBehaviour {
     {
         try
         {
-            List<EquipableItemClass> equipableItems = CharacterInventory.charInven.getEquipableInventory();
-            List<UsableItemClass> usableItems = CharacterInventory.charInven.getUsableInventory();
+            List<EquipmentClass> equipableItems = CharacterInventory.charInven.getEquipableInventory();
+            List<ItemClass> usableItems = CharacterInventory.charInven.getUsableInventory();
 
             foreach (Transform child in scrollContent.transform)
             {
                 GameObject.Destroy(child.gameObject);
             }
 
-            foreach (UsableItemClass item in usableItems)
+            foreach (ItemClass item in usableItems)
             {
                 GameObject invenItem = (GameObject)Instantiate(sellPanel) as GameObject;
                 invenItem.transform.SetParent(scrollContent.transform, false);
@@ -37,7 +37,7 @@ public class shopSell : MonoBehaviour {
                 popItem.populateUseButtonData(item);
             }
 
-            foreach (EquipableItemClass item in equipableItems)
+            foreach (EquipmentClass item in equipableItems)
             {
                 GameObject invenItem = (GameObject)Instantiate(sellPanel) as GameObject;
                 invenItem.transform.SetParent(scrollContent.transform, false);
@@ -49,6 +49,5 @@ public class shopSell : MonoBehaviour {
         }
         catch
         { return; }
-    }
-    
+    }    
 }

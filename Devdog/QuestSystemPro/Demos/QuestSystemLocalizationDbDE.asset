@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b75a309ff767a4bb3ede0d5c1d2f6f, type: 3}
+  m_Name: QuestSystemLocalizationDbDE
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"_lang":"de-DE","_localizedStrings":{"NO_KEY":"","ea4b67a7-8ce1-4716-ac38-5e6c06029fa6":"Nicht
+    schlecht","DefaultMoveToNextNodeText":"","13ff4830-1841-429c-a37b-a7d7927f25c2":"DE
+    Text","22d977bf-dfab-4ffe-b91e-6c5d5a28aefd":"Hosgoth Trial","b82564dc-83e5-4680-bb3e-2fd0b4799422":"Find
+    the Guardian in the back of the cave.","93e0c385-bde2-482d-9927-abb75f133624":"Find
+    the Guardian in the Cave.","bef76257-d810-4658-bda2-5d1aad64a81e":"Find Guardian","8898c2de-2982-4e16-8abd-944d4c6484a4":"Defeat
+    the Goblin Executioner","27a21e0a-d37c-47ff-b102-6312b664c84b":"Defeat Goblin
+    Executioner","d479638f-d598-43ef-9edc-7b1cf6337ad7":"Remember, go into the cave
+    and find the Guardian at the end.  He has the item I am waiting for, then return
+    it back to me.","235009a0-1c2b-4837-811a-7490710a3678":"Remember, go into the
+    cave and find the Guardian at the end.  He has the item I am waiting for, then
+    return it back to me.","21c6ac48-8eb5-4046-9618-ead496900789":"Accept","1b889121-51fa-45c4-b883-49d2df7c1683":"Cancel","ede264a3-10d8-4f24-8d28-2f2b6fe88c04":"Remember,
+    go into the cave and find the Guardian at the end.  He has the item I am waiting
+    for, then return it back to me."},"_localizedObjects":{"740ca4d8-7941-4483-904e-392f33131535":null}}'
+  _objectReferences: []
+  _lang: de-DE

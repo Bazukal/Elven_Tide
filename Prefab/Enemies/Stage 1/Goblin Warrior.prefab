@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114186244686778634}
   - component: {fileID: 114281670258105832}
   - component: {fileID: 114579566993228278}
+  - component: {fileID: 114439585697996340}
   m_Layer: 5
   m_Name: Goblin Warrior
   m_TagString: Untagged
@@ -147,9 +148,21 @@ MonoBehaviour:
   enemyMind: 1
   enemySoul: 3
   enemyDef: 5
-  gold: 5
+  gold: 2
   exp: 8
   enemySkills: []
+  debuffPanel: {fileID: 1966158791125488}
+--- !u!114 &114439585697996340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389387326108436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18591198c1f291546a0f04dc3487f3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114494341209284226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,7 +228,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114186244686778634}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114439585697996340}
+        m_MethodName: enemyTargeted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114968908819199558

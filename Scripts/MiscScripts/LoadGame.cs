@@ -48,20 +48,20 @@ public class LoadGame : MonoBehaviour {
                 data = (PlayerData)bf.Deserialize(fsSave);
                 fsSave.Close();
 
-                string char1Name = data.character1.GetCharName();
-                string char2Name = data.character2.GetCharName();
-                string char3Name = data.character3.GetCharName();
-                string char4Name = data.character4.GetCharName();
+                string char1Name = data.character1.GetName();
+                string char2Name = data.character2.GetName();
+                string char3Name = data.character3.GetName();
+                string char4Name = data.character4.GetName();
 
-                int char1Lvl = data.character1.GetCharLevel();
-                int char2Lvl = data.character2.GetCharLevel();
-                int char3Lvl = data.character3.GetCharLevel();
-                int char4Lvl = data.character4.GetCharLevel();
+                int char1Lvl = data.character1.GetLevel();
+                int char2Lvl = data.character2.GetLevel();
+                int char3Lvl = data.character3.GetLevel();
+                int char4Lvl = data.character4.GetLevel();
 
-                string char1Class = data.character1.GetCharClass();
-                string char2Class = data.character2.GetCharClass();
-                string char3Class = data.character3.GetCharClass();
-                string char4Class = data.character4.GetCharClass();
+                string char1Class = data.character1.GetClass();
+                string char2Class = data.character2.GetClass();
+                string char3Class = data.character3.GetClass();
+                string char4Class = data.character4.GetClass();
 
                 int gold = data.gold;
 
@@ -101,27 +101,24 @@ public class LoadGame : MonoBehaviour {
             fsSave = File.Open(Application.persistentDataPath + saveSlot[slot], FileMode.Open);
             data = (PlayerData)bf.Deserialize(fsSave);
             fsSave.Close();
-        }        
+        }
 
         //set data to in game classes
-        CharacterManager.charManager.character1 = data.character1;
-        CharacterManager.charManager.character2 = data.character2;
-        CharacterManager.charManager.character3 = data.character3;
-        CharacterManager.charManager.character4 = data.character4;
+        Manager.manager.inputPlayers(data.character1, data.character2, data.character3, data.character4);
 
-        List<EquipableItemClass> loadEquipInventory = data.heldEquipableInventory;
-        List<UsableItemClass> loadUseInventory = data.heldUsableInventory;
-        CharacterManager.charManager.setEquipableInventory(loadEquipInventory);
-        CharacterManager.charManager.setUsableInventory(loadUseInventory);
+        List<EquipmentClass> loadEquipInventory = data.heldEquipableInventory;
+        List<ItemClass> loadUseInventory = data.heldUsableInventory;
+        Manager.manager.setEquipableInventory(loadEquipInventory);
+        Manager.manager.setUsableInventory(loadUseInventory);
 
         List<QuestClass> loadQuests = data.quests;
         QuestListing.qListing.setQuests(loadQuests);
 
         int gold = data.gold;
-        CharacterManager.charManager.setGold(gold);
+        Manager.manager.setGold(gold);
 
         int stage = data.questStage;
-        CharacterManager.charManager.setQuestStage(stage);
+        Manager.manager.setQuestStage(stage);
 
         StartCoroutine(loaded());
     }

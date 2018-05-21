@@ -40,13 +40,13 @@ public class IntroScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        string char1 = CharacterManager.charManager.character1.GetCharClass();
-        string char2 = CharacterManager.charManager.character2.GetCharClass();
-        string char3 = CharacterManager.charManager.character3.GetCharClass();
-        string char4 = CharacterManager.charManager.character4.GetCharClass();
+        string char1 = Manager.manager.GetPlayer("Player1").GetClass();
+        string char2 = Manager.manager.GetPlayer("Player2").GetClass();
+        string char3 = Manager.manager.GetPlayer("Player3").GetClass();
+        string char4 = Manager.manager.GetPlayer("Player4").GetClass();
 
         //sets character sprites based on the classes that the player chose
-        switch(char1)
+        switch (char1)
         {
             case "Archer":
                 character1.GetComponent<SpriteRenderer>().sprite = archer;
@@ -168,7 +168,7 @@ public class IntroScript : MonoBehaviour {
 
     IEnumerator StartTown()
     {
-        CharacterManager.charManager.setQuestStage(1);
+        Manager.manager.setQuestStage(1);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town");
 

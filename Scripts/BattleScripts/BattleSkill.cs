@@ -13,20 +13,20 @@ public class BattleSkill : MonoBehaviour {
     public void skillName(SkillClass skill)
     {
         selectedSkill = skill;
-        skillsName.text = skill.GetSkillName();
-        mpCost.text = "MP: " + skill.GetSkillMana().ToString();
+        skillsName.text = skill.GetName();
+        mpCost.text = "MP: " + skill.GetCost().ToString();
     }
 
     public void castSkill()
     {
-        if (selectedSkill.GetSkillTarget().Equals("Enemy"))
+        if (selectedSkill.GetTarget().Equals("Enemy"))
         {
-            Battle.battle.skillAction(selectedSkill);
+            StateMachine.state.skillAction(selectedSkill);
         }            
         else
         {
             BattleSkillsItems.view.charSelect(selectedSkill, null);
-            Battle.battle.healingSkill(selectedSkill);
+            StateMachine.state.healingSkill(selectedSkill);
         }
             
     }

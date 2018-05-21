@@ -20,7 +20,7 @@ public class QuestIcon : MonoBehaviour {
     //displays or hides quest icon dependant on what stage of the current quest the player is on
 	public void changeQuest()
     {
-        QuestClass questStatus = QuestListing.qListing.getCurrentQuest(CharacterManager.charManager.getQuestStage());
+        QuestClass questStatus = QuestListing.qListing.getCurrentQuest(Manager.manager.getQuestStage());
 
         if(questStatus != null)
         {

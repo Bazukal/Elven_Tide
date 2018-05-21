@@ -27,7 +27,7 @@ public class npcChat : MonoBehaviour {
         player.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
 
         string npc = citi;
-        int questStage = CharacterManager.charManager.getQuestStage();
+        int questStage = Manager.manager.getQuestStage();
 
         switch(npc)
         {

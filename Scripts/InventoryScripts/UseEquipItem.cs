@@ -13,11 +13,11 @@ public class UseEquipItem : MonoBehaviour {
 
     public Button useButton;
 
-    EquipableItemClass equipSelected;
-    UsableItemClass useSelected;
+    EquipmentClass equipSelected;
+    ItemClass useSelected;
     private int charSelected;
 
-    CharacterClass usingChar = null;
+    PlayerClass usingChar = null;
 
     public GameObject weaponEquip;
     public GameObject healWindow;
@@ -43,20 +43,20 @@ public class UseEquipItem : MonoBehaviour {
 
     private bool isEquipable;
 
-    private Dictionary<string, CharacterClass> chars = new Dictionary<string, CharacterClass>();
+    private Dictionary<string, PlayerClass> chars = new Dictionary<string, PlayerClass>();
 
     private void Start()
     {
         equipItem = this;
 
-        chars.Add("char1", CharacterManager.charManager.character1);
-        chars.Add("char2", CharacterManager.charManager.character2);
-        chars.Add("char3", CharacterManager.charManager.character3);
-        chars.Add("char4", CharacterManager.charManager.character4);
+        chars.Add("char1", Manager.manager.GetPlayer("Player1"));
+        chars.Add("char2", Manager.manager.GetPlayer("Player2"));
+        chars.Add("char3", Manager.manager.GetPlayer("Player3"));
+        chars.Add("char4", Manager.manager.GetPlayer("Player4"));
     }
 
     //open the item stat window
-    public void activateEquipItemStat(EquipableItemClass item)
+    public void activateEquipItemStat(EquipmentClass item)
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
         gameObject.GetComponent<CanvasGroup>().interactable = true;
@@ -69,7 +69,7 @@ public class UseEquipItem : MonoBehaviour {
     }
 
     //open the item stat window
-    public void activateUseItemStat(UsableItemClass item)
+    public void activateUseItemStat(ItemClass item)
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
         gameObject.GetComponent<CanvasGroup>().interactable = true;
@@ -94,13 +94,13 @@ public class UseEquipItem : MonoBehaviour {
     {
         string name = useSelected.GetName();
         int healAmount = useSelected.GetHeal();
+        string itemType = useSelected.GetItemType();
         string cure = useSelected.GetCure();
-        bool revive = useSelected.GetRevive();
         int quantity = useSelected.GetQuantity();
 
         if (healAmount > 0)
         {
-            if (revive == false)
+            if (itemType.Equals("Heal"))
             {
                 if (quantity > 1)
                 {
@@ -162,19 +162,19 @@ public class UseEquipItem : MonoBehaviour {
         healWindow.GetComponent<CanvasGroup>().interactable = true;
         healWindow.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        character1.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(chars["char1"].GetCharClass());
-        character2.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(chars["char2"].GetCharClass());
-        character3.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(chars["char3"].GetCharClass());
-        character4.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(chars["char4"].GetCharClass());
+        character1.GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars["char1"].GetClass());
+        character2.GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars["char2"].GetClass());
+        character3.GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars["char3"].GetClass());
+        character4.GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars["char4"].GetClass());
 
-        char1Name.text = chars["char1"].GetCharName();
-        char2Name.text = chars["char2"].GetCharName();
-        char3Name.text = chars["char3"].GetCharName();
-        char4Name.text = chars["char4"].GetCharName();
+        char1Name.text = chars["char1"].GetName();
+        char2Name.text = chars["char2"].GetName();
+        char3Name.text = chars["char3"].GetName();
+        char4Name.text = chars["char4"].GetName();
 
         healSlider();
 
-        if (useSelected.GetRevive())
+        if (useSelected.GetItemType().Equals("Revive"))
             reviveButtonInteract();
         else
             healButtonInteract();
@@ -191,38 +191,38 @@ public class UseEquipItem : MonoBehaviour {
     //sets sliders that shows characters hp and mp
     public void healSlider()
     {
-        char1HP.value = (float)chars["char1"].GetCharCurrentHp() / (float)chars["char1"].GetCharMaxHp();
-        char1MP.value = (float)chars["char1"].GetCharCurrentMp() / (float)chars["char1"].GetCharMaxMp();
+        char1HP.value = (float)chars["char1"].GetCurrentHP() / (float)chars["char1"].GetMaxHP();
+        char1MP.value = (float)chars["char1"].GetCurrentMP() / (float)chars["char1"].GetMaxMP();
 
-        char2HP.value = (float)chars["char2"].GetCharCurrentHp() / (float)chars["char2"].GetCharMaxHp();
-        char2MP.value = (float)chars["char2"].GetCharCurrentMp() / (float)chars["char2"].GetCharMaxMp();
+        char2HP.value = (float)chars["char2"].GetCurrentHP() / (float)chars["char2"].GetMaxHP();
+        char2MP.value = (float)chars["char2"].GetCurrentMP() / (float)chars["char2"].GetMaxMP();
 
-        char3HP.value = (float)chars["char3"].GetCharCurrentHp() / (float)chars["char3"].GetCharMaxHp();
-        char3MP.value = (float)chars["char3"].GetCharCurrentMp() / (float)chars["char3"].GetCharMaxMp();
+        char3HP.value = (float)chars["char3"].GetCurrentHP() / (float)chars["char3"].GetMaxHP();
+        char3MP.value = (float)chars["char3"].GetCurrentMP() / (float)chars["char3"].GetMaxMP();
 
-        char4HP.value = (float)chars["char4"].GetCharCurrentHp() / (float)chars["char4"].GetCharMaxHp();
-        char4MP.value = (float)chars["char4"].GetCharCurrentMp() / (float)chars["char4"].GetCharMaxMp();
+        char4HP.value = (float)chars["char4"].GetCurrentHP() / (float)chars["char4"].GetMaxHP();
+        char4MP.value = (float)chars["char4"].GetCurrentMP() / (float)chars["char4"].GetMaxMP();
     }
 
     //activates or deactivates character buttons if the character is alive or not
     public void healButtonInteract()
     {
-        if (chars["char1"].GetCharCurrentHp() == 0 || chars["char1"].GetCharCurrentHp() == chars["char1"].GetCharMaxHp())
+        if (chars["char1"].GetCurrentHP() == 0 || chars["char1"].GetCurrentHP() == chars["char1"].GetMaxHP())
             character1.interactable = false;
         else
             character1.interactable = true;
 
-        if (chars["char2"].GetCharCurrentHp() == 0 || chars["char2"].GetCharCurrentHp() == chars["char2"].GetCharMaxHp())
+        if (chars["char2"].GetCurrentHP() == 0 || chars["char2"].GetCurrentHP() == chars["char2"].GetMaxHP())
             character2.interactable = false;
         else
             character2.interactable = true;
 
-        if (chars["char3"].GetCharCurrentHp() == 0 || chars["char3"].GetCharCurrentHp() == chars["char3"].GetCharMaxHp())
+        if (chars["char3"].GetCurrentHP() == 0 || chars["char3"].GetCurrentHP() == chars["char3"].GetMaxHP())
             character3.interactable = false;
         else
             character3.interactable = true;
 
-        if (chars["char4"].GetCharCurrentHp() == 0 || chars["char4"].GetCharCurrentHp() == chars["char4"].GetCharMaxHp())
+        if (chars["char4"].GetCurrentHP() == 0 || chars["char4"].GetCurrentHP() == chars["char4"].GetMaxHP())
             character4.interactable = false;
         else
             character4.interactable = true;
@@ -230,22 +230,22 @@ public class UseEquipItem : MonoBehaviour {
 
     public void reviveButtonInteract()
     {
-        if (chars["char1"].GetCharCurrentHp() == 0)
+        if (chars["char1"].GetCurrentHP() == 0)
             character1.interactable = true;
         else
             character1.interactable = false;
 
-        if (chars["char2"].GetCharCurrentHp() == 0)
+        if (chars["char2"].GetCurrentHP() == 0)
             character2.interactable = true;
         else
             character2.interactable = false;
 
-        if (chars["char3"].GetCharCurrentHp() == 0)
+        if (chars["char3"].GetCurrentHP() == 0)
             character3.interactable = true;
         else
             character3.interactable = false;
 
-        if (chars["char4"].GetCharCurrentHp() == 0)
+        if (chars["char4"].GetCurrentHP() == 0)
             character4.interactable = true;
         else
             character4.interactable = false;
@@ -257,16 +257,16 @@ public class UseEquipItem : MonoBehaviour {
         switch (charSelected)
         {
             case 1:
-                usingChar = CharacterManager.charManager.character1;
+                usingChar = Manager.manager.GetPlayer("Player1");
                 break;
             case 2:
-                usingChar = CharacterManager.charManager.character2;
+                usingChar = Manager.manager.GetPlayer("Player2");
                 break;
             case 3:
-                usingChar = CharacterManager.charManager.character3;
+                usingChar = Manager.manager.GetPlayer("Player3");
                 break;
             case 4:
-                usingChar = CharacterManager.charManager.character4;
+                usingChar = Manager.manager.GetPlayer("Player4");
                 break;
         }
 
@@ -308,8 +308,8 @@ public class UseEquipItem : MonoBehaviour {
         {
 
             case "Weapon":
-                string weaponType = equipSelected.GetWeaponType();
-                string charClass = usingChar.GetCharClass();
+                string weaponType = equipSelected.GetEquipType();
+                string charClass = usingChar.GetClass();
 
                 switch (weaponType)
                 {
@@ -353,9 +353,9 @@ public class UseEquipItem : MonoBehaviour {
 
                 break;
             case "Armor":
-                string armorType = equipSelected.GetArmorType();
+                string armorType = equipSelected.GetEquipType();
                 string maxArmor = usingChar.GetMaxArmor();
-                bool canShield = usingChar.GetShield();
+                bool canShield = usingChar.CanShield();
 
                 switch (armorType)
                 {
@@ -394,7 +394,7 @@ public class UseEquipItem : MonoBehaviour {
     //heals characters hp and uses item
     public void healChar(string character)
     {
-        chars[character].ChangeCharCurrentHp(useSelected.GetHeal());
+        chars[character].changeHP(useSelected.GetHeal());
         useSelected.ChangeQuantity(-1);
         healSlider();
 
@@ -413,13 +413,13 @@ public class UseEquipItem : MonoBehaviour {
     //equips item selected
     public void EquipItem()
     {
-        EquipableItemClass equippedItem = null;
+        EquipmentClass equippedItem = null;
         string itemType = equipSelected.GetItemType();
 
         switch (itemType)
         {
             case "Weapon":
-                string weaponType = equipSelected.GetWeaponType();
+                string weaponType = equipSelected.GetEquipType();
 
                 if (weaponType == "Sword" || weaponType == "Dagger")
                 {
@@ -435,7 +435,7 @@ public class UseEquipItem : MonoBehaviour {
 
                 break;
             case "Armor":
-                if (equipSelected.GetArmorType() == "Shield")
+                if (equipSelected.GetEquipType() == "Shield")
                     equippedItem = usingChar.ChangeOffHand(equipSelected);
                 else
                     equippedItem = usingChar.ChangeArmor(equipSelected);
@@ -444,22 +444,21 @@ public class UseEquipItem : MonoBehaviour {
                 break;
             case "Accessory":
                 equippedItem = usingChar.ChangeAccessory(equipSelected);
-                Debug.Log(usingChar.GetAccessory().GetName() + " " + usingChar.GetAccessory().GetQuantity());
                 closeItemStat();
                 break;
         }
         CharacterInventory.charInven.addEquipableToInventory(equippedItem);
-        CharacterInventory.charInven.removeEquippedFromInven(equipSelected);
+        CharacterInventory.charInven.removeEquipableFromInventory(equipSelected);
         CharacterInventory.charInven.afterUseRefresh();
     }
 
     //equip item into main slot
     public void equipMain()
     {
-        EquipableItemClass equippedItem = usingChar.ChangeWeapon(equipSelected);
+        EquipmentClass equippedItem = usingChar.ChangeWeapon(equipSelected);
 
         CharacterInventory.charInven.addEquipableToInventory(equippedItem);
-        CharacterInventory.charInven.removeEquippedFromInven(equipSelected);
+        CharacterInventory.charInven.removeEquipableFromInventory(equipSelected);
 
         weaponEquip.GetComponent<CanvasGroup>().alpha = 0;
         weaponEquip.GetComponent<CanvasGroup>().interactable = false;
@@ -473,10 +472,10 @@ public class UseEquipItem : MonoBehaviour {
     //equip item into off hand slot
     public void equipOff()
     {
-        EquipableItemClass equippedItem = usingChar.ChangeOffHand(equipSelected);
+        EquipmentClass equippedItem = usingChar.ChangeOffHand(equipSelected);
 
         CharacterInventory.charInven.addEquipableToInventory(equippedItem);
-        CharacterInventory.charInven.removeEquippedFromInven(equipSelected);
+        CharacterInventory.charInven.removeEquipableFromInventory(equipSelected);
 
         weaponEquip.GetComponent<CanvasGroup>().alpha = 0;
         weaponEquip.GetComponent<CanvasGroup>().interactable = false;

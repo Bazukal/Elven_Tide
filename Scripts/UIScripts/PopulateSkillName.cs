@@ -10,7 +10,7 @@ public class PopulateSkillName : MonoBehaviour {
 	public void skillName(SkillClass skill)
     {
         selectedSkill = skill;
-        gameObject.GetComponentInChildren<Text>().text = skill.GetSkillName();
+        gameObject.GetComponentInChildren<Text>().text = skill.GetName();
     }
 
     public void skillInfo()

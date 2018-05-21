@@ -30,9 +30,9 @@ public class SelectionPanelData : MonoBehaviour {
         {
             case "InnKeeper":                
                 npcInfo.text = INNKEEPER;
-                int aveLvl = CharacterManager.charManager.aveLevel();
+                int aveLvl = Manager.manager.AveLevel();
                 int restCost = aveLvl * 5;
-                int goldAvail = CharacterManager.charManager.getGold();
+                int goldAvail = Manager.manager.GetGold();
                 restBuyButton.GetComponentInChildren<Text>().text = string.Format("Rest ({0} Gold)", restCost);
                 if (goldAvail < restCost)
                     restBuyButton.interactable = false;

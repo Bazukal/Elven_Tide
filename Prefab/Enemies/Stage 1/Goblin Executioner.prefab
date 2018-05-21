@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114320571232045768}
   - component: {fileID: 114604063072104078}
   - component: {fileID: 222689787121085642}
+  - component: {fileID: 114813575814336052}
   m_Layer: 5
   m_Name: Goblin Executioner
   m_TagString: Untagged
@@ -93,6 +94,7 @@ MonoBehaviour:
   gold: 75
   exp: 85
   enemySkills: []
+  debuffPanel: {fileID: 1887500084137022}
 --- !u!114 &114491054651300022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,7 +160,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114788841274509208}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114813575814336052}
+        m_MethodName: enemyTargeted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114754460432731436
@@ -201,6 +214,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114813575814336052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557456608607916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18591198c1f291546a0f04dc3487f3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222560882577485860
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -35,7 +35,7 @@ public class GameSkills : MonoBehaviour {
 
         foreach(SkillClass skill in classSkills[charClass])
         {
-            if(skill.GetSkillLevel() <= level)
+            if(skill.GetLevel() <= level)
             {
                 tempSkills.Add(skill);
             }
@@ -49,7 +49,7 @@ public class GameSkills : MonoBehaviour {
 
         foreach(SkillClass enemySkill in classSkills["Enemy"])
         {
-            if (enemySkill.GetSkillName().Equals(skill))
+            if (enemySkill.GetName().Equals(skill))
                 enemySkills.Add(enemySkill);
         }
         return enemySkills;

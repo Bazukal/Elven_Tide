@@ -109,69 +109,69 @@ public class JoystickMovement : MonoBehaviour {
     {
         if (other.tag == "CaveExit")
         {
-            CharacterManager.charManager.setInRange("CaveExit");
+            Manager.manager.setInRange("CaveExit");
             return;
         }
 
         if (other.tag == "InnKeeper")
         {
-            CharacterManager.charManager.setInRange("InnKeeper");
+            Manager.manager.setInRange("InnKeeper");
             return;
         }
 
         if (other.tag == "Healer")
         {
-            CharacterManager.charManager.setInRange("Healer");
+            Manager.manager.setInRange("Healer");
             return;
         }
 
         if (other.tag == "Blacksmith")
         {
-            CharacterManager.charManager.setInRange("Blacksmith");
+            Manager.manager.setInRange("Blacksmith");
             return;
         }
 
         if (other.tag == "Cave")
         {
-            
-            CharacterManager.charManager.setInRange("Cave");
+
+            Manager.manager.setInRange("Cave");
             return;
         }
 
         if (other.tag == "Chest")
         {
-            CharacterManager.charManager.setChest(other.gameObject);
-            CharacterManager.charManager.setInRange("Chest");
+            Manager.manager.setChest(other.gameObject);
+            Manager.manager.setInRange("Chest");
             return;
         }
 
         if (other.tag == "Citizen1")
         {
-            CharacterManager.charManager.setInRange("Citizen1");
+            Manager.manager.setInRange("Citizen1");
             return;
         }
 
         if (other.tag == "Citizen2")
         {
-            CharacterManager.charManager.setInRange("Citizen2");
+            Manager.manager.setInRange("Citizen2");
             return;
         }
 
         if (other.tag == "Citizen3")
         {
-            CharacterManager.charManager.setInRange("Citizen3");
+            Manager.manager.setInRange("Citizen3");
             return;
         }
 
         if (other.tag == "Citizen4")
         {
-            CharacterManager.charManager.setInRange("Citizen4");
+            Manager.manager.setInRange("Citizen4");
             return;
         }
 
         if (other.tag == "Master")
         {
-            CharacterManager.charManager.setInRange("Master");
+            Manager.manager.setInRange("Master");
             return;
         }
 
@@ -182,67 +182,67 @@ public class JoystickMovement : MonoBehaviour {
     {
         if (other.tag == "CaveExit")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "InnKeeper")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Healer")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Blacksmith")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Chest")
         {
-            CharacterManager.charManager.removeChest();
+            Manager.manager.removeChest();
             return;
         }
 
         if (other.tag == "Cave")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Citizen1")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Citizen2")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Citizen3")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Citizen4")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
 
         if (other.tag == "Master")
         {
-            CharacterManager.charManager.setInRange("");
+            Manager.manager.setInRange("");
             return;
         }
     }

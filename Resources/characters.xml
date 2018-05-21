@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterCollection>
+  <Characters>
+    <Character Class ="Archer">
+      <MaxArmor>Leather</MaxArmor>
+      <MaxHP>12</MaxHP>
+      <MaxMP>7</MaxMP>
+      <Strength>4</Strength>
+      <Agility>4</Agility>
+      <Mind>1</Mind>
+      <Soul>2</Soul>
+      <Defense>2</Defense>
+      <CanShield>false</CanShield>
+      <Weapon>Cracked Bow</Weapon>
+      <OffHand></OffHand>
+      <Armor>Leather Jerkin</Armor>
+      <Accessory>Quick Ring</Accessory>
+    </Character>
+    <Character Class ="Black Mage">
+      <MaxArmor>Cloth</MaxArmor>
+      <MaxHP>9</MaxHP>
+      <MaxMP>15</MaxMP>
+      <Strength>2</Strength>
+      <Agility>2</Agility>
+      <Mind>6</Mind>
+      <Soul>4</Soul>
+      <Defense>1</Defense>
+      <CanShield>false</CanShield>
+      <Weapon>Cracked Rod</Weapon>
+      <OffHand></OffHand>
+      <Armor>Cloth Robe</Armor>
+      <Accessory>Smart Ring</Accessory>
+    </Character>
+    <Character Class ="Monk">
+      <MaxArmor>Cloth</MaxArmor>
+      <MaxHP>15</MaxHP>
+      <MaxMP>8</MaxMP>
+      <Strength>5</Strength>
+      <Agility>3</Agility>
+      <Mind>1</Mind>
+      <Soul>1</Soul>
+      <Defense>3</Defense>
+      <CanShield>false</CanShield>
+      <Weapon></Weapon>
+      <OffHand></OffHand>
+      <Armor>Cloth Shirt</Armor>
+      <Accessory>Strength Ring</Accessory>
+    </Character>
+    <Character Class ="Paladin">
+      <MaxArmor>Plate</MaxArmor>
+      <MaxHP>20</MaxHP>
+      <MaxMP>5</MaxMP>
+      <Strength>4</Strength>
+      <Agility>3</Agility>
+      <Mind>2</Mind>
+      <Soul>3</Soul>
+      <Defense>5</Defense>
+      <CanShield>true</CanShield>
+      <Weapon>Rusty Mace</Weapon>
+      <OffHand>Wooden Shield</OffHand>
+      <Armor>Rusty Plate</Armor>
+      <Accessory>Defense Bracelet</Accessory>
+    </Character>
+    <Character Class ="Thief">
+      <MaxArmor>Leather</MaxArmor>
+      <MaxHP>15</MaxHP>
+      <MaxMP>5</MaxMP>
+      <Strength>3</Strength>
+      <Agility>5</Agility>
+      <Mind>1</Mind>
+      <Soul>2</Soul>
+      <Defense>2</Defense>
+      <CanShield>false</CanShield>
+      <Weapon>Rusty Dagger</Weapon>
+      <OffHand>Rusty Dagger</OffHand>
+      <Armor>Leather Jerkin</Armor>
+      <Accessory>Quick Ring</Accessory>
+    </Character>
+    <Character Class ="Warrior">
+      <MaxArmor>Rusty</MaxArmor>
+      <MaxHP>17</MaxHP>
+      <MaxMP>6</MaxMP>
+      <Strength>4</Strength>
+      <Agility>2</Agility>
+      <Mind>1</Mind>
+      <Soul>2</Soul>
+      <Defense>4</Defense>
+      <CanShield>true</CanShield>
+      <Weapon>Rusty Sword</Weapon>
+      <OffHand>Wooden Shield</OffHand>
+      <Armor>Rusty Plate</Armor>
+      <Accessory>Strength Ring</Accessory>
+    </Character>
+    <Character Class ="White Mage">
+      <MaxArmor>Cloth</MaxArmor>
+      <MaxHP>11</MaxHP>
+      <MaxMP>15</MaxMP>
+      <Strength>2</Strength>
+      <Agility>2</Agility>
+      <Mind>2</Mind>
+      <Soul>6</Soul>
+      <Defense>1</Defense>
+      <CanShield>false</CanShield>
+      <Weapon>Cracked Staff</Weapon>
+      <OffHand></OffHand>
+      <Armor>Cloth Robe</Armor>
+      <Accessory>Soul Necklace</Accessory>
+    </Character>
+  </Characters>
+</CharacterCollection>

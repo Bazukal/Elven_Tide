@@ -119,6 +119,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 611883254}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &110233413 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1772191113685028, guid: 590ebd03df8353047b37b342ef6c86f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 965528642}
+--- !u!114 &110233414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 110233413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5b2f6ce23db61428413652c07176e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &299977234 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224523266878298156, guid: c2f33dd925e5adf4fa843db81f922528,
@@ -334,7 +350,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &862053782 stripped
 MonoBehaviour:
@@ -379,133 +395,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4770934957103628, guid: 590ebd03df8353047b37b342ef6c86f8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: archerSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: 3baa2ce69f16b574498d660dd5c1a2c4,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: blackSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: 28f7954cd148dbe4582c665b81676cf7,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: monkSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: d546bb5e93024244a8b7b702179ffe96,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: paladinSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: 69b32174477be5c469cefbce8f0edb1c,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: thiefSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: e136a8be3491fdf42a4b5e12f57f382f,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: warriorSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: 72b91ab4f5051c54d88282f9d9b24f6b,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: whiteSprite
-      value: 
-      objectReference: {fileID: 21300032, guid: 6a4f67c4bfee6344f8207d9ec308a32b,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: archerBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 3baa2ce69f16b574498d660dd5c1a2c4,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: blackBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 28f7954cd148dbe4582c665b81676cf7,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: monkBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: d546bb5e93024244a8b7b702179ffe96,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: paladinBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 69b32174477be5c469cefbce8f0edb1c,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: thiefBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: e136a8be3491fdf42a4b5e12f57f382f,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: warriorBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 72b91ab4f5051c54d88282f9d9b24f6b,
-        type: 3}
-    - target: {fileID: 114339594342747610, guid: 590ebd03df8353047b37b342ef6c86f8,
-        type: 2}
-      propertyPath: whiteBattleSprite
-      value: 
-      objectReference: {fileID: 21300008, guid: 6a4f67c4bfee6344f8207d9ec308a32b,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 590ebd03df8353047b37b342ef6c86f8, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &965528643 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1772191113685028, guid: 590ebd03df8353047b37b342ef6c86f8,
-    type: 2}
-  m_PrefabInternal: {fileID: 965528642}
---- !u!114 &965528644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 965528643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b5919c50da29e4a9eb4c0a0d4870c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &965528645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 965528643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c3909f0848b82448117873cb4038e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &965528650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 965528643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d50648f3b92e8a4a8c98210010819cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1188411360
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +487,7 @@ RectTransform:
   m_Children:
   - {fileID: 299977234}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -693,6 +587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ee76918f93144c86dc36f12463d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillAnimations:
+  - {fileID: 1872883539832030, guid: 19850b7085b3bd54a8f95f45774fea43, type: 2}
   loadingSlider: {fileID: 862053782}
   progressText: {fileID: 90448039}
 --- !u!1 &1348606767

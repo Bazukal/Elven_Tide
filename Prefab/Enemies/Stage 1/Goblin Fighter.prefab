@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114664884459379804}
   - component: {fileID: 114839618829111710}
   - component: {fileID: 114242601295772026}
+  - component: {fileID: 114599891933104032}
   m_Layer: 5
   m_Name: Goblin Fighter
   m_TagString: Untagged
@@ -127,7 +128,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114664884459379804}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114599891933104032}
+        m_MethodName: enemyTargeted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114299178647786908
@@ -170,6 +182,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114599891933104032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507350774201840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18591198c1f291546a0f04dc3487f3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114664884459379804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,9 +238,10 @@ MonoBehaviour:
   enemyMind: 1
   enemySoul: 2
   enemyDef: 3
-  gold: 5
+  gold: 1
   exp: 6
   enemySkills: []
+  debuffPanel: {fileID: 1402781946692292}
 --- !u!114 &114862445403028580
 MonoBehaviour:
   m_ObjectHideFlags: 1

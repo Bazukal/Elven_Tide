@@ -20,13 +20,13 @@ public class QuestInfo : MonoBehaviour {
     //opens players quest log and displays quest info
 	public void openQuestLog()
     {
-        StoreFinds.stored.activate();
+        StoreFinds.stored.BattleActivate();
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
         gameObject.GetComponent<CanvasGroup>().interactable = true;
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        int stage = CharacterManager.charManager.getQuestStage();
+        int stage = Manager.manager.getQuestStage();
         currentQuest = QuestListing.qListing.getCurrentQuest(stage);        
 
         if (currentQuest != null)
@@ -82,6 +82,6 @@ public class QuestInfo : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().interactable = false;
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        StoreFinds.stored.activate();
+        StoreFinds.stored.BattleDeactivate();
     }
 }

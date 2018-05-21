@@ -26,49 +26,49 @@ public class CharacterStatScreen : MonoBehaviour {
     public Button char3;
     public Button char4;
 
-    CharacterClass character1;
-    CharacterClass character2;
-    CharacterClass character3;
-    CharacterClass character4;
+    PlayerClass character1;
+    PlayerClass character2;
+    PlayerClass character3;
+    PlayerClass character4;
 
-    private List<SkillClass> charSkills = null;
+    private Dictionary<string, SkillClass> charSkills = null;
 
-    private CharacterClass charSelected;
+    private PlayerClass charSelected;
 
     private void Start()
     {
-        character1 = CharacterManager.charManager.character1;
-        character2 = CharacterManager.charManager.character2;
-        character3 = CharacterManager.charManager.character3;
-        character4 = CharacterManager.charManager.character4;
+        character1 = Manager.manager.GetPlayer("Player1");
+        character2 = Manager.manager.GetPlayer("Player2");
+        character3 = Manager.manager.GetPlayer("Player3");
+        character4 = Manager.manager.GetPlayer("Player4");
 
-        char1.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character1.GetCharClass());
-        char2.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character2.GetCharClass());
-        char3.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character3.GetCharClass());
-        char4.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(character4.GetCharClass());
+        char1.GetComponent<Image>().sprite = Manager.manager.getCharSprite(character1.GetClass());
+        char2.GetComponent<Image>().sprite = Manager.manager.getCharSprite(character2.GetClass());
+        char3.GetComponent<Image>().sprite = Manager.manager.getCharSprite(character3.GetClass());
+        char4.GetComponent<Image>().sprite = Manager.manager.getCharSprite(character4.GetClass());
 
         stats = this;
     }
 
-    //opens or closes character stat screen
+    //opens character stat screen
     public void displayCharScreen()
     {
-        StoreFinds.stored.activate();
+        StoreFinds.stored.BattleActivate();
 
-        if (gameObject.GetComponent<CanvasGroup>().alpha == 1)
-        {
-            gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            gameObject.GetComponent<CanvasGroup>().interactable = false;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-        else
-        {
-            gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            gameObject.GetComponent<CanvasGroup>().interactable = true;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            changeChar(1);
-        }
-            
+        gameObject.GetComponent<CanvasGroup>().alpha = 1;
+        gameObject.GetComponent<CanvasGroup>().interactable = true;
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        changeChar(1);
+    }
+
+    //closes character stat screen
+    public void closeCharScreen()
+    {
+        StoreFinds.stored.BattleDeactivate();
+
+        gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        gameObject.GetComponent<CanvasGroup>().interactable = false;
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     //sets which character has been selected to view
@@ -99,23 +99,23 @@ public class CharacterStatScreen : MonoBehaviour {
         enableSkills();
     }
 
-    public void charStats(CharacterClass selectedChar)
+    public void charStats(PlayerClass selectedChar)
     {
         //fill in screen data with char info
-        charName.text = selectedChar.GetCharName();
-        classValue.text = selectedChar.GetCharClass();
-        LvlValue.text = selectedChar.GetCharLevel().ToString();
-        HPValue.text = selectedChar.GetCharCurrentHp() + "/" + selectedChar.GetCharMaxHp();
-        MPValue.text = selectedChar.GetCharCurrentMp() + "/" + selectedChar.GetCharMaxMp();
-        StrValue.text = selectedChar.GetTotalStr().ToString();
-        AgiValue.text = selectedChar.GetTotalAgi().ToString();
-        MindValue.text = selectedChar.GetTotalMind().ToString();
-        SoulValue.text = selectedChar.GetTotalSoul().ToString();
-        DefValue.text = selectedChar.GetTotalDef().ToString();
+        charName.text = selectedChar.GetName();
+        classValue.text = selectedChar.GetClass();
+        LvlValue.text = selectedChar.GetLevel().ToString();
+        HPValue.text = selectedChar.GetCurrentHP() + "/" + selectedChar.GetMaxHP();
+        MPValue.text = selectedChar.GetCurrentMP() + "/" + selectedChar.GetMaxMP();
+        StrValue.text = selectedChar.GetStrength().ToString();
+        AgiValue.text = selectedChar.GetAgility().ToString();
+        MindValue.text = selectedChar.GetMind().ToString();
+        SoulValue.text = selectedChar.GetSoul().ToString();
+        DefValue.text = selectedChar.GetDefense().ToString();
         ExpValue.text = selectedChar.GetCurExp() + "/" + selectedChar.GetLvlExp();
 
         //collect character skills from character        
-        charSkills = selectedChar.GetCharSkills();
+        charSkills = selectedChar.GetAllSkills();
     }
 
     //destroys objects that holds skills, meant to remove one classes skills when player selects another character
@@ -131,16 +131,18 @@ public class CharacterStatScreen : MonoBehaviour {
     //loads skills into skill panel for character currently selected
     private void enableSkills()
     {        
-        foreach (SkillClass skills in charSkills)
+        foreach (KeyValuePair<string, SkillClass> skills in charSkills)
         {
+            string key = skills.Key;
+
             GameObject skillBut = (GameObject)Instantiate(skillButton) as GameObject;
             skillBut.transform.SetParent(skillScroll.transform, false);
 
             PopulateSkillName skillNames = skillBut.GetComponent<PopulateSkillName>();
-            skillNames.skillName(skills);
+            skillNames.skillName(charSkills[key]);
         }
     }
 
     //get which character is currently casting a spell from the stat screen
-    public CharacterClass GetCastingChar() { return charSelected; }
+    public PlayerClass GetCastingChar() { return charSelected; }
 }

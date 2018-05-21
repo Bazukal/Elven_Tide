@@ -17,7 +17,7 @@ public class BuffClass{
     public int GetRounds() { return rounds; }
     public int GetStrength() { return strength; }
 
-    public void UpdateRounds()
+    public bool UpdateRounds()
     {
         if(isBuffed)
         {
@@ -26,7 +26,10 @@ public class BuffClass{
             {
                 isBuffed = false;
                 strength = 0;
+                return true;
             }
         }
+
+        return false;
     }
 }

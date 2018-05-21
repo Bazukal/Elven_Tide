@@ -16,14 +16,14 @@ public class SpawnPoint : MonoBehaviour {
     //and spawn that character prefab
     private void Start()
     {
-        string char1 = CharacterManager.charManager.character1.GetCharClass();
-        string char2 = CharacterManager.charManager.character2.GetCharClass();
-        string char3 = CharacterManager.charManager.character3.GetCharClass();
-        string char4 = CharacterManager.charManager.character4.GetCharClass();
+        string char1 = Manager.manager.GetPlayer("Player1").GetClass();
+        string char2 = Manager.manager.GetPlayer("Player2").GetClass();
+        string char3 = Manager.manager.GetPlayer("Player3").GetClass();
+        string char4 = Manager.manager.GetPlayer("Player4").GetClass();
 
-        int char1Hp = CharacterManager.charManager.character1.GetCharCurrentHp();
-        int char2Hp = CharacterManager.charManager.character2.GetCharCurrentHp();
-        int char3Hp = CharacterManager.charManager.character3.GetCharCurrentHp();
+        int char1Hp = Manager.manager.GetPlayer("Player1").GetCurrentHP();
+        int char2Hp = Manager.manager.GetPlayer("Player2").GetCurrentHP();
+        int char3Hp = Manager.manager.GetPlayer("Player3").GetCurrentHP();
 
         if(char1Hp > 0)
         {

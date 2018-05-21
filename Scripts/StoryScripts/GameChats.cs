@@ -29,5 +29,4 @@ public class GameChats : MonoBehaviour {
     public List<ChatClass> getCitizen2() { return citizen2; }
     public List<ChatClass> getCitizen3() { return citizen3; }
     public List<ChatClass> getCitizen4() { return citizen4; }
-
 }

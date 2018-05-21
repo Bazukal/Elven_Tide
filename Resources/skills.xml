@@ -6,14 +6,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Physical</DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.2</Strength>
-      <Plus>2</Plus>
-      <Cure></Cure>
+      <Modifier>1.2</Modifier>
+      <Base>2</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Deals Minor Damage to Enemy.</Desc>
@@ -23,14 +22,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Magic</DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.3</Strength>
-      <Plus>2</Plus>
-      <Cure></Cure>
+      <Modifier>1.0</Modifier>
+      <Base>2</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Deals a Small Amount of Damage to an Enemy.</Desc>
@@ -40,14 +38,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Magic</DamageType>
-      <DebuffType>Poison</DebuffType>
+      <Ailment>Poison</Ailment>
       <DebuffChance>1</DebuffChance>
       <Mana>4</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>0.4</Strength>
-      <Plus>0</Plus>
-      <Cure></Cure>
+      <Modifier>0.4</Modifier>
+      <Base>0</Base>
       <Stat></Stat>
       <Turns>3</Turns>
       <Desc>Deals Minor Damage to Enemy over Time.</Desc>
@@ -57,14 +54,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Physical</DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.4</Strength>
-      <Plus>3</Plus>
-      <Cure></Cure>
+      <Modifier>1.4</Modifier>
+      <Base>3</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Kick at an Enemy for small damage.</Desc>
@@ -74,14 +70,13 @@
       <Level>1</Level>
       <Type>Buff</Type>
       <DamageType></DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
-      <Strength>0</Strength>
-      <Plus>3</Plus>
-      <Cure></Cure>
+      <Modifier>0</Modifier>
+      <Base>3</Base>
       <Stat>Defense</Stat>
       <Turns>3</Turns>
       <Desc>Boosts one Characters Defense by 3 for three rounds.</Desc>
@@ -91,14 +86,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Physical</DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.3</Strength>
-      <Plus>2</Plus>
-      <Cure></Cure>
+      <Modifier>1.3</Modifier>
+      <Base>2</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Take a stab at an enemy for small damage.</Desc>
@@ -108,14 +102,13 @@
       <Level>1</Level>
       <Type>Damage</Type>
       <DamageType>Physical</DamageType>
-      <DebuffType>Confused</DebuffType>
+      <Ailment>Confused</Ailment>
       <DebuffChance>0.15</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Enemy</Target>
-      <Strength>1.1</Strength>
-      <Plus>1</Plus>
-      <Cure></Cure>
+      <Modifier>1.1</Modifier>
+      <Base>1</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Bash an enemy for minor damage. Very small chance to confuse enemy.</Desc>
@@ -125,14 +118,13 @@
       <Level>1</Level>
       <Type>Heal</Type>
       <DamageType></DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>3</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
-      <Strength>1.0</Strength>
-      <Plus>3</Plus>
-      <Cure></Cure>
+      <Modifier>1.0</Modifier>
+      <Base>3</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Heals player by a small amount.</Desc>
@@ -142,14 +134,13 @@
       <Level>1</Level>
       <Type>Cure</Type>
       <DamageType></DamageType>
-      <DebuffType></DebuffType>
+      <Ailment>Poison</Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>2</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
-      <Strength>0</Strength>
-      <Plus>0</Plus>
-      <Cure>Poison</Cure>
+      <Modifier>0</Modifier>
+      <Base>0</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Cures player of Poison.</Desc>
@@ -159,14 +150,13 @@
       <Level>5</Level>
       <Type>Revive</Type>
       <DamageType></DamageType>
-      <DebuffType></DebuffType>
+      <Ailment></Ailment>
       <DebuffChance>0</DebuffChance>
       <Mana>25</Mana>
       <AOE>false</AOE>
       <Target>Player</Target>
-      <Strength>0.25</Strength>
-      <Plus>0</Plus>
-      <Cure></Cure>
+      <Modifier>0.25</Modifier>
+      <Base>0</Base>
       <Stat></Stat>
       <Turns>0</Turns>
       <Desc>Revives a fallen character with 25% life.</Desc>

@@ -21,8 +21,8 @@ public class sellItem : MonoBehaviour {
     public Button quantityDownButton;
     public Button quantityUpButton;
 
-    EquipableItemClass sellingEquipItem = null;
-    UsableItemClass sellingUseItem = null;
+    EquipmentClass sellingEquipItem = null;
+    ItemClass sellingUseItem = null;
 
     private void Awake()
     {
@@ -30,14 +30,16 @@ public class sellItem : MonoBehaviour {
     }
 
     //opens sell shop
-    public void sellPanel(EquipableItemClass equipTtem, UsableItemClass useItem)
+    public void sellPanel(EquipmentClass equipTtem, ItemClass useItem)
     {
+        sellingEquipItem = null;
+        sellingUseItem = null;
+
         if (equipTtem != null)
         {
             sellingEquipItem = equipTtem;
             itemCost = sellingEquipItem.GetSellPrice();
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
-            itemQuantity = sellingEquipItem.GetQuantity();
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
@@ -47,14 +49,14 @@ public class sellItem : MonoBehaviour {
         else
         {
             sellingUseItem = useItem;
-            itemCost = sellingUseItem.GetSellPrice();
+            itemCost = sellingUseItem.GetSell();
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
             itemQuantity = sellingUseItem.GetQuantity();
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
             nameText.text = sellingUseItem.GetName();
-            sellEach.text = sellingUseItem.GetSellPrice().ToString();
+            sellEach.text = sellingUseItem.GetSell().ToString();
         }
 
         if (sellQuantity == itemQuantity)
@@ -115,9 +117,8 @@ public class sellItem : MonoBehaviour {
     {
         if(sellingEquipItem != null)
         {
-            sellingEquipItem.ChangeQuantity(-sellQuantity);
             CharacterInventory.charInven.removeEquipableFromInventory(sellingEquipItem);
-            CharacterManager.charManager.changeGold(totalCost);
+            Manager.manager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
             shopSell.shSell.shopSellPanel();
         }
@@ -125,7 +126,7 @@ public class sellItem : MonoBehaviour {
         {
             sellingUseItem.ChangeQuantity(-sellQuantity);
             CharacterInventory.charInven.removeUsableFromInventory(sellingUseItem);
-            CharacterManager.charManager.changeGold(totalCost);
+            Manager.manager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
             shopSell.shSell.shopSellPanel();
         }

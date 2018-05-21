@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class PopulateBuyPanel : MonoBehaviour {
 
-    EquipableItemClass equipBuying;
-    UsableItemClass useBuying;
+    EquipmentClass equipBuying;
+    ItemClass useBuying;
     Text[] itemTexts;
 
     //adds name of equipable item in inventory to button
-    public void populateEquipButtonData(EquipableItemClass item)
+    public void populateEquipButtonData(EquipmentClass item)
     {
         equipBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
@@ -17,12 +17,12 @@ public class PopulateBuyPanel : MonoBehaviour {
     }
 
     //adds name of equipable item in inventory to button
-    public void populateUseButtonData(UsableItemClass item)
+    public void populateUseButtonData(ItemClass item)
     {
         useBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
         itemTexts[0].text = useBuying.GetName();
-        itemTexts[1].text = "Cost: " + useBuying.GetBuyPrice();
+        itemTexts[1].text = "Cost: " + useBuying.GetBuy();
     }
 
     public void purchaseEquipWindow()

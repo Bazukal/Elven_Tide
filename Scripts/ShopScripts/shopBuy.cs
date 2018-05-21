@@ -20,8 +20,8 @@ public class shopBuy : MonoBehaviour {
 
     public void shopBuyPanel()
     {
-        int aveLvl = CharacterManager.charManager.aveLevel();
-        string whosInRange = CharacterManager.charManager.getInRange();
+        int aveLvl = Manager.manager.AveLevel();
+        string whosInRange = Manager.manager.getInRange();
         typeDropdown.GetComponent<Dropdown>();
 
         //displays items for sell based on if the player is near the blacksmith or the healer
@@ -34,18 +34,18 @@ public class shopBuy : MonoBehaviour {
                     GameObject.Destroy(child.gameObject);
                 }
 
-                List<UsableItemClass> usableItems = GameItems.gItems.getUsableInRange(aveLvl);
+                List<ItemClass> usableItems = GameItems.gItems.getUsableInRange(aveLvl);
                 List<string> healerDropdown = new List<string>() { "Healer" };
                 //sets dropdown list for shop
                 typeDropdown.ClearOptions();
                 typeDropdown.AddOptions(healerDropdown);
 
                 //populates items available for sell into the scroll view
-                foreach (UsableItemClass item in usableItems)
+                foreach (ItemClass item in usableItems)
                 {
-                    string bought = item.GetBoughtOrDrop();
+                    bool bought = item.IsBought();
 
-                    if(bought == "Bought" || bought == "Both")
+                    if(bought == true)
                     {
                         GameObject invenItem = (GameObject)Instantiate(usePanel) as GameObject;
                         invenItem.transform.SetParent(scrollContent.transform, false);
@@ -57,11 +57,11 @@ public class shopBuy : MonoBehaviour {
                 }
                 break;
             case "Blacksmith":
-                List<EquipableItemClass> equipableItems = GameItems.gItems.getEquipableInRange(aveLvl);
+                List<EquipmentClass> equipableItems = GameItems.gItems.getEquipableInRange(aveLvl);
                 List<string> blacksmithDropdown = new List<string>() { "Weapon", "Armor", "Accessory" };
-                List<EquipableItemClass> weapons = new List<EquipableItemClass>();
-                List<EquipableItemClass> armors = new List<EquipableItemClass>();
-                List<EquipableItemClass> accessories = new List<EquipableItemClass>();
+                List<EquipmentClass> weapons = new List<EquipmentClass>();
+                List<EquipmentClass> armors = new List<EquipmentClass>();
+                List<EquipmentClass> accessories = new List<EquipmentClass>();
                 string typeSelected;
                 List<Dropdown.OptionData> menuOptions;
 
@@ -72,13 +72,13 @@ public class shopBuy : MonoBehaviour {
                 menuOptions = typeDropdown.GetComponent<Dropdown>().options;
                 typeSelected = menuOptions[index].text;
                                 
-                foreach (EquipableItemClass item in equipableItems)
+                foreach (EquipmentClass item in equipableItems)
                 {
                     string itemType = item.GetItemType();
 
-                    string bought = item.GetBoughtOrDrop();
+                    bool bought = item.IsBought();
 
-                    if (bought == "Bought" || bought == "Both")
+                    if (bought == true)
                     {
                         switch (itemType)
                         {
@@ -103,7 +103,7 @@ public class shopBuy : MonoBehaviour {
                 switch (typeSelected)
                 {
                     case "Weapon":
-                        foreach (EquipableItemClass weaponItem in weapons)
+                        foreach (EquipmentClass weaponItem in weapons)
                         {
                             GameObject invenItem = (GameObject)Instantiate(equipPanel) as GameObject;
                             invenItem.transform.SetParent(scrollContent.transform, false);
@@ -114,7 +114,7 @@ public class shopBuy : MonoBehaviour {
                         }
                         break;
                     case "Armor":
-                        foreach (EquipableItemClass armorItem in armors)
+                        foreach (EquipmentClass armorItem in armors)
                         {
                             GameObject invenItem = (GameObject)Instantiate(equipPanel) as GameObject;
                             invenItem.transform.SetParent(scrollContent.transform, false);
@@ -125,7 +125,7 @@ public class shopBuy : MonoBehaviour {
                         }
                         break;
                     case "Accessory":
-                        foreach (EquipableItemClass accessoryItem in accessories)
+                        foreach (EquipmentClass accessoryItem in accessories)
                         {
                             GameObject invenItem = (GameObject)Instantiate(equipPanel) as GameObject;
                             invenItem.transform.SetParent(scrollContent.transform, false);

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b75a309ff767a4bb3ede0d5c1d2f6f, type: 3}
+  m_Name: MainLanguageDb
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"_lang":"en-US","_localizedStrings":{"NO_KEY":"","22d977bf-dfab-4ffe-b91e-6c5d5a28aefd":"Hosgoth
+    Trial","21c6ac48-8eb5-4046-9618-ead496900789":"Accept","ede264a3-10d8-4f24-8d28-2f2b6fe88c04":"Remember,
+    go into the cave and find the Guardian at the end.  He has the item I am waiting
+    for, then return it back to me.","b82564dc-83e5-4680-bb3e-2fd0b4799422":"Venture
+    into the cave to complete your trial to become Hosgoth.","93e0c385-bde2-482d-9927-abb75f133624":"Find
+    the Guardian at the end of the cave.","8898c2de-2982-4e16-8abd-944d4c6484a4":"Defeat
+    the Goblin Executioner"},"_localizedObjects":{}}'
+  _objectReferences: []
+  _lang: en-US

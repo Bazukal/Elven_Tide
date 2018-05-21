@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class DebuffClass {
@@ -13,14 +14,20 @@ public class DebuffClass {
     public void SetRounds(int _rounds) { rounds = _rounds; }
     public void SetStrength(int _strength) { strength = _strength; }
 
-    public void reduceRound()
+    public bool reduceRound()
     {
         rounds--;
-        if(rounds == 0)
+        if (rounds == 0)
         {
             isEffected = false;
             strength = 0;
+            return true;
         }
+        else
+        {
+            return false;
+        }
+            
     }
 
     public bool GetEffected() { return isEffected; }

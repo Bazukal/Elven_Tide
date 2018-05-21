@@ -51,20 +51,20 @@ public class InnKeeperSave : MonoBehaviour {
             data = (PlayerData)bf.Deserialize(fsSave1);
             fsSave1.Close();
 
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
+            string char1Name = data.character1.GetName();
+            string char2Name = data.character2.GetName();
+            string char3Name = data.character3.GetName();
+            string char4Name = data.character4.GetName();
 
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
+            int char1Lvl = data.character1.GetLevel();
+            int char2Lvl = data.character2.GetLevel();
+            int char3Lvl = data.character3.GetLevel();
+            int char4Lvl = data.character4.GetLevel();
 
-            string char1Class = data.character1.GetCharClass();
-            string char2Class = data.character2.GetCharClass();
-            string char3Class = data.character3.GetCharClass();
-            string char4Class = data.character4.GetCharClass();
+            string char1Class = data.character1.GetClass();
+            string char2Class = data.character2.GetClass();
+            string char3Class = data.character3.GetClass();
+            string char4Class = data.character4.GetClass();
 
 
             int gold = data.gold;
@@ -80,20 +80,20 @@ public class InnKeeperSave : MonoBehaviour {
             data = (PlayerData)bf.Deserialize(fsSave2);
             fsSave2.Close();
 
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
+            string char1Name = data.character1.GetName();
+            string char2Name = data.character2.GetName();
+            string char3Name = data.character3.GetName();
+            string char4Name = data.character4.GetName();
 
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
+            int char1Lvl = data.character1.GetLevel();
+            int char2Lvl = data.character2.GetLevel();
+            int char3Lvl = data.character3.GetLevel();
+            int char4Lvl = data.character4.GetLevel();
 
-            string char1Class = data.character1.GetCharClass();
-            string char2Class = data.character2.GetCharClass();
-            string char3Class = data.character3.GetCharClass();
-            string char4Class = data.character4.GetCharClass();
+            string char1Class = data.character1.GetClass();
+            string char2Class = data.character2.GetClass();
+            string char3Class = data.character3.GetClass();
+            string char4Class = data.character4.GetClass();
 
             int gold = data.gold;
 
@@ -109,20 +109,20 @@ public class InnKeeperSave : MonoBehaviour {
             data = (PlayerData)bf.Deserialize(fsSave3);
             fsSave3.Close();
 
-            string char1Name = data.character1.GetCharName();
-            string char2Name = data.character2.GetCharName();
-            string char3Name = data.character3.GetCharName();
-            string char4Name = data.character4.GetCharName();
+            string char1Name = data.character1.GetName();
+            string char2Name = data.character2.GetName();
+            string char3Name = data.character3.GetName();
+            string char4Name = data.character4.GetName();
 
-            int char1Lvl = data.character1.GetCharLevel();
-            int char2Lvl = data.character2.GetCharLevel();
-            int char3Lvl = data.character3.GetCharLevel();
-            int char4Lvl = data.character4.GetCharLevel();
+            int char1Lvl = data.character1.GetLevel();
+            int char2Lvl = data.character2.GetLevel();
+            int char3Lvl = data.character3.GetLevel();
+            int char4Lvl = data.character4.GetLevel();
 
-            string char1Class = data.character1.GetCharClass();
-            string char2Class = data.character2.GetCharClass();
-            string char3Class = data.character3.GetCharClass();
-            string char4Class = data.character4.GetCharClass();
+            string char1Class = data.character1.GetClass();
+            string char2Class = data.character2.GetClass();
+            string char3Class = data.character3.GetClass();
+            string char4Class = data.character4.GetClass();
 
             int gold = data.gold;
 
@@ -157,19 +157,19 @@ public class InnKeeperSave : MonoBehaviour {
         //stores player data to the PlayerData class
         data = new PlayerData();
 
-        data.character1 = CharacterManager.charManager.character1;
-        data.character2 = CharacterManager.charManager.character2;
-        data.character3 = CharacterManager.charManager.character3;
-        data.character4 = CharacterManager.charManager.character4;
+        data.character1 = Manager.manager.GetPlayer("Player1");
+        data.character2 = Manager.manager.GetPlayer("Player2");
+        data.character3 = Manager.manager.GetPlayer("Player3");
+        data.character4 = Manager.manager.GetPlayer("Player4");
 
         data.heldEquipableInventory = CharacterInventory.charInven.getEquipableInventory();
         data.heldUsableInventory = CharacterInventory.charInven.getUsableInventory();
 
-        data.questStage = CharacterManager.charManager.getQuestStage();
+        data.questStage = Manager.manager.getQuestStage();
 
         data.quests = QuestListing.qListing.getQuests();
 
-        data.gold = CharacterManager.charManager.getGold();
+        data.gold = Manager.manager.GetGold();
 
         //saves the PlayerData to the file for the save slot that was chosen
         bfS.Serialize(fs, data);

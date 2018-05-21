@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class ChosenClasses : MonoBehaviour {
 
+    public GameObject loadScreen;
+    public Slider loadingSlider;
+    public Text progressText;
+
     //character classes after characters are chosen
-    public CharacterClass character1;
-    public CharacterClass character2;
-    public CharacterClass character3;
-    public CharacterClass character4;
+    public PlayerClass character1;
+    public PlayerClass character2;
+    public PlayerClass character3;
+    public PlayerClass character4;
 
     //stores what classes player chooses for each character.  set to default archer in case player does not change class
     private string char1Class = "Archer";
@@ -59,8 +63,7 @@ public class ChosenClasses : MonoBehaviour {
     public Sprite whiteMageSprite;
 
     //stores list of beginning equipment for characters
-    List<EquipableItemClass> equipables;
-
+    List<EquipmentClass> equipables;
 
     //takes the name that the player inputs into game and stores it into variable
     public void SetChar1Name() { char1Name = char1Input.text; }
@@ -68,10 +71,48 @@ public class ChosenClasses : MonoBehaviour {
     public void SetChar3Name() { char3Name = char3Input.text; }
     public void SetChar4Name() { char4Name = char4Input.text; }
 
+    private Dictionary<string, PlayerClass> classes = new Dictionary<string, PlayerClass>();
+    PlayerClass charClass;
+
     private void Start()
     {
         //assign beginning items to equipables variable
         equipables = GameItems.gItems.getEquipableInRange(1);
+
+        CharacterContainer cc = CharacterContainer.Load("characters");
+
+        foreach(Character character in cc.characters)
+        {
+            EquipmentClass weapon = null;
+            EquipmentClass offHand = null;
+            EquipmentClass armor = null;
+            EquipmentClass accessory = null;
+
+            foreach (EquipmentClass item in equipables)
+            {
+                string name = item.GetName();
+
+                if (name.Equals(character.weapon))
+                    weapon = item;
+
+                if (name.Equals(character.offHand))
+                    offHand = item;
+
+                if (name.Equals(character.armor))
+                    armor = item;
+
+                if (name.Equals(character.accessory))
+                    accessory = item;
+            }
+
+            string characterClass = character.charClass;
+
+            charClass = new PlayerClass(character.charClass, character.maxArmor, character.maxHP,
+                character.maxMP, character.strength, character.agility, character.mind, character.soul,
+                character.defense, character.canShield, weapon, offHand, armor, accessory);
+
+            classes.Add(characterClass, charClass);
+        }  
     }
 
     //sets the class of character when the player selects a class from the drop down box.  Displays the class description
@@ -151,109 +192,23 @@ public class ChosenClasses : MonoBehaviour {
         }
         else
         {
-            switch(char1Class)
-            {
-                case "Archer":
-                    character1 = ArcherChosen(1);
-                    break;
-                case "Black Mage":
-                    character1 = BlackMageChosen(1);
-                    break;
-                case "Monk":
-                    character1 = MonkChosen(1);
-                    break;
-                case "Paladin":
-                    character1 = PaladinChosen(1);
-                    break;
-                case "Thief":
-                    character1 = ThiefChosen(1);
-                    break;
-                case "Warrior":
-                    character1 = WarriorChosen(1);
-                    break;
-                case "White Mage":
-                    character1 = WhiteMageChosen(1);
-                    break;
-            }
+            loadScreen.SetActive(true);
 
-            switch (char2Class)
-            {
-                case "Archer":
-                    character2 = ArcherChosen(2);
-                    break;
-                case "Black Mage":
-                    character2 = BlackMageChosen(2);
-                    break;
-                case "Monk":
-                    character2 = MonkChosen(2);
-                    break;
-                case "Paladin":
-                    character2 = PaladinChosen(2);
-                    break;
-                case "Thief":
-                    character2 = ThiefChosen(2);
-                    break;
-                case "Warrior":
-                    character2 = WarriorChosen(2);
-                    break;
-                case "White Mage":
-                    character2 = WhiteMageChosen(2);
-                    break;
-            }
+            character1 = classes[char1Class];
+            character1.SetName(char1Name);
 
-            switch (char3Class)
-            {
-                case "Archer":
-                    character3 = ArcherChosen(3);
-                    break;
-                case "Black Mage":
-                    character3 = BlackMageChosen(3);
-                    break;
-                case "Monk":
-                    character3 = MonkChosen(3);
-                    break;
-                case "Paladin":
-                    character3 = PaladinChosen(3);
-                    break;
-                case "Thief":
-                    character3 = ThiefChosen(3);
-                    break;
-                case "Warrior":
-                    character3 = WarriorChosen(3);
-                    break;
-                case "White Mage":
-                    character3 = WhiteMageChosen(3);
-                    break;
-            }
+            character2 = classes[char2Class];
+            character2.SetName(char2Name);
 
-            switch (char4Class)
-            {
-                case "Archer":
-                    character4 = ArcherChosen(4);
-                    break;
-                case "Black Mage":
-                    character4 = BlackMageChosen(4);
-                    break;
-                case "Monk":
-                    character4 = MonkChosen(4);
-                    break;
-                case "Paladin":
-                    character4 = PaladinChosen(4);
-                    break;
-                case "Thief":
-                    character4 = ThiefChosen(4);
-                    break;
-                case "Warrior":
-                    character4 = WarriorChosen(4);
-                    break;
-                case "White Mage":
-                    character4 = WhiteMageChosen(4);
-                    break;
-            }
+            character3 = classes[char3Class];
+            character3.SetName(char3Name);
 
-            CharacterManager.charManager.loadCharacters(character1, character2, character3, character4);
+            character4 = classes[char4Class];
+            character4.SetName(char4Name);
 
-            CharacterManager.charManager.setGold(100);
+            Manager.manager.inputPlayers(character1, character2, character3, character4);
+
+            Manager.manager.setGold(100);
 
             QuestClass currentClass = QuestListing.qListing.getQuest(1, "Master");
 
@@ -261,330 +216,7 @@ public class ChosenClasses : MonoBehaviour {
 
             StartCoroutine(IntroScene());
         }
-    }
-
-    //creates character classes based on input from player
-    private CharacterClass ArcherChosen (int charNum)
-    {
-        CharacterClass charClass;
-        EquipableItemClass archerWeap = null;
-        EquipableItemClass archerArmor = null;
-        EquipableItemClass archerAccessory = null;
-
-        foreach(EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Cracked Bow"))
-                archerWeap = item;
-
-            else if (name.Equals("Leather Jerkin"))
-                archerArmor = item;
-
-            else if (name.Equals("Quick Ring"))
-                archerAccessory = item;
-        }
-
-        switch(charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
-                    archerWeap, null, archerArmor, archerAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
-                    archerWeap, null, archerArmor, archerAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
-                    archerWeap, null, archerArmor, archerAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 12, 7, 4, 4, 1, 2, 4,  
-                    archerWeap, null, archerArmor, archerAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass BlackMageChosen (int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass blackWeap = null;
-        EquipableItemClass blackArmor = null;
-        EquipableItemClass blackAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Cracked Rod"))
-                blackWeap = item;
-
-            else if (name.Equals("Cloth Robe"))
-                blackArmor = item;
-
-            else if (name.Equals("Smart Ring"))
-                blackAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:                
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3, 
-                    blackWeap, null, blackArmor, blackAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3,  
-                    blackWeap, null, blackArmor, blackAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3,  
-                    blackWeap, null, blackArmor, blackAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", false, 1, 9, 15, 2, 2, 6, 4, 3, 
-                    blackWeap, null, blackArmor, blackAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass MonkChosen(int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass monkArmor = null;
-        EquipableItemClass monkAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Cloth Shirt"))
-                monkArmor = item;
-
-            else if (name.Equals("Strength Ring"))
-                monkAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5, 
-                    null, null, monkArmor, monkAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5,  
-                    null, null, monkArmor, monkAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5,  
-                    null, null, monkArmor, monkAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 8, 5, 3, 1, 1, 5, 
-                    null, null, monkArmor, monkAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass PaladinChosen(int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass palWeap = null;
-        EquipableItemClass palOffHand = null;
-        EquipableItemClass palArmor = null;
-        EquipableItemClass palAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Rusty Mace"))
-                palWeap = item;
-
-            else if (name.Equals("Wooden Shield"))
-                palOffHand = item;
-
-            else if (name.Equals("Rusty Plate"))
-                palArmor = item;
-
-            else if (name.Equals("Defense Bracelet"))
-                palAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7, 
-                    palWeap, palOffHand, palArmor, palAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7,  
-                    palWeap, palOffHand, palArmor, palAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7, 
-                    palWeap, palOffHand, palArmor, palAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 20, 5, 4, 3, 2, 3, 7,  
-                    palWeap, palOffHand, palArmor, palAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass ThiefChosen(int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass thiefWeap = null;
-        EquipableItemClass thiefOffHand = null;
-        EquipableItemClass thiefArmor = null;
-        EquipableItemClass thiefAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Rusty Dagger"))
-                thiefWeap = item;
-
-            if (name.Equals("Rusty Dagger"))
-                thiefOffHand = item;
-
-            else if (name.Equals("Leather Jerkin"))
-                thiefArmor = item;
-
-            else if (name.Equals("Quick Ring"))
-                thiefAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5,  
-                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5, 
-                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5, 
-                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Leather", false, 1, 15, 5, 3, 5, 1, 2, 5,
-                    thiefWeap, thiefOffHand, thiefArmor, thiefAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass WarriorChosen(int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass warWeap = null;
-        EquipableItemClass warOffHand = null;
-        EquipableItemClass warArmor = null;
-        EquipableItemClass warAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Rusty Sword"))
-                warWeap = item;
-
-            else if (name.Equals("Wooden Shield"))
-                warOffHand = item;
-
-            else if (name.Equals("Rusty Plate"))
-                warArmor = item;
-
-            else if (name.Equals("Strength Ring"))
-                warAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
-                    warWeap, warOffHand, warArmor, warAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
-                    warWeap, warOffHand, warArmor, warAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
-                    warWeap, warOffHand, warArmor, warAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Plate", true, 1, 17, 6, 5, 3, 1, 2, 6,  
-                    warWeap, warOffHand, warArmor, warAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
-
-    private CharacterClass WhiteMageChosen(int charNum)
-    {
-        CharacterClass charClass;
-
-        EquipableItemClass whiteWeap = null;
-        EquipableItemClass whiteArmor = null;
-        EquipableItemClass whiteAccessory = null;
-
-        foreach (EquipableItemClass item in equipables)
-        {
-            string name = item.GetName();
-
-            if (name.Equals("Cracked Staff"))
-                whiteWeap = item;
-
-            else if (name.Equals("Cloth Robe"))
-                whiteArmor = item;
-
-            else if (name.Equals("Soul Necklace"))
-                whiteAccessory = item;
-        }
-
-        switch (charNum)
-        {
-            case 1:
-                charClass = new CharacterClass(char1Name, char1Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
-                    whiteWeap, null, whiteArmor, whiteAccessory);
-                return charClass;
-            case 2:
-                charClass = new CharacterClass(char2Name, char2Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4,  
-                    whiteWeap, null, whiteArmor, whiteAccessory);
-                return charClass;
-            case 3:
-                charClass = new CharacterClass(char3Name, char3Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
-                    whiteWeap, null, whiteArmor, whiteAccessory);
-                return charClass;
-            case 4:
-                charClass = new CharacterClass(char4Name, char4Class, "Cloth", true, 1, 11, 15, 2, 2, 2, 6, 4, 
-                    whiteWeap, null, whiteArmor, whiteAccessory);
-                return charClass;
-        }
-
-        return null;
-    }
+    }  
 
     IEnumerator IntroScene()
     {
@@ -592,6 +224,11 @@ public class ChosenClasses : MonoBehaviour {
 
         while (!asyncLoad.isDone)
         {
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+
+            loadingSlider.value = progress;
+            progressText.text = progress * 100f + "%";
+
             yield return null;
         }
     }

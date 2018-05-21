@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class BattleItem : MonoBehaviour {
 
-    private UsableItemClass selectedItem;
+    private ItemClass selectedItem;
 
     public Text itemsName;
     public Text itemQuantity;
 
-    public void itemName(UsableItemClass item)
+    public void itemName(ItemClass item)
     {
-        Debug.Log("Item Sent Over: " + item.GetName());
         selectedItem = item;
         itemsName.text = item.GetName();
         itemQuantity.text = "x" + item.GetQuantity().ToString();
@@ -21,6 +20,6 @@ public class BattleItem : MonoBehaviour {
     public void useItem()
     {
         BattleSkillsItems.view.charSelect(null, selectedItem);
-        Battle.battle.itemAction(selectedItem);
+        StateMachine.state.itemAction(selectedItem);
     }
 }

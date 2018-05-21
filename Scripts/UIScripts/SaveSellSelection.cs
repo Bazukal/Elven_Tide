@@ -4,7 +4,7 @@ public class SaveSellSelection : MonoBehaviour {
 
     public void saveOrSell()
     {
-        string whosInRange = CharacterManager.charManager.getInRange();
+        string whosInRange = Manager.manager.getInRange();
 
         switch (whosInRange)
         {

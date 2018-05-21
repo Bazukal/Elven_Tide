@@ -32,20 +32,20 @@ public class SkillInfo : MonoBehaviour {
     public Text char3Name;
     public Text char4Name;
 
-    private CharacterClass char1;
-    private CharacterClass char2;
-    private CharacterClass char3;
-    private CharacterClass char4;
+    private PlayerClass char1;
+    private PlayerClass char2;
+    private PlayerClass char3;
+    private PlayerClass char4;
 
 
     private void Start()
     {
         sInfo = this;
 
-        char1 = CharacterManager.charManager.character1;
-        char2 = CharacterManager.charManager.character2;
-        char3 = CharacterManager.charManager.character3;
-        char4 = CharacterManager.charManager.character4;
+        char1 = Manager.manager.GetPlayer("Player1");
+        char2 = Manager.manager.GetPlayer("Player2");
+        char3 = Manager.manager.GetPlayer("Player3");
+        char4 = Manager.manager.GetPlayer("Player4");
     }
 
     public void populateInfo(SkillClass Skill)
@@ -56,15 +56,15 @@ public class SkillInfo : MonoBehaviour {
 
         skill = Skill;
 
-        nameText.text = skill.GetSkillName();
-        descText.text = skill.GetSkillDesc();
+        nameText.text = skill.GetName();
+        descText.text = skill.GetDescription();
 
         string skillType = skill.GetSkillType();
 
-        CharacterClass castingChar = CharacterStatScreen.stats.GetCastingChar();
-        if(castingChar.GetCharCurrentHp() > 0)
+        PlayerClass castingChar = CharacterStatScreen.stats.GetCastingChar();
+        if(castingChar.GetCurrentHP() > 0)
         {
-            if (castingChar.GetCharCurrentMp() >= skill.GetSkillMana())
+            if (castingChar.GetCurrentMP() >= skill.GetCost())
             {
                 if (skillType.Equals("Heal") || skillType.Equals("Revive"))
                     castButton.interactable = true;
@@ -112,37 +112,37 @@ public class SkillInfo : MonoBehaviour {
 
     private void populateCharInfo()
     {
-        character1.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(char1.GetCharClass());
-        character2.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(char2.GetCharClass());
-        character3.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(char3.GetCharClass());
-        character4.GetComponent<Image>().sprite = CharacterManager.charManager.getCharSprite(char4.GetCharClass());
+        character1.GetComponent<Image>().sprite = Manager.manager.getCharSprite(char1.GetClass());
+        character2.GetComponent<Image>().sprite = Manager.manager.getCharSprite(char2.GetClass());
+        character3.GetComponent<Image>().sprite = Manager.manager.getCharSprite(char3.GetClass());
+        character4.GetComponent<Image>().sprite = Manager.manager.getCharSprite(char4.GetClass());
 
-        char1Name.text = char1.GetCharName();
-        char2Name.text = char2.GetCharName();
-        char3Name.text = char3.GetCharName();
-        char4Name.text = char4.GetCharName();
+        char1Name.text = char1.GetName();
+        char2Name.text = char2.GetName();
+        char3Name.text = char3.GetName();
+        char4Name.text = char4.GetName();
 
         healSlider();
     }
 
     public void healButtonInteract()
     {
-        if (char1.GetCharCurrentHp() == 0 || char1.GetCharCurrentHp() == char1.GetCharMaxHp())
+        if (char1.GetCurrentHP() == 0 || char1.GetCurrentHP() == char1.GetMaxHP())
             character1.interactable = false;
         else
             character1.interactable = true;
 
-        if (char2.GetCharCurrentHp() == 0 || char2.GetCharCurrentHp() == char2.GetCharMaxHp())
+        if (char2.GetCurrentHP() == 0 || char2.GetCurrentHP() == char2.GetMaxHP())
             character2.interactable = false;
         else
             character2.interactable = true;
 
-        if (char3.GetCharCurrentHp() == 0 || char3.GetCharCurrentHp() == char3.GetCharMaxHp())
+        if (char3.GetCurrentHP() == 0 || char3.GetCurrentHP() == char3.GetMaxHP())
             character3.interactable = false;
         else
             character3.interactable = true;
 
-        if (char4.GetCharCurrentHp() == 0 || char4.GetCharCurrentHp() == char4.GetCharMaxHp())
+        if (char4.GetCurrentHP() == 0 || char4.GetCurrentHP() == char4.GetMaxHP())
             character4.interactable = false;
         else
             character4.interactable = true;
@@ -150,22 +150,22 @@ public class SkillInfo : MonoBehaviour {
 
     public void reviveButtonInteract()
     {
-        if (char1.GetCharCurrentHp() == 0)
+        if (char1.GetCurrentHP() == 0)
             character1.interactable = true;
         else
             character1.interactable = false;
 
-        if (char2.GetCharCurrentHp() == 0)
+        if (char2.GetCurrentHP() == 0)
             character2.interactable = true;
         else
             character2.interactable = false;
 
-        if (char3.GetCharCurrentHp() == 0)
+        if (char3.GetCurrentHP() == 0)
             character3.interactable = true;
         else
             character3.interactable = false;
 
-        if (char4.GetCharCurrentHp() == 0)
+        if (char4.GetCurrentHP() == 0)
             character4.interactable = true;
         else
             character4.interactable = false;
@@ -173,16 +173,16 @@ public class SkillInfo : MonoBehaviour {
 
     public void healSlider()
     {
-        char1HP.value = (float)char1.GetCharCurrentHp() / (float)char1.GetCharMaxHp();
-        char1MP.value = (float)char1.GetCharCurrentMp() / (float)char1.GetCharMaxMp();
+        char1HP.value = (float)char1.GetCurrentHP() / (float)char1.GetMaxHP();
+        char1MP.value = (float)char1.GetCurrentMP() / (float)char1.GetMaxMP();
 
-        char2HP.value = (float)char2.GetCharCurrentHp() / (float)char2.GetCharMaxHp();
-        char2MP.value = (float)char2.GetCharCurrentMp() / (float)char2.GetCharMaxMp();
+        char2HP.value = (float)char2.GetCurrentHP() / (float)char2.GetMaxHP();
+        char2MP.value = (float)char2.GetCurrentMP() / (float)char2.GetMaxMP();
 
-        char3HP.value = (float)char3.GetCharCurrentHp() / (float)char3.GetCharMaxHp();
-        char3MP.value = (float)char3.GetCharCurrentMp() / (float)char3.GetCharMaxMp();
+        char3HP.value = (float)char3.GetCurrentHP() / (float)char3.GetMaxHP();
+        char3MP.value = (float)char3.GetCurrentMP() / (float)char3.GetMaxMP();
 
-        char4HP.value = (float)char4.GetCharCurrentHp() / (float)char4.GetCharMaxHp();
-        char4MP.value = (float)char4.GetCharCurrentMp() / (float)char4.GetCharMaxMp();
+        char4HP.value = (float)char4.GetCurrentHP() / (float)char4.GetMaxHP();
+        char4MP.value = (float)char4.GetCurrentMP() / (float)char4.GetMaxMP();
     }
 }

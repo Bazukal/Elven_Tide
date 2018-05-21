@@ -15,9 +15,11 @@ public class EnemyClass : MonoBehaviour{
     public int gold;
     public int exp;
     public List<string> enemySkills = new List<string>();
-    private List<SkillClass> skills = new List<SkillClass>();
+    private Dictionary<string, SkillClass> skills = new Dictionary<string, SkillClass>();
     private int enemyPlace;
     private Dictionary<string, DebuffClass> debuffs = new Dictionary<string, DebuffClass>();
+    public GameObject debuffPanel;
+    private Dictionary<string, GameObject> debuffIcons = new Dictionary<string, GameObject>();
 
     private void Start()
     {
@@ -29,8 +31,13 @@ public class EnemyClass : MonoBehaviour{
 
         try
         {
-            int level = CharacterManager.charManager.aveLevel();
-            skills = GameSkills.skills.GetEnemySkills(level, enemySkills);
+            int level = Manager.manager.AveLevel();
+            List<SkillClass> newSkills = GameSkills.skills.GetEnemySkills(level, enemySkills);
+
+            foreach(SkillClass skill in newSkills)
+            {
+                skills.Add(skill.GetName(), skill);
+            }
         }
         catch { }
     }
@@ -46,81 +53,131 @@ public class EnemyClass : MonoBehaviour{
     public int GetEnemyDef() { return enemyDef; }
     public int GetEnemyGold() { return gold; }
     public int GetEnemyExp() { return exp; }
-    public List<SkillClass> GetEnemySkills() { return skills; }
-    public void SetEnemyPlace(int place) { enemyPlace = place; }
 
+    public SkillClass GetSkill(string name)
+    {
+        return skills[name];
+    }
+
+    //gets damage done by enemy from skills
+    public int skillDamage(string skill)
+    {
+        int damage = 0;
+
+        string damType = skills[skill].GetDamageType();
+        if(damType.Equals("Physical"))
+            damage = skills[skill].healthChange(Mathf.RoundToInt(enemyStr * 1.5f));
+        else
+            damage = skills[skill].healthChange(Mathf.RoundToInt(enemyMind * 1.5f));
+
+        return damage;
+    }
+
+    //sets any debuffs casted onto enemy
     public void SetEnemyDebuff(string type, int rounds, int strength)
     {
         debuffs[type].SetEffected(true);
         debuffs[type].SetRounds(rounds);
         debuffs[type].SetStrength(strength);
+
+        GameObject image = BuffIcons.buffIcons.getBuffIcon(type);
+        GameObject instantImage = (GameObject)Instantiate(image) as GameObject;
+        instantImage.transform.SetParent(debuffPanel.transform, false);
+        debuffIcons.Add(type, instantImage);
     }
 
+    //checks if a debuff is active or not
     public bool CheckAffliction(string affliction)
     {
         return debuffs[affliction].GetEffected();
     }
 
+    //ticks down debuffs that are on the enemy
     public void DebuffCounter()
     {
+        bool isKilled = false;
         foreach (KeyValuePair<string, DebuffClass> debuff in debuffs)
         {
             string key = debuff.Key;
-
+            DebuffClass value = debuff.Value;
+            
             if (debuffs[key].GetEffected() == true)
             {
                 if (key.Equals("Poison"))
-                    ChangeEnemyCurrentHp(-debuffs[key].GetStrength());
+                {
+                    isKilled = ChangeEnemyCurrentHp(-debuffs[key].GetStrength());
+                }                    
 
-                debuffs[key].reduceRound();
+                bool debuffDone = debuffs[key].reduceRound();
+
+                if (debuffDone == true)
+                {
+                    debuffs[key].SetEffected(false);
+                    debuffs[key].SetRounds(0);
+                    debuffs[key].SetStrength(0);
+
+                    Destroy(debuffIcons[key]);
+                    debuffIcons.Remove(key);
+                }
             }
+        }
+        Debug.Log("Enemies Current HP: " + enemyCurrentHp);
+
+        if (isKilled == true)
+        {
+            StateMachine.state.poisonKill(gameObject);
         }
     }
 
+    //changed hp of enemy
     public bool ChangeEnemyCurrentHp(int hpChange)
     {
         enemyCurrentHp += hpChange;
-        Debug.Log("Player Dealt Damage: " + hpChange + ", Enemy Life Left: " + enemyCurrentHp);
+        Debug.Log(string.Format("{0}, Damage Dealt: {1}, Life Left: {2}.", enemyName, hpChange, enemyCurrentHp));
         if (enemyCurrentHp <= 0)
+        {
+            StateMachine.state.removeEnemySelected();
             return true;
+        }
         else
             return false;
     }
 
+    //sets normal enemy stats
     public void SetEnemyStats(int level)
     {
-        float statAdd = 1 - (1 / CharacterManager.charManager.aveLevel());
+        float statGain = (level * 0.01f) + 1;
 
-        enemyMaxHp = Mathf.RoundToInt((enemyMaxHp * level) * (0.75f + statAdd));
-        enemyStr = Mathf.RoundToInt((enemyStr * level) * (0.7f + statAdd));
-        enemyAgi = Mathf.RoundToInt((enemyAgi * level) * (0.7f + statAdd));
-        enemyMind = Mathf.RoundToInt((enemyMind * level) * (0.7f + statAdd));
-        enemySoul = Mathf.RoundToInt((enemySoul * level) * (0.7f + statAdd));
-        enemyDef = Mathf.RoundToInt((enemyDef * level) * (0.7f + statAdd));
+        enemyMaxHp = Mathf.RoundToInt((enemyMaxHp * level) * statGain);
+        enemyStr = Mathf.RoundToInt((enemyStr * level) * statGain);
+        enemyAgi = Mathf.RoundToInt((enemyAgi * level) * statGain);
+        enemyMind = Mathf.RoundToInt((enemyMind * level) * statGain);
+        enemySoul = Mathf.RoundToInt((enemySoul * level) * statGain);
+        enemyDef = Mathf.RoundToInt((enemyDef * level) * statGain);
 
-        float expon = 1.15f;
+        float expon = 1.05f;
         gold = Mathf.RoundToInt(gold * (Mathf.Pow(level, expon)));
         exp = Mathf.RoundToInt(exp * (Mathf.Pow(level, expon)));
 
         enemyCurrentHp = enemyMaxHp;
     }
 
+    //sets boss enemy stats
     public void SetBossStats(int level)
     {
-        float statAdd = 1 / CharacterManager.charManager.aveLevel();
+        float statGain = (level * 0.01f) + 1.25f;
 
-        enemyMaxHp = Mathf.RoundToInt((enemyMaxHp * level) * (1 + statAdd));
-        enemyStr = Mathf.RoundToInt((enemyStr * level) * (1 + statAdd));
-        enemyAgi = Mathf.RoundToInt((enemyAgi * level) * (1 + statAdd));
-        enemyMind = Mathf.RoundToInt((enemyMind * level) * (1 + statAdd));
-        enemySoul = Mathf.RoundToInt((enemySoul * level) * (1 + statAdd));
-        enemyDef = Mathf.RoundToInt((enemyDef * level) * (1 + statAdd));
+        enemyMaxHp = Mathf.RoundToInt((enemyMaxHp * level) * statGain);
+        enemyStr = Mathf.RoundToInt((enemyStr * level) * statGain);
+        enemyAgi = Mathf.RoundToInt((enemyAgi * level) * statGain);
+        enemyMind = Mathf.RoundToInt((enemyMind * level) * statGain);
+        enemySoul = Mathf.RoundToInt((enemySoul * level) * statGain);
+        enemyDef = Mathf.RoundToInt((enemyDef * level) * statGain);
+
+        float expon = 1.05f;
+        gold = Mathf.RoundToInt(gold * (Mathf.Pow(level, expon)));
+        exp = Mathf.RoundToInt(exp * (Mathf.Pow(level, expon)));
 
         enemyCurrentHp = enemyMaxHp;
-    }
-
-    public void SetEnemySelected()
-    {
-        Battle.battle.SetEnemySelected(enemyPlace);
     }
 }
