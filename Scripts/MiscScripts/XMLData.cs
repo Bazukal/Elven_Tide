@@ -5,24 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class XMLData : MonoBehaviour {
-
-    public const string ITEMPATH = "items";
-    public const string EQUIPPATH = "equips";
-    public const string QUESTPATH = "quests";
-    public const string CHATPATH = "chats";
+    
     public const string SKILLPATH = "skills";
     public const string STATPATH = "levelStats";
     
-    private List<EquipmentClass> equipableItems = new List<EquipmentClass>();
-    private List<ItemClass> usableItems = new List<ItemClass>();
-
-    private List<ChatClass> citizen1 = new List<ChatClass>();
-    private List<ChatClass> citizen2 = new List<ChatClass>();
-    private List<ChatClass> citizen3 = new List<ChatClass>();
-    private List<ChatClass> citizen4 = new List<ChatClass>();
-
-    private List<QuestClass> allQuests = new List<QuestClass>();
-
     private List<SkillClass> enemySkills = new List<SkillClass>();
     private List<SkillClass> archerSkills = new List<SkillClass>();
     private List<SkillClass> blackSkills = new List<SkillClass>();
@@ -32,126 +18,18 @@ public class XMLData : MonoBehaviour {
     private List<SkillClass> warriorSkills = new List<SkillClass>();
     private List<SkillClass> whiteSkills = new List<SkillClass>();
 
-    public List<GameObject> skillAnimations = new List<GameObject>();
-
     public Slider loadingSlider;
     public Text progressText;
 
     // Use this for initialization
     void Start () {
-        
-        SetChats();
-
-        SetItems();
-
-        SetQuests();
 
         SetSkills();
 
         SetStats();
 
         StartCoroutine(loadXML());
-	}
-
-    private void SetChats()
-    {
-        //Reading npc chats from XML file, and storing in manager
-        ChatClass newChat;
-
-        ChatContainer cc = ChatContainer.Load(CHATPATH);
-
-        foreach (Chat chat in cc.chats)
-        {
-            newChat = new ChatClass(chat.character, chat.questStage, chat.chatString);
-
-            string citi = chat.character;
-
-            switch (citi)
-            {
-                case "Citizen1":
-                    citizen1.Add(newChat);
-                    break;
-                case "Citizen2":
-                    citizen2.Add(newChat);
-                    break;
-                case "Citizen3":
-                    citizen3.Add(newChat);
-                    break;
-                case "Citizen4":
-                    citizen4.Add(newChat);
-                    break;
-            }
-        }
-        GameChats.gChats.setAllChats(citizen1, citizen2, citizen3, citizen4);
-    }
-
-    private void SetItems()
-    {
-        //reads items from xml file, and stores into lists
-        ItemClass newUsable;
-        EquipmentClass newEquipable;
-
-        ItemContainer ic = ItemContainer.Load(ITEMPATH);
-        EquipContainer ec = EquipContainer.Load(EQUIPPATH);
-
-        foreach (Item item in ic.items)
-        {
-            newUsable = new ItemClass(item.name, item.type, item.rarity, item.cureAilment, item.description,
-                item.healAmount, item.minLevel, item.maxLevel, item.buyPrice, item.sellPrice, item.revive,
-                item.bought, item.dropped, item.chest);
-
-            usableItems.Add(newUsable);
-        }
-
-        foreach(Equip equip in ec.equips)
-        {
-            newEquipable = new EquipmentClass(equip.name, equip.type, equip.equipType, equip.rarity, 
-                equip.damage, equip.armor, equip.strength, equip.agility, equip.mind, equip.soul,
-                equip.minLevel, equip.maxLevel, equip.buyPrice, equip.sellPrice, equip.bought, equip.dropped,
-                equip.chest);
-
-            equipableItems.Add(newEquipable);
-        }
-
-        GameItems.gItems.setItems(equipableItems, usableItems);
-    }
-
-    private void SetQuests()
-    {
-        //Reading Quests from XML file, and storing in manager
-        QuestClass newQuest;
-
-        QuestContainer qc = QuestContainer.Load(QUESTPATH);
-
-        foreach (Quest quest in qc.quests)
-        {
-            string qType = quest.questType;
-
-            switch (qType)
-            {
-                case "Find":
-                    newQuest = new QuestClass(quest.questName, quest.questGiver, quest.questType, quest.find,
-                        quest.startScript, quest.progressChat, quest.finishScript, quest.questDesc, quest.stage);
-
-                    allQuests.Add(newQuest);
-                    break;
-                case "Kill":
-                    newQuest = new QuestClass(quest.questName, quest.questGiver, quest.questType, quest.killName,
-                        quest.startScript, quest.progressChat, quest.finishScript, quest.questDesc, quest.stage, quest.killAmount);
-
-                    allQuests.Add(newQuest);
-                    break;
-                case "Collect":
-                    newQuest = new QuestClass(quest.questName, quest.questGiver, quest.questType, quest.itemCollect,
-                        quest.collectWhere, quest.startScript, quest.progressChat, quest.finishScript, quest.questDesc,
-                        quest.stage, quest.collectAmount);
-
-                    allQuests.Add(newQuest);
-                    break;
-            }
-        }
-        QuestListing.qListing.setQuests(allQuests);
-    }
+	}    
 
     private void SetSkills()
     {
@@ -199,8 +77,9 @@ public class XMLData : MonoBehaviour {
             }
         }
 
-        GameSkills.skills.SetSkills(enemySkills, archerSkills, blackSkills, monkSkills, paladinSkills,
-            thiefSkills, warriorSkills, whiteSkills);        
+        GameSkills skillManager = FindObjectOfType<GameSkills>();
+        skillManager.SetSkills(enemySkills, archerSkills, blackSkills, monkSkills, paladinSkills,
+            thiefSkills, warriorSkills, whiteSkills);     
     }
 
     private void SetStats()
@@ -213,8 +92,9 @@ public class XMLData : MonoBehaviour {
             newStats = new StatClass(stats.hpMinValue, stats.hpMaxValue, stats.mpMinValue, stats.mpMaxValue,
                 stats.strMinValue, stats.strMaxValue, stats.agiMinValue, stats.agiMaxValue, stats.mindMinValue,
                 stats.mindMaxValue, stats.soulMinValue, stats.soulMaxValue, stats.defMinValue, stats.defMaxValue);
-            
-            LevelGrowth.growth.addDictionary(charClass, newStats);
+
+            LevelGrowth growth = FindObjectOfType<LevelGrowth>();
+            growth.addDictionary(charClass, newStats);
         }
     }
 

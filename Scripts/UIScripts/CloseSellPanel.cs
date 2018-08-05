@@ -26,13 +26,16 @@ public class CloseSellPanel : MonoBehaviour {
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
             gameObject.GetComponent<CanvasGroup>().interactable = false;
             gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            CloseNpcPanel.closeNpcPanel.activatePanel();
+
+            StoreFinds.stored.BattleDeactivate();
         }
         else
         {
             gameObject.GetComponent<CanvasGroup>().alpha = 1;
             gameObject.GetComponent<CanvasGroup>().interactable = true;
             gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+            StoreFinds.stored.BattleActivate();
         }
     }
 

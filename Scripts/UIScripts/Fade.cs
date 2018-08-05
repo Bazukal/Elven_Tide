@@ -18,4 +18,17 @@ public class Fade : MonoBehaviour {
     {
         fading.SetTrigger("Fade");
     }
+
+    //fades to black and instantly back
+    public void fadeBlack()
+    {
+        fading.SetTrigger("FadeBlack");
+    }
+
+    //fades to regular screen
+    public void fadeIn()
+    {
+        Debug.Log("Fade In Triggered");
+        fading.SetTrigger("FadeIn");
+    }
 }

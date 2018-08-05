@@ -13,8 +13,8 @@ public class OpenChest : MonoBehaviour {
     public Text gainedDisplayText;
 
     private List<string> rarities = new List<string>();
-    private List<EquipmentClass> equipables;
-    private List<ItemClass> items;
+    private List<EquipableItem> equipables;
+    private List<UsableItem> items;
 
     private void Start()
     {
@@ -23,8 +23,8 @@ public class OpenChest : MonoBehaviour {
         rarities.Add("Rare");
         rarities.Add("Mythical");
 
-        equipables = GameItems.gItems.getEquipableInRange(itemLevel);
-        items = GameItems.gItems.getUsableInRange(itemLevel);
+        equipables = Manager.manager.getEquipableInRange(itemLevel);
+        items = Manager.manager.getUsableInRange(itemLevel);
     }
 
     //opens chest that player is next to
@@ -41,14 +41,14 @@ public class OpenChest : MonoBehaviour {
 
         if (chestHolds > 90)
         {
-            List<EquipmentClass> rarityEquip = new List<EquipmentClass>();
+            List<EquipableItem> rarityEquip = new List<EquipableItem>();
             int rarityCount = rarityEquip.Count;
 
             do
             {
-                foreach (EquipmentClass equip in equipables)
+                foreach (EquipableItem equip in equipables)
                 {
-                    if (equip.GetRarity() == rarities[rarity])
+                    if (equip.rarity == rarities[rarity])
                         rarityEquip.Add(equip);
                 }
                 rarityCount = rarityEquip.Count;
@@ -60,21 +60,21 @@ public class OpenChest : MonoBehaviour {
             
 
             int itemEarned = Random.Range(0, rarityCount);
-            EquipmentClass itemGained = rarityEquip[itemEarned];
-            CharacterInventory.charInven.addEquipableToInventory(itemGained);
+            EquipableItem itemGained = rarityEquip[itemEarned];
+            Manager.manager.addEquipableToInventory(itemGained);
 
-            gainedDisplayText.text = string.Format("Found {0}.", itemGained.GetName());
+            gainedDisplayText.text = string.Format("Found {0}.", itemGained.name);
         }
         else if(chestHolds > 70)
         {
-            List<ItemClass> rarityItem = new List<ItemClass>();
+            List<UsableItem> rarityItem = new List<UsableItem>();
             int rarityCount = rarityItem.Count;
 
             do
             {
-                foreach (ItemClass item in items)
+                foreach (UsableItem item in items)
                 {
-                    if (item.GetRarity() == rarities[rarity])
+                    if (item.rarity == rarities[rarity])
                         rarityItem.Add(item);
                 }
                 rarityCount = rarityItem.Count;
@@ -85,10 +85,10 @@ public class OpenChest : MonoBehaviour {
             while (rarityCount == 0);
 
             int itemEarned = Random.Range(0, rarityCount);
-            ItemClass itemGained = rarityItem[itemEarned];            
-            CharacterInventory.charInven.addUsableToInventory(itemGained);
+            UsableItem itemGained = rarityItem[itemEarned];
+            Manager.manager.addUsableToInventory(itemGained.name, 1);
 
-            gainedDisplayText.text = string.Format("Found {0}.", itemGained.GetName());
+            gainedDisplayText.text = string.Format("Found {0}.", itemGained.name);
         }
         else
         {

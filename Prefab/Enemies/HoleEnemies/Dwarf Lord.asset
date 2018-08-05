@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3e415d398af3b418afd516d9d123a0, type: 3}
+  m_Name: Dwarf Lord
+  m_EditorClassIdentifier: 
+  name: Dwarf Lord
+  charClass: Enemy
+  classHead: {fileID: 0}
+  battleSprite: {fileID: 21300000, guid: 55ca2f4f234d48d4586c43a49c237128, type: 3}
+  maxArmor: Enemy
+  level: 0
+  currentHp: 0
+  currentMp: 0
+  currentExp: 0
+  enemyGold: 000000000100000004000000070000000b0000000f00000014000000190000001f000000250000002c000000
+  enemyExp: 00000000080000000d000000130000001a000000220000002b00000035000000400000004c00000059000000
+  expChart: {fileID: 11400000, guid: 19b412fbd783000468bd471f48c67bc8, type: 2}
+  levelHp: 00000000110000001f0000002c000000460000006900000087000000aa000000c8000000f00000002c010000
+  levelMp: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  levelStrength: 000000000500000007000000080000000a0000000e0000001100000014000000180000001c00000020000000
+  levelAgility: 00000000020000000400000006000000080000000c0000000f0000001200000015000000180000001b000000
+  levelMind: 00000000020000000300000005000000080000000b0000000d0000000f000000110000001300000016000000
+  levelSoul: 000000000300000006000000090000000c0000000f00000013000000170000001b0000001f00000022000000
+  levelDefense: 0000000004000000070000000b0000000e00000012000000160000001b00000020000000250000002b000000
+  isEnemy: 1
+  canShield: 0
+  canDuelWield: 0
+  canSword: 0
+  canDagger: 0
+  canMace: 0
+  canBow: 0
+  canStaff: 0
+  canRod: 0
+  canFists: 0
+  weapon: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  offHand: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  armor: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  accessory: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  knownSkills:
+  - {fileID: 11400000, guid: 6d803b26b7160ca4eab6b17901bfd2d9, type: 2}
+  progress:
+    quest: {fileID: 0}
+    taskName: 
+    type: 0
+    progress: 0
+    useTaskProgressCap: 1
+  questIndicator: 

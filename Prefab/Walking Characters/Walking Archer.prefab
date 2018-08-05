@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114888376177472576}
   - component: {fileID: 114033155518682636}
   - component: {fileID: 114380915563473802}
+  - component: {fileID: 143318591983761062}
   m_Layer: 0
   m_Name: Walking Archer
   m_TagString: Player
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063413662274858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 180.92712, y: 392.16632, z: -687.2129}
+  m_LocalPosition: {x: -79.57126, y: 1, z: -65.34204}
   m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
   m_Children:
   - {fileID: 4133526149624676}
@@ -222,6 +223,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f804c151e7e71f4896b25c06d134a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!143 &143318591983761062
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063413662274858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.14
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212584578675306796
 SpriteRenderer:
   m_ObjectHideFlags: 1

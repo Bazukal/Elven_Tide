@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Text;
 using UnityEngine.Advertisements;
+using Devdog.General;
+
 
 public class LevelLoad : MonoBehaviour {
 
@@ -15,16 +17,9 @@ public class LevelLoad : MonoBehaviour {
     public Slider loadingSlider;
     public Text progressText;
 
-    public GameObject levelPrepare;
-
     private int questStage = 0;
-
-    private string levelReady = "Before venturing into the dungeon on your quest, you can watch an Ad that will boost your Drop Rate and Gold found.";
-    private string levelBlocked = "A Forcefield is blocking you from entering the cave.";
-
-    public Text loadText;
-    public GameObject normalButton;
-    public GameObject adButton;
+    private bool equipDungeon = false;
+    private bool beginEquip = false;
 
     // Use this for initialization
     void Start () {
@@ -35,35 +30,16 @@ public class LevelLoad : MonoBehaviour {
     //opens window for player to select how they want to enter dungeon, or cancel and go back to town
     public void prepareLevelLoad()
     {
-        levelPrepare.SetActive(true);
-
-        int qStage = Manager.manager.getQuestStage();
-        QuestClass current = QuestListing.qListing.getCurrentQuest(qStage);
-
-        if(current != null)
-        {
-            loadText.text = levelReady;
-            normalButton.SetActive(true);
-            adButton.SetActive(true);
-        }
-        else
-        {
-            loadText.text = levelBlocked;
-            normalButton.SetActive(false);
-            adButton.SetActive(false);
-        }
-        
-    }
-	
-    //cancels selection to go into dungeon
-    public void cancelLoad()
-    {
-        levelPrepare.SetActive(false);
+        GameObject loadingObject = Manager.manager.getObject();
+        loadingObject.GetComponent<Trigger>().Use();
     }
 
     //loads ad
-    public void watchAd(string zone = "")
+    public void watchAd(bool isEquip, bool begin, string zone = "")
     {
+        equipDungeon = isEquip;
+        beginEquip = begin;
+
         if (string.Equals(zone, ""))
             zone = null;
 
@@ -82,19 +58,21 @@ public class LevelLoad : MonoBehaviour {
                 loadAdLevel();
                 break;
             case ShowResult.Skipped:
-                loadLevelNormal();
+                loadLevelNormal(equipDungeon, beginEquip);
                 break;
             case ShowResult.Failed:
-                loadLevelNormal();
+                loadLevelNormal(equipDungeon, beginEquip);
                 break;
         }
     }
 
 
     //loads level based on which quest stage the player is on, using no drop buffs
-    public void loadLevelNormal()
+    public void loadLevelNormal(bool isEquip, bool begin)
     {
-        questStage = Manager.manager.getQuestStage();
+        equipDungeon = isEquip;
+        beginEquip = begin;
+
         Manager.manager.setAd(false);
         StartCoroutine(loadDungeon());
     }
@@ -102,7 +80,6 @@ public class LevelLoad : MonoBehaviour {
     //loads level based on which quest stage the player is on, using drop buffs
     private void loadAdLevel()
     {
-        questStage = Manager.manager.getQuestStage();
         Manager.manager.setAd(true);
         StartCoroutine(loadDungeon());
     }
@@ -110,13 +87,27 @@ public class LevelLoad : MonoBehaviour {
     //loads dungeon
     IEnumerator loadDungeon()
     {
-        Manager.manager.setInRange("");
+        Manager.manager.setObject(null);
+        AsyncOperation asyncLoad;
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append("Level" + questStage);
-        string levelQuest = sb.ToString();
-       
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelQuest);
+        Manager.manager.SetDungeonType(equipDungeon);
+
+        if (equipDungeon == true)
+        {
+            if(beginEquip == true)
+                asyncLoad = SceneManager.LoadSceneAsync("HoleDungeonStart");
+            else
+                asyncLoad = SceneManager.LoadSceneAsync("HoleDungeon");
+        }            
+        else
+        {
+            questStage = Manager.manager.getQuestStage();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Level" + questStage);
+            string levelQuest = sb.ToString();
+
+            asyncLoad = SceneManager.LoadSceneAsync(levelQuest);
+        }
 
         loadScreen.SetActive(true);
 

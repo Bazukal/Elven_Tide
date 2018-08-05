@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114650214094113400}
   - component: {fileID: 114828079686918618}
   - component: {fileID: 114963102711965022}
+  - component: {fileID: 143448684832421122}
   m_Layer: 0
   m_Name: Walking White Mage
   m_TagString: Player
@@ -222,6 +223,23 @@ MonoBehaviour:
   dialogueCamera: {fileID: 0}
   playAudio: 1
   playAnimations: 1
+--- !u!143 &143448684832421122
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649272992047084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.14
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212543604464067692
 SpriteRenderer:
   m_ObjectHideFlags: 1

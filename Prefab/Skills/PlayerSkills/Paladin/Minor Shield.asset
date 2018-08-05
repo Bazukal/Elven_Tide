@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
+  m_Name: Minor Shield
+  m_EditorClassIdentifier: 
+  skillName: Minor Shield
+  skillType: Buff
+  damageType: 
+  ailment: 
+  buffStat: Defense
+  skillDescription: Boosts one Characters Defense by 3 for three rounds.
+  skillLevel: 1
+  manaCost: 3
+  skillBase: 3
+  effectTurns: 3
+  debuffChance: 0
+  skillModifier: 0
+  isAOE: 0
+  targetEnemy: 0
+  skillAnimation: {fileID: 1238447366666434, guid: 2943374d9559a3642b65f58d95017c7f,
+    type: 2}
+  buffIcon: {fileID: 1522187221091858, guid: e012a1ef1e749244fa32b14aae9d89f0, type: 2}

@@ -68,6 +68,9 @@ public class SkillClass {
     //determines amount of damage or healing
     public int healthChange(int mainStat)
     {
+        Debug.Log(string.Format("Skill Damage Being Calculated.  Character Stat: {0}.  Skill Modifier: {1}.  Skill Damage Base: {2}", mainStat, skillModifier, skillBase));
+        int dam = Mathf.RoundToInt((mainStat * skillModifier) + skillBase);
+        Debug.Log("Damage before Enemy Modifier is added in: " + dam);
         return Mathf.RoundToInt((mainStat * skillModifier) + skillBase);        
     }
 }

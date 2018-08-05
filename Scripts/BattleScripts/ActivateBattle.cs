@@ -9,13 +9,14 @@ public class ActivateBattle : MonoBehaviour {
     private void Start()
     {
         active = this;
-        battleScreen.SetActive(false);
+        //battleScreen.SetActive(false);
     }
     
     //activates battle and spawns enemies
-    public void battle()
+    public void battle(bool boss)
     {
         battleScreen.SetActive(true);
-        StateMachine.state.StartBattle(false);
+        BattleScript.battleOn.StartBattle(boss);
+        //StateMachine.state.StartBattle(boss);
     }
 }

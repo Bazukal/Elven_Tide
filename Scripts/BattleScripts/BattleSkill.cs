@@ -5,28 +5,28 @@ using UnityEngine.UI;
 
 public class BattleSkill : MonoBehaviour {
 
-    private SkillClass selectedSkill;
+    private SkillScriptObject selectedSkill;
 
     public Text skillsName;
     public Text mpCost;
 
-    public void skillName(SkillClass skill)
+    public void skillName(SkillScriptObject skill)
     {
         selectedSkill = skill;
-        skillsName.text = skill.GetName();
-        mpCost.text = "MP: " + skill.GetCost().ToString();
+        skillsName.text = skill.skillName;
+        mpCost.text = "MP: " + skill.manaCost.ToString();
     }
 
     public void castSkill()
     {
-        if (selectedSkill.GetTarget().Equals("Enemy"))
+        if (selectedSkill.targetEnemy == true)
         {
-            StateMachine.state.skillAction(selectedSkill);
+            BattleScript.battleOn.attackSkill(selectedSkill);
         }            
         else
         {
             BattleSkillsItems.view.charSelect(selectedSkill, null);
-            StateMachine.state.healingSkill(selectedSkill);
+            BattleScript.battleOn.healingSkill(selectedSkill);
         }
             
     }

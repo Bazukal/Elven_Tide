@@ -38,15 +38,20 @@ public class ExitDungeon : MonoBehaviour {
 
     //takes player back to town
     public void travel()
-    {
+    {        
         StartCoroutine(townTravel());
     }
 
     IEnumerator townTravel()
     {
-        Manager.manager.setInRange("");
+        Manager.manager.setObject(null);
+        AsyncOperation asyncLoad = null;
+        int stage = Manager.manager.GetTownStage();        
 
-       AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town");
+        if (stage == 1)
+            asyncLoad = SceneManager.LoadSceneAsync("TownStage1");
+        else
+            asyncLoad = SceneManager.LoadSceneAsync("TownStage2");
 
         loadScreen.SetActive(true);
 

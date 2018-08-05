@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3e415d398af3b418afd516d9d123a0, type: 3}
+  m_Name: Goblin Mage Stage 2
+  m_EditorClassIdentifier: 
+  name: Goblin Mage
+  charClass: Enemy
+  classHead: {fileID: 0}
+  battleSprite: {fileID: 21300012, guid: d5fedec452a5c0e4f9d7e632e36656db, type: 3}
+  maxArmor: Enemy
+  level: 1
+  currentHp: 0
+  currentMp: 0
+  currentExp: 0
+  enemyGold: 0000000007000000
+  enemyExp: 000000000e000000
+  expChart: {fileID: 11400000, guid: 19b412fbd783000468bd471f48c67bc8, type: 2}
+  levelHp: 0000000019000000
+  levelMp: 0000000000000000
+  levelStrength: 0000000004000000
+  levelAgility: 0000000004000000
+  levelMind: 0000000006000000
+  levelSoul: 0000000009000000
+  levelDefense: 0000000007000000
+  isEnemy: 1
+  canShield: 0
+  canDuelWield: 0
+  canSword: 0
+  canDagger: 0
+  canMace: 0
+  canBow: 0
+  canStaff: 0
+  canRod: 0
+  canFists: 0
+  weapon: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  offHand: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  armor: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  accessory: {fileID: 11400000, guid: ee3e3436f7b3ebb4089bde4570968c95, type: 2}
+  knownSkills:
+  - {fileID: 11400000, guid: 6d803b26b7160ca4eab6b17901bfd2d9, type: 2}
+  - {fileID: 11400000, guid: 141fafc59a598b2408db440763392bfc, type: 2}
+  - {fileID: 11400000, guid: 520d42c46d438cb49ad8e2905fe02caf, type: 2}
+  progress:
+    quest: {fileID: 11400000, guid: c6975f724b4e54d4eb2f4baece5fcb2e, type: 2}
+    taskName: Main2
+    type: 0
+    progress: 1
+    useTaskProgressCap: 1
+  questIndicator: Defeated Goblin Mage!

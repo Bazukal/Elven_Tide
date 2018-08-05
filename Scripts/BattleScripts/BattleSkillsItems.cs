@@ -10,10 +10,7 @@ public class BattleSkillsItems : MonoBehaviour {
 
     public GameObject charPanel;
 
-    public Text char1Name;
-    public Text char2Name;
-    public Text char3Name;
-    public Text char4Name;
+    public List<Text> charNames;
 
     public List<Slider> hpSliders;
     public List<Slider> mpSliders;
@@ -23,7 +20,7 @@ public class BattleSkillsItems : MonoBehaviour {
     public GameObject instantItem;
     public GameObject instantScroll;
 
-    private List<PlayerClass> chars = new List<PlayerClass>();
+    private List<ScriptablePlayerClasses> chars = new List<ScriptablePlayerClasses>();
     private Dictionary<string, DebuffClass> char1Debuffs = new Dictionary<string, DebuffClass>();
     private Dictionary<string, DebuffClass> char2Debuffs = new Dictionary<string, DebuffClass>();
     private Dictionary<string, DebuffClass> char3Debuffs = new Dictionary<string, DebuffClass>();
@@ -35,33 +32,25 @@ public class BattleSkillsItems : MonoBehaviour {
     private void Awake()
     {
         view = this;
-
-        gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        chars = new List<PlayerClass>();
+        chars = new List<ScriptablePlayerClasses>();
 
         chars.Add(Manager.manager.GetPlayer("Player1"));
         chars.Add(Manager.manager.GetPlayer("Player2"));
         chars.Add(Manager.manager.GetPlayer("Player3"));
         chars.Add(Manager.manager.GetPlayer("Player4"));
 
-        char1Debuffs = chars[0].GetDebuffs();
-        debuffs.Add(char1Debuffs);
-        char2Debuffs = chars[1].GetDebuffs();
-        debuffs.Add(char2Debuffs);
-        char3Debuffs = chars[2].GetDebuffs();
-        debuffs.Add(char3Debuffs);
-        char4Debuffs = chars[3].GetDebuffs();
-        debuffs.Add(char4Debuffs);
+        for(int i = 0; i < chars.Count; i++)
+        {
+            charButtons[i].GetComponent<Image>().sprite = chars[i].classHead;
+        }
 
-        charButtons[0].GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars[0].GetClass());
-        charButtons[1].GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars[1].GetClass());
-        charButtons[2].GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars[2].GetClass());
-        charButtons[3].GetComponent<Image>().sprite = Manager.manager.getCharSprite(chars[3].GetClass());
+        displayNames();
 
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
         sliders();
         statusIcons();
     }
@@ -69,28 +58,32 @@ public class BattleSkillsItems : MonoBehaviour {
     public void showSkills()
     {
         removeObjects();
-        int castingChar = getCastingChar();
+        ScriptablePlayerClasses castingChar = getCastingChar();
 
-        Dictionary<string, SkillClass> skills = chars[castingChar].GetAllSkills();
+        Dictionary<string, SkillScriptObject> skills = castingChar.GetAllSkills();
 
         resetListing();
 
-        foreach (KeyValuePair<string, SkillClass> skill in skills)
+        foreach (KeyValuePair<string, SkillScriptObject> skill in skills)
         {
-            string key = skill.Key;
-            int charMana = chars[castingChar].GetCurrentMP();
-            int manaCost = skills[key].GetCost();
+            string key = skill.Key;            
 
-            GameObject skillBut = (GameObject)Instantiate(instantSkill) as GameObject;
-            skillBut.transform.SetParent(instantScroll.transform, false);
+            if(!key.Equals("Attack"))
+            {
+                int charMana = castingChar.currentMp;
+                int manaCost = skills[key].manaCost;
 
-            BattleSkill battleSkill = skillBut.GetComponent<BattleSkill>();
-            battleSkill.skillName(skills[key]);
+                GameObject skillBut = (GameObject)Instantiate(instantSkill) as GameObject;
+                skillBut.transform.SetParent(instantScroll.transform, false);
 
-            if (manaCost > charMana)
-                skillBut.GetComponent<Button>().interactable = false;
-            else
-                skillBut.GetComponent<Button>().interactable = true;
+                BattleSkill battleSkill = skillBut.GetComponent<BattleSkill>();
+                battleSkill.skillName(skills[key]);
+
+                if (manaCost > charMana)
+                    skillBut.GetComponent<Button>().interactable = false;
+                else
+                    skillBut.GetComponent<Button>().interactable = true;
+            }
         }
     }
 
@@ -98,17 +91,19 @@ public class BattleSkillsItems : MonoBehaviour {
     {
         removeObjects();
 
-        List<ItemClass> items = CharacterInventory.charInven.getUsableInventory();
+        Dictionary<string, UsableItem> items = Manager.manager.getUsableInventory();
 
         resetListing();
 
-        foreach (ItemClass item in items)
+        foreach (KeyValuePair<string, UsableItem> item in items)
         {
+            string key = item.Key;
+
             GameObject itemBut = (GameObject)Instantiate(instantItem) as GameObject;
             itemBut.transform.SetParent(instantScroll.transform, false);
 
             BattleItem battleItem = itemBut.GetComponent<BattleItem>();
-            battleItem.itemName(item);
+            battleItem.itemName(items[key]);
         }
     }
 
@@ -120,13 +115,13 @@ public class BattleSkillsItems : MonoBehaviour {
         }
     }
 
-    public void charSelect(SkillClass skill, ItemClass item)
+    public void charSelect(SkillScriptObject skill, UsableItem item)
     {
         charPanel.SetActive(true);
 
         if (skill != null)
         {
-            string skillType = skill.GetSkillType();
+            string skillType = skill.skillType;
 
             if(skillType.Equals("Buff"))
             {
@@ -145,13 +140,13 @@ public class BattleSkillsItems : MonoBehaviour {
             }
             else if(skillType.Equals("Cure"))
             {
-                string cureStatus = skill.GetCondition();
+                string cureStatus = skill.ailment;
                 cureButtons(cureStatus);
             }
         }
         else
         {
-            string itemType = item.GetItemType();
+            string itemType = item.type;
 
             if(itemType.Equals("Revive"))
             {
@@ -163,7 +158,7 @@ public class BattleSkillsItems : MonoBehaviour {
             }
             else
             {
-                string cureStatus = item.GetCure();
+                string cureStatus = item.cureAilment;
                 cureButtons(cureStatus);
             }
         }
@@ -172,9 +167,9 @@ public class BattleSkillsItems : MonoBehaviour {
     private void healButtons()
     {
         int index = 0;
-        foreach (PlayerClass characters in chars)
+        foreach (ScriptablePlayerClasses characters in chars)
         {
-            if (characters.GetCurrentHP() > 0 && characters.GetCurrentHP() < characters.GetMaxHP())
+            if (characters.currentHp > 0 && characters.currentHp < characters.levelHp[characters.level])
             {
                 charButtons[index].interactable = true;
             }
@@ -190,9 +185,9 @@ public class BattleSkillsItems : MonoBehaviour {
     private void reviveButtons()
     {
         int index = 0;
-        foreach (PlayerClass characters in chars)
+        foreach (ScriptablePlayerClasses characters in chars)
         {
-            if (characters.GetCurrentHP() == 0)
+            if (characters.currentHp == 0)
             {
                 charButtons[index].interactable = true;
             }
@@ -209,7 +204,7 @@ public class BattleSkillsItems : MonoBehaviour {
     {
         int index = 0;
 
-        foreach (PlayerClass characters in chars)
+        foreach (ScriptablePlayerClasses characters in chars)
         {
             bool afflicted = characters.CheckAffliction(ailment);
             if (afflicted)
@@ -243,9 +238,9 @@ public class BattleSkillsItems : MonoBehaviour {
         }
     }
 
-    private int getCastingChar()
+    private ScriptablePlayerClasses getCastingChar()
     {
-        int charTurn = StateMachine.state.GetCharTurn();
+        ScriptablePlayerClasses charTurn = BattleScript.battleOn.getCharactersTurn();
 
         return charTurn;
     }
@@ -254,30 +249,73 @@ public class BattleSkillsItems : MonoBehaviour {
     {
         for(int i = 0; i < 4;i++)
         {
-            float hpValue = (float)chars[i].GetCurrentHP() / (float)chars[i].GetMaxHP();
-            float mpValue = (float)chars[i].GetCurrentMP() / (float)chars[i].GetMaxMP();
+            int charLevel = chars[i].level;
+
+            float hpValue = (float)chars[i].currentHp / (float)chars[i].levelHp[charLevel];
+            float mpValue = (float)chars[i].currentMp / (float)chars[i].levelMp[charLevel];
 
             hpSliders[i].value = hpValue;
             mpSliders[i].value = mpValue;
         }
     }
 
+    private void displayNames()
+    {
+        for(int i = 0;i < charNames.Count;i++)
+        {
+            string charName = chars[i].name;
+            charNames[i].text = charName;
+        }
+    }
+
+    private void removeIcons()
+    {
+        debuffs.Clear();
+        List<GameObject> icons = new List<GameObject>();
+        
+        for(int i = 0;i < 4;i++)
+        {
+            GameObject status = charStatus[i];
+
+            foreach(Transform child in status.transform)
+            {
+                icons.Add(child.gameObject);
+            }
+        }
+
+        foreach(GameObject icon in icons)
+        {
+            DestroyImmediate(icon.gameObject);
+        }
+    }
+
     private void statusIcons()
     {
-        int index = 0;
+        removeIcons();
 
-        foreach (Dictionary<string, DebuffClass> debuffList in debuffs)
+        char1Debuffs = chars[0].GetDebuffs();
+        debuffs.Add(char1Debuffs);
+        char2Debuffs = chars[1].GetDebuffs();
+        debuffs.Add(char2Debuffs);
+        char3Debuffs = chars[2].GetDebuffs();
+        debuffs.Add(char3Debuffs);
+        char4Debuffs = chars[3].GetDebuffs();
+        debuffs.Add(char4Debuffs);
+
+        for(int i = 0;i < 4;i++)
         {
-            foreach(KeyValuePair<string, DebuffClass> debuff in debuffList)
+            Dictionary<string, DebuffClass> tempDic = debuffs[i];
+
+            foreach(KeyValuePair<string, DebuffClass> debuff in tempDic)
             {
                 string key = debuff.Key;
-                bool effected = debuffList[key].GetEffected();
+                bool effected = tempDic[key].GetEffected();
 
                 if(effected)
                 {
-                    GameObject icon = BuffIcons.buffIcons.getBuffIcon(key);
+                    GameObject icon = tempDic[key].GetIcon();
                     GameObject debuffIcon = Instantiate(icon) as GameObject;
-                    debuffIcon.transform.SetParent(charStatus[index].transform, false);
+                    debuffIcon.transform.SetParent(charStatus[i].transform, false);
                 }
             }
         }

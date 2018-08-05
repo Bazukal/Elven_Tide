@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114340356676916578}
   - component: {fileID: 114851518230665864}
   - component: {fileID: 114063186632344632}
+  - component: {fileID: 143036247772652336}
   m_Layer: 0
   m_Name: Walking Paladin
   m_TagString: Player
@@ -222,6 +223,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSelector: {fileID: 0}
+--- !u!143 &143036247772652336
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297119657385916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.14
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212824392597176758
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3e415d398af3b418afd516d9d123a0, type: 3}
+  m_Name: WhiteMage
+  m_EditorClassIdentifier: 
+  name: 
+  charClass: White Mage
+  classHead: {fileID: 21300032, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
+  battleSprite: {fileID: 21300008, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
+  maxArmor: Cloth
+  level: 0
+  currentHp: 0
+  currentMp: 0
+  currentExp: 0
+  enemyGold: 0
+  enemyExp: 0
+  expChart: {fileID: 11400000, guid: 19b412fbd783000468bd471f48c67bc8, type: 2}
+  levelHp: 000000001100000019000000200000002900000035000000
+  levelMp: 000000000f000000140000001b000000230000002c000000
+  levelStrength: 000000000200000003000000040000000600000008000000
+  levelAgility: 000000000200000003000000040000000600000008000000
+  levelMind: 000000000300000005000000080000000c00000011000000
+  levelSoul: 0000000005000000080000000d000000130000001a000000
+  levelDefense: 00000000030000000400000007000000090000000c000000
+  isEnemy: 0
+  canShield: 0
+  canDuelWield: 0
+  canSword: 0
+  canDagger: 0
+  canMace: 0
+  canBow: 0
+  canStaff: 1
+  canRod: 0
+  canFists: 0
+  weapon: {fileID: 11400000, guid: ac470c1d749909b47ae64d26962996a3, type: 2}
+  offHand: {fileID: 0}
+  armor: {fileID: 11400000, guid: bf4cd621b0b5f504c9585feb6dd5a575, type: 2}
+  accessory: {fileID: 11400000, guid: 2120fbe4b5772cc44808fc908c4a9616, type: 2}
+  knownSkills:
+  - {fileID: 11400000, guid: 6d803b26b7160ca4eab6b17901bfd2d9, type: 2}
+  - {fileID: 11400000, guid: 27d29bc40e7403341b88d9a71e110faf, type: 2}
+  - {fileID: 11400000, guid: ecf24fd44100a2942b61ac52cfb6d298, type: 2}
+  - {fileID: 11400000, guid: 6ab50bac8d2cb0943aae4fa42f83b47f, type: 2}

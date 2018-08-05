@@ -3,26 +3,26 @@ using UnityEngine.UI;
 
 public class PopulateBuyPanel : MonoBehaviour {
 
-    EquipmentClass equipBuying;
-    ItemClass useBuying;
+    EquipableItem equipBuying;
+    UsableItem useBuying;
     Text[] itemTexts;
 
     //adds name of equipable item in inventory to button
-    public void populateEquipButtonData(EquipmentClass item)
+    public void populateEquipButtonData(EquipableItem item)
     {
         equipBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = equipBuying.GetName();
-        itemTexts[1].text = "Cost: " + equipBuying.GetBuyPrice();        
+        itemTexts[0].text = equipBuying.name;
+        itemTexts[1].text = "Cost: " + equipBuying.buyValue;        
     }
 
     //adds name of equipable item in inventory to button
-    public void populateUseButtonData(ItemClass item)
+    public void populateUseButtonData(UsableItem item)
     {
         useBuying = item;
         itemTexts = this.GetComponentsInChildren<Text>();
-        itemTexts[0].text = useBuying.GetName();
-        itemTexts[1].text = "Cost: " + useBuying.GetBuy();
+        itemTexts[0].text = useBuying.name;
+        itemTexts[1].text = "Cost: " + useBuying.buyValue;
     }
 
     public void purchaseEquipWindow()

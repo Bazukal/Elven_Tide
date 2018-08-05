@@ -17,23 +17,11 @@ public class CloseBuyPanel : MonoBehaviour {
     //turns on or off npc ui panel/turns off player ui
     public void activatePanel()
     {
-        string goldAmount = Manager.manager.GetGold().ToString();
+        gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        gameObject.GetComponent<CanvasGroup>().interactable = false;
+        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        gold.text = string.Format("Gold: {0:n0}", goldAmount);
-
-        if (gameObject.GetComponent<CanvasGroup>().alpha == 1)
-        {
-            gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            gameObject.GetComponent<CanvasGroup>().interactable = false;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            CloseNpcPanel.closeNpcPanel.activatePanel();
-        }
-        else
-        {
-            gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            gameObject.GetComponent<CanvasGroup>().interactable = true;
-            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
+        StoreFinds.stored.BattleDeactivate();
     }
 
     //updates gold amount in UI

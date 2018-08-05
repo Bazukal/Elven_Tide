@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PopulateSkillName : MonoBehaviour {
 
-    private SkillClass selectedSkill;
+    private SkillScriptObject selectedSkill;
 
-	public void skillName(SkillClass skill)
+	public void skillName(SkillScriptObject skill)
     {
         selectedSkill = skill;
-        gameObject.GetComponentInChildren<Text>().text = skill.GetName();
+        gameObject.GetComponentInChildren<Text>().text = skill.skillName;
     }
 
     public void skillInfo()

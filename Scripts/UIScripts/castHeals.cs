@@ -6,53 +6,53 @@ public class castHeals : MonoBehaviour {
 
     public static castHeals heal;
 
-    private Dictionary<string, PlayerClass> chars = new Dictionary<string, PlayerClass>();
+    private List<ScriptablePlayerClasses> chars = new List<ScriptablePlayerClasses>();
 
-    SkillClass castedSkill;
-    PlayerClass castingChar;
+    SkillScriptObject castedSkill;
+    ScriptablePlayerClasses castingChar;
 
     // Use this for initialization
     void Start () {
         heal = this;
 
-        chars.Add("char1", Manager.manager.GetPlayer("Player1"));
-        chars.Add("char2", Manager.manager.GetPlayer("Player2"));
-        chars.Add("char3", Manager.manager.GetPlayer("Player3"));
-        chars.Add("char4", Manager.manager.GetPlayer("Player4"));
+        chars.Add(Manager.manager.GetPlayer("Player1"));
+        chars.Add(Manager.manager.GetPlayer("Player2"));
+        chars.Add(Manager.manager.GetPlayer("Player3"));
+        chars.Add(Manager.manager.GetPlayer("Player4"));
     }
 
     //casting character heals selected character determined by spell used
-    public void healChar(string character)
+    public void healChar(int character)
     {
         castedSkill = SkillInfo.sInfo.getCastedSkill();
-        castingChar = CharacterStatScreen.stats.GetCastingChar();
+        castingChar = StatsScreen.stats.GetPlayerObject();
         int healAmount;
 
-        if(castedSkill.GetSkillType().Equals("Heal"))
+        if(castedSkill.skillType.Equals("Heal"))
         {
-            healAmount = Mathf.RoundToInt((float)castingChar.GetSoul() * castedSkill.GetSkillModifier()) + castedSkill.GetSkillBase();
+            healAmount = Mathf.RoundToInt((float)castingChar.GetSoul() * castedSkill.skillModifier) + castedSkill.skillBase;
             setHealth(healAmount, character);
             SkillInfo.sInfo.healButtonInteract();
         }            
         else
         {
-            healAmount = Mathf.RoundToInt(chars[character].GetMaxHP() * castedSkill.GetSkillModifier());
+            healAmount = Mathf.RoundToInt(chars[character].levelHp[chars[character].level] * castedSkill.skillModifier);
             setHealth(healAmount, character);
             SkillInfo.sInfo.reviveButtonInteract();
         }
 
         SkillInfo.sInfo.healSlider();
+        MiniStats.stats.updateSliders();
+        StatsScreen.stats.SetStats();
 
-        CharacterStatScreen.stats.charStats(castingChar);
-
-        if (castingChar.GetCurrentMP() < castedSkill.GetCost())
+        if (castingChar.currentMp < castedSkill.manaCost)
             SkillInfo.sInfo.closeSkill();
     }
 
     //changes health of character healed and subtracts mana from casting character
-    private void setHealth(int healFor, string character)
+    private void setHealth(int healFor, int character)
     {
         chars[character].changeHP(healFor);
-        castingChar.changeMP(-castedSkill.GetCost());
+        castingChar.changeMP(-castedSkill.manaCost);
     }
 }

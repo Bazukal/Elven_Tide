@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
+  m_Name: GoldPendant
+  m_EditorClassIdentifier: 
+  name: Gold Pendant
+  type: Accessory
+  equipType: Accessory
+  rarity: Mythical
+  maxUpgrades: 0
+  upgradesDone: 0
+  upgradeCosts: 00000000
+  currentDamage: 0
+  currentArmor: 0
+  currentStrength: 0
+  currentAgility: 0
+  currentMind: 0
+  currentSoul: 0
+  damage: 00000000
+  armor: 00000000
+  strength: 00000000
+  agility: 00000000
+  mind: 00000000
+  soul: 00000000
+  minLevel: 1
+  maxLevel: 5
+  buyValue: 0
+  sellValue: 100
+  dropped: 1
+  bought: 0
+  chest: 1

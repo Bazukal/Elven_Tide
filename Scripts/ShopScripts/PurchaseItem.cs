@@ -22,8 +22,8 @@ public class PurchaseItem : MonoBehaviour {
     public Button quantityDownButton;
     public Button quantityUpButton;
 
-    EquipmentClass buyEquipItem;
-    ItemClass buyUseItem;
+    EquipableItem buyEquipItem;
+    UsableItem buyUseItem;
 
     private void Awake()
     {
@@ -31,11 +31,14 @@ public class PurchaseItem : MonoBehaviour {
     }
 
     //opens equipment shop
-    public void purchaseEquipPanel(EquipmentClass item)
+    public void purchaseEquipPanel(EquipableItem item)
     {
+        quantityDownButton.interactable = false;
+        quantityUpButton.interactable = false;
+
         quantity = 1;
         buyEquipItem = item;
-        itemCost = item.GetBuyPrice();
+        itemCost = item.buyValue;
         goldAvail = Manager.manager.GetGold();
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -43,34 +46,36 @@ public class PurchaseItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         quantityText.text = quantity.ToString();
-        nameText.text = item.GetName();
+        nameText.text = item.name;
         totalCost = itemCost * quantity;
         costText.text = string.Format("Total Cost: {0:n0}", totalCost);
 
         StringBuilder strb = new StringBuilder();
-        if (item.GetDamage() > 0)
-            strb.Append("Attack: " + item.GetDamage() + "\n");
-        if (item.GetArmor() > 0)
-            strb.Append("Armor: " + item.GetArmor() + "\n");
-        if (item.GetStr() > 0)
-            strb.Append("Strength: " + item.GetStr() + "\n");
-        if (item.GetAgi() > 0)
-            strb.Append("Agility: " + item.GetAgi() + "\n");
-        if (item.GetMind() > 0)
-            strb.Append("Mind: " + item.GetMind() + "\n");
-        if (item.GetSoul() > 0)
-            strb.Append("Soul: " + item.GetSoul() + "\n");
-        strb.Append("\nCost: " + item.GetBuyPrice());
+        if (item.currentDamage > 0)
+            strb.Append("Attack: " + item.currentDamage + "\n");
+        if (item.currentArmor > 0)
+            strb.Append("Armor: " + item.currentArmor + "\n");
+        if (item.currentStrength > 0)
+            strb.Append("Strength: " + item.currentStrength + "\n");
+        if (item.currentAgility > 0)
+            strb.Append("Agility: " + item.currentAgility + "\n");
+        if (item.currentMind > 0)
+            strb.Append("Mind: " + item.currentMind + "\n");
+        if (item.currentSoul > 0)
+            strb.Append("Soul: " + item.currentSoul + "\n");
+        strb.Append("\nCost: " + item.buyValue);
 
         stats.text = strb.ToString();
     }
 
     //opens usable shop
-    public void purchaseUseItem(ItemClass item)
+    public void purchaseUseItem(UsableItem item)
     {
+        quantityDownButton.interactable = true;
+
         quantity = 1;
         buyUseItem = item;
-        itemCost = item.GetBuy();
+        itemCost = item.buyValue;
         goldAvail = Manager.manager.GetGold();
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
@@ -78,26 +83,42 @@ public class PurchaseItem : MonoBehaviour {
         gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         quantityText.text = quantity.ToString();
-        nameText.text = item.GetName();
+        nameText.text = item.name;
         totalCost = itemCost * quantity;
         costText.text = string.Format("Total Cost: {0:n0}", totalCost);
 
-        string itemType = item.GetItemType();
-        int buyPrice = item.GetBuy();
+        if(totalCost > goldAvail)
+        {
+            quantityUpButton.interactable = false;
+            buyButton.interactable = false;
+        }
+        else if (goldAvail < totalCost + itemCost)
+        {
+            quantityUpButton.interactable = false;
+            buyButton.interactable = true;
+        }            
+        else
+        {
+            quantityUpButton.interactable = true;
+            buyButton.interactable = true;
+        }
+
+        string itemType = item.type;
+        int buyPrice = item.buyValue;
 
         if (itemType.Equals("Heal"))
         {
-            int healAmount = item.GetHeal();
+            int healAmount = item.healAmount;
             stats.text = string.Format("Heals Ally for {0} Health\n\nCost: {1:n0}", healAmount, buyPrice);            
         }
         else if (itemType.Equals("Revive"))
         {
-            float revivePerc = item.GetRevive();
+            float revivePerc = item.reviveAmount;
             stats.text = string.Format("Revives Ally, and heals for {0}% of Max Health\n\nCost: {1:n0}", revivePerc, buyPrice);
         }
         else
         {
-            string cure = item.GetCure();
+            string cure = item.cureAilment;
             stats.text = string.Format("Cures Ally of {0}\n\nCost: {1:n0}", cure, buyPrice);
         }
     }
@@ -142,22 +163,24 @@ public class PurchaseItem : MonoBehaviour {
     //purchases selected item with the quantity set from arrows
     public void purchaseItem()
     {
-        string npc = Manager.manager.getInRange();
+        GameObject npc = Manager.manager.getObject();
+        string who = npc.tag;
 
-        if(npc.Equals("Blacksmith"))
+        if(who.Equals("Blacksmith"))
         {
-            CharacterInventory.charInven.addEquipableToInventory(buyEquipItem);
+            Manager.manager.addEquipableToInventory(buyEquipItem);
             Manager.manager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();
         }
         else
-        {            
-            buyUseItem.ChangeQuantity(quantity);
-            CharacterInventory.charInven.addUsableToInventory(buyUseItem);
+        {
+            Debug.Log("Buying Quantity: " + quantity);
+            Manager.manager.addUsableToInventory(buyUseItem.name, quantity);
             Manager.manager.changeGold(-totalCost);
             CloseBuyPanel.closeBuyPanel.updateGold();
-        }        
+        }
 
+        CloseBuyPanel.closeBuyPanel.updateGold();
         closePanel();
     }
 

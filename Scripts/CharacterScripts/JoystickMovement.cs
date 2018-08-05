@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class JoystickMovement : MonoBehaviour {
 
-    private float moveSpeed = 0.1f;
+    public static JoystickMovement joystick;
+
+    private float moveSpeed = 0.15f;
     private float perBattleTime = 0.25f;
     private float battleTime;
 
     private Animator animator;
 
     private string lastMov = "Front";
+    private bool canMove = true;
+
+    private CharacterController cc;
+
+    string scene;
 
     // Use this for initialization
     void Start () {
+        joystick = this;
+
+        scene = Manager.manager.GetScene();
+
         animator = gameObject.GetComponentInChildren<Animator>();
         battleTime = perBattleTime;
 
@@ -22,23 +34,34 @@ public class JoystickMovement : MonoBehaviour {
         cameraTrans.transform.SetParent(gameObject.transform);
         mainCamera.GetComponent<Transform>().localEulerAngles = new Vector3(0, 0, 0);
         mainCamera.GetComponent<Transform>().localPosition = new Vector3(0, 0, -3.5f);
+
+        cc = gameObject.GetComponent<CharacterController>();
     }
+
+    public void SetScene(string whatScene) { scene = whatScene; }
 
     // Movement Controlls
     void FixedUpdate () {
-        Vector3 moveVec = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical")) * moveSpeed;
-        gameObject.transform.Translate(moveVec);
 
-        float horiz = CrossPlatformInputManager.GetAxis("Horizontal");
-        float vert = CrossPlatformInputManager.GetAxis("Vertical");
+        float horiz = 0;
+        float vert = 0;
 
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+        if (canMove)
+        {
+            Vector3 moveVec = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0, CrossPlatformInputManager.GetAxis("Vertical"));
+            transform.TransformDirection(moveVec);
+            moveVec *= moveSpeed;
+
+            cc.Move(moveVec);
+
+            horiz = CrossPlatformInputManager.GetAxis("Horizontal");
+            vert = CrossPlatformInputManager.GetAxis("Vertical");
+        }
 
         //check to see if player gets into a battle
         if (horiz > 0 || vert > 0)
         {
-            if (sceneName != "Town")
+            if (scene.Equals("Dungeon"))
             {
                 battleTime -= Time.deltaTime;
 
@@ -46,12 +69,12 @@ public class JoystickMovement : MonoBehaviour {
                 {
                     int battleCheck = Random.Range(0, 101);
                     if (battleCheck > 95)
-                        ActivateBattle.active.battle();
-
+                    {
+                        StoreFinds.stored.BattleActivate();
+                        ActivateBattle.active.battle(false);
+                    }
                     battleTime = perBattleTime;
                 }
-
-                
             }
         }
 
@@ -85,7 +108,9 @@ public class JoystickMovement : MonoBehaviour {
 
         if(horiz == 0 && vert == 0)
         {
-            switch(lastMov)
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+            switch (lastMov)
             {
                 case "Right":
                     animator.Play("Right Idle");
@@ -99,151 +124,41 @@ public class JoystickMovement : MonoBehaviour {
                 case "Back":
                     animator.Play("Back Idle");
                     break;
-
             }
         }
+        else
+        {
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
+    }
+
+    public void setMove(bool move)
+    {
+        canMove = move;
+    }
+
+    //moves character away from boss if retreated
+    public void retreat()
+    {
+        Vector3 currentPos = transform.localPosition;
+
+        Vector3 retreatMove = new Vector3(currentPos.x + 9, currentPos.y);
+        transform.Translate(retreatMove);
     }
 
     //checks if certain objects come within range of player
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "CaveExit")
+        if(other.tag != "Terrain")
         {
-            Manager.manager.setInRange("CaveExit");
-            return;
+            Manager.manager.setObject(other.gameObject);
         }
-
-        if (other.tag == "InnKeeper")
-        {
-            Manager.manager.setInRange("InnKeeper");
-            return;
-        }
-
-        if (other.tag == "Healer")
-        {
-            Manager.manager.setInRange("Healer");
-            return;
-        }
-
-        if (other.tag == "Blacksmith")
-        {
-            Manager.manager.setInRange("Blacksmith");
-            return;
-        }
-
-        if (other.tag == "Cave")
-        {
-
-            Manager.manager.setInRange("Cave");
-            return;
-        }
-
-        if (other.tag == "Chest")
-        {
-            Manager.manager.setChest(other.gameObject);
-            Manager.manager.setInRange("Chest");
-            return;
-        }
-
-        if (other.tag == "Citizen1")
-        {
-            Manager.manager.setInRange("Citizen1");
-            return;
-        }
-
-        if (other.tag == "Citizen2")
-        {
-            Manager.manager.setInRange("Citizen2");
-            return;
-        }
-
-        if (other.tag == "Citizen3")
-        {
-            Manager.manager.setInRange("Citizen3");
-            return;
-        }
-
-        if (other.tag == "Citizen4")
-        {
-            Manager.manager.setInRange("Citizen4");
-            return;
-        }
-
-        if (other.tag == "Master")
-        {
-            Manager.manager.setInRange("Master");
-            return;
-        }
-
     }
 
     //checks if certain objects leaves range of player
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "CaveExit")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "InnKeeper")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Healer")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Blacksmith")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Chest")
-        {
-            Manager.manager.removeChest();
-            return;
-        }
-
-        if (other.tag == "Cave")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Citizen1")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Citizen2")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Citizen3")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Citizen4")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
-
-        if (other.tag == "Master")
-        {
-            Manager.manager.setInRange("");
-            return;
-        }
+        if (other.tag != "Terrain")
+            Manager.manager.setObject(null);
     }
 }

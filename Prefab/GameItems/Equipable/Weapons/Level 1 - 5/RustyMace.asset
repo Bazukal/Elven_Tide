@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
+  m_Name: RustyMace
+  m_EditorClassIdentifier: 
+  ID: 0
+  name: Rusty Mace
+  type: Weapon
+  equipType: Mace
+  rarity: Common
+  maxUpgrades: 5
+  upgradesDone: 0
+  upgradeCosts: 4b00000096000000e10000002c01000077010000
+  currentDamage: 0
+  currentArmor: 0
+  currentStrength: 0
+  currentAgility: 0
+  currentMind: 0
+  currentSoul: 0
+  damage: 030000000400000005000000060000000700000008000000
+  armor: 000000000000000000000000010000000200000003000000
+  strength: 000000000000000000000000000000000000000000000000
+  agility: 000000000000000000000000000000000000000000000000
+  mind: 000000000000000000000000000000000000000000000000
+  soul: 000000000000000000000000000000000100000002000000
+  minLevel: 1
+  maxLevel: 5
+  buyValue: 47
+  sellValue: 4
+  dropped: 0
+  bought: 1
+  chest: 1
+  minRange: 0.8
+  maxRange: 1.2

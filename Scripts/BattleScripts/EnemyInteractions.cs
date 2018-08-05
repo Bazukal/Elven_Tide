@@ -4,25 +4,22 @@ public class EnemyInteractions : MonoBehaviour {
 
     private bool targeted = false;
 	
-	public void enemyTargeted()
+	public void enemyTargeted(int slot)
     {
         if (targeted == true)
         {
             removeTarget();
-            StateMachine.state.removeEnemySelected();
+            BattleScript.battleOn.removeEnemySelected();
         }
         else
         {
-            StateMachine.state.removeEnemyTargets();
             targeted = true;
-            gameObject.transform.Find("Target").gameObject.SetActive(true);
-            StateMachine.state.SetEnemySelected(gameObject);
+            BattleScript.battleOn.selectedEnemy(slot);
         }
     }
 
     public void removeTarget()
     {
         targeted = false;
-        gameObject.transform.Find("Target").gameObject.SetActive(false);
     }
 }

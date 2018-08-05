@@ -1,50 +1,48 @@
 ﻿using UnityEngine;
 using Devdog.QuestSystemPro;
+using Devdog.General;
 
-public class ActionPressed : MonoBehaviour {    
+public class ActionPressed : MonoBehaviour {
+
+    public static ActionPressed pressed;
+
+    GameObject inRange;
+
+    private void Start()
+    {
+        pressed = this;
+    }
 
     //open panel depending on what object is in range
     public void buttonPressed()
     {
-        string whosInRange = Manager.manager.getInRange();
+        inRange = Manager.manager.getObject();
+        string objectTag = inRange.tag;
+        Debug.Log(inRange.name);
 
-        switch(whosInRange)
-        {
-            case "InnKeeper":
-                SelectionPanelData.panelData.inputData("InnKeeper");
-                break;
+        switch(objectTag)
+        {             
             case "Healer":
-                SelectionPanelData.panelData.inputData("Healer");
-                break;
             case "Blacksmith":
-                SelectionPanelData.panelData.inputData("Blacksmith");
-                break;
-            case "Master":
-                QuestAccept.qAccept.displayQuest();
+            case "NPC":
+                inRange.GetComponent<Trigger>().Use();
+                StoreFinds.stored.BattleActivate();
                 break;
             case "Chest":
-                GameObject openChest = Manager.manager.getChest();
-                Debug.Log(openChest.name);
-                openChest.GetComponent<OpenChest>().open();
+                inRange.GetComponent<OpenChest>().open();
                 break;
             case "Cave":
+                StoreFinds.stored.BattleActivate();
                 LevelLoad.lLoad.prepareLevelLoad();
-                break;
-            case "Citizen1":
-                npcChat.chat.startChat("Citizen1");
-                break;
-            case "Citizen2":
-                npcChat.chat.startChat("Citizen2");
-                break;
-            case "Citizen3":
-                npcChat.chat.startChat("Citizen3");
-                break;
-            case "Citizen4":
-                npcChat.chat.startChat("Citizen4");
                 break;
             case "CaveExit":
                 ExitDungeon.exit.activatePanel();
                 break;
         }
     }    
+
+    public void DestroyObject()
+    {
+        Destroy(inRange);
+    }
 }

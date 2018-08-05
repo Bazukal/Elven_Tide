@@ -11,6 +11,8 @@ public class IntroScript : MonoBehaviour {
     public GameObject character3;
     public GameObject character4;
 
+    private Dictionary<string, GameObject> characters = new Dictionary<string, GameObject>();
+
     public Sprite archer;
     public Sprite blackMage;
     public Sprite monk;
@@ -18,6 +20,8 @@ public class IntroScript : MonoBehaviour {
     public Sprite thief;
     public Sprite warrior;
     public Sprite whiteMage;
+
+    private Dictionary<string, Sprite> classSprites = new Dictionary<string, Sprite>();
 
     private List<string> conversation = new List<string>();
     int convPos = 0;
@@ -31,7 +35,7 @@ public class IntroScript : MonoBehaviour {
     //adds conversation screens to list
     private void Awake()
     {
-        conversation.Add("Ever since you four were small children, you have been training to become the Hosgoth of this village.  Those that are bestowed this title are the Guardians that the rest of our people luck up to for protection.");
+        conversation.Add("Ever since you four were small children, you have been training to become the Hosgoth of this village.  Those that are bestowed this title are the Guardians that the rest of our people look up to for protection.");
         conversation.Add("As many before you have done, possibly some of you will, and as others will in the future, Hosgoth have fallen to the evils of this world.  May they have gone against the village to seek another life, or they have moved on to the Josineth Plains.");
         conversation.Add("You four need to watch over each other, protect each other as you also protect this village.  Without all four of you together, evil can always slip through the shadows.  Taking our young, elders and loved ones.");
         conversation.Add("On this day, your training is over.  To prove that all your training has brought you to the strength needed to protect our village, you are given a task.  One that will send you into the cave within town.");
@@ -40,114 +44,34 @@ public class IntroScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        string char1 = Manager.manager.GetPlayer("Player1").GetClass();
-        string char2 = Manager.manager.GetPlayer("Player2").GetClass();
-        string char3 = Manager.manager.GetPlayer("Player3").GetClass();
-        string char4 = Manager.manager.GetPlayer("Player4").GetClass();
+        classSprites.Add("Archer", archer);
+        classSprites.Add("Black Mage", blackMage);
+        classSprites.Add("Monk", monk);
+        classSprites.Add("Paladin", paladin);
+        classSprites.Add("Thief", thief);
+        classSprites.Add("Warrior", warrior);
+        classSprites.Add("White Mage", whiteMage);
 
-        //sets character sprites based on the classes that the player chose
-        switch (char1)
-        {
-            case "Archer":
-                character1.GetComponent<SpriteRenderer>().sprite = archer;
-                break;
-            case "Black Mage":
-                character1.GetComponent<SpriteRenderer>().sprite = blackMage;
-                break;
-            case "Monk":
-                character1.GetComponent<SpriteRenderer>().sprite = monk;
-                break;
-            case "Paladin":
-                character1.GetComponent<SpriteRenderer>().sprite = paladin;
-                break;
-            case "Thief":
-                character1.GetComponent<SpriteRenderer>().sprite = thief;
-                break;
-            case "Warrior":
-                character1.GetComponent<SpriteRenderer>().sprite = warrior;
-                break;
-            case "White Mage":
-                character1.GetComponent<SpriteRenderer>().sprite = whiteMage;
-                break;
-        }
+        characters.Add("Player1", character1);
+        characters.Add("Player2", character2);
+        characters.Add("Player3", character3);
+        characters.Add("Player4", character4);
 
-        switch (char2)
-        {
-            case "Archer":
-                character2.GetComponent<SpriteRenderer>().sprite = archer;
-                break;
-            case "Black Mage":
-                character2.GetComponent<SpriteRenderer>().sprite = blackMage;
-                break;
-            case "Monk":
-                character2.GetComponent<SpriteRenderer>().sprite = monk;
-                break;
-            case "Paladin":
-                character2.GetComponent<SpriteRenderer>().sprite = paladin;
-                break;
-            case "Thief":
-                character2.GetComponent<SpriteRenderer>().sprite = thief;
-                break;
-            case "Warrior":
-                character2.GetComponent<SpriteRenderer>().sprite = warrior;
-                break;
-            case "White Mage":
-                character2.GetComponent<SpriteRenderer>().sprite = whiteMage;
-                break;
-        }
+        List<string> players = new List<string>() { "Player1", "Player2", "Player3", "Player4" };
 
-        switch (char3)
+        foreach(string player in players)
         {
-            case "Archer":
-                character3.GetComponent<SpriteRenderer>().sprite = archer;
-                break;
-            case "Black Mage":
-                character3.GetComponent<SpriteRenderer>().sprite = blackMage;
-                break;
-            case "Monk":
-                character3.GetComponent<SpriteRenderer>().sprite = monk;
-                break;
-            case "Paladin":
-                character3.GetComponent<SpriteRenderer>().sprite = paladin;
-                break;
-            case "Thief":
-                character3.GetComponent<SpriteRenderer>().sprite = thief;
-                break;
-            case "Warrior":
-                character3.GetComponent<SpriteRenderer>().sprite = warrior;
-                break;
-            case "White Mage":
-                character3.GetComponent<SpriteRenderer>().sprite = whiteMage;
-                break;
-        }
-
-        switch (char4)
-        {
-            case "Archer":
-                character4.GetComponent<SpriteRenderer>().sprite = archer;
-                break;
-            case "Black Mage":
-                character4.GetComponent<SpriteRenderer>().sprite = blackMage;
-                break;
-            case "Monk":
-                character4.GetComponent<SpriteRenderer>().sprite = monk;
-                break;
-            case "Paladin":
-                character4.GetComponent<SpriteRenderer>().sprite = paladin;
-                break;
-            case "Thief":
-                character4.GetComponent<SpriteRenderer>().sprite = thief;
-                break;
-            case "Warrior":
-                character4.GetComponent<SpriteRenderer>().sprite = warrior;
-                break;
-            case "White Mage":
-                character4.GetComponent<SpriteRenderer>().sprite = whiteMage;
-                break;
-        }
+            setSprite(player);
+        }      
 
         conversationText.text = conversation[convPos];
         convPos++;
+    }
+
+    private void setSprite(string player)
+    {
+        string charClass = Manager.manager.GetPlayer(player).charClass;
+        characters[player].GetComponent<SpriteRenderer>().sprite = classSprites[charClass];
     }
     
     //continue with the conversation until the end.  once the end has been met, load the town scene
@@ -170,7 +94,7 @@ public class IntroScript : MonoBehaviour {
     {
         Manager.manager.setQuestStage(1);
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Town");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("TownStage1");
 
         loadScreen.SetActive(true);
 

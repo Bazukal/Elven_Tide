@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
+  m_Name: Poison
+  m_EditorClassIdentifier: 
+  skillName: Poison
+  skillType: Damage
+  damageType: Magic
+  ailment: Poison
+  buffStat: 
+  skillDescription: Enemy Damage over Time Spell
+  skillLevel: 1
+  manaCost: 0
+  skillBase: 1
+  effectTurns: 3
+  debuffChance: 0.5
+  skillModifier: 0.35
+  isAOE: 0
+  targetEnemy: 0
+  skillAnimation: {fileID: 1910659334168456, guid: 2d995921c7b7ce248b3b1d9cd4332d62,
+    type: 2}
+  buffIcon: {fileID: 1873192918155718, guid: 1de2cc8ab5092c74dbb0da01a8aa7450, type: 2}

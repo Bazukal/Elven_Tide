@@ -21,8 +21,8 @@ public class sellItem : MonoBehaviour {
     public Button quantityDownButton;
     public Button quantityUpButton;
 
-    EquipmentClass sellingEquipItem = null;
-    ItemClass sellingUseItem = null;
+    EquipableItem sellingEquipItem = null;
+    UsableItem sellingUseItem = null;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class sellItem : MonoBehaviour {
     }
 
     //opens sell shop
-    public void sellPanel(EquipmentClass equipTtem, ItemClass useItem)
+    public void sellPanel(EquipableItem equipTtem, UsableItem useItem)
     {
         sellingEquipItem = null;
         sellingUseItem = null;
@@ -38,25 +38,25 @@ public class sellItem : MonoBehaviour {
         if (equipTtem != null)
         {
             sellingEquipItem = equipTtem;
-            itemCost = sellingEquipItem.GetSellPrice();
+            itemCost = sellingEquipItem.sellValue;
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
-            nameText.text = sellingEquipItem.GetName();
-            sellEach.text = sellingEquipItem.GetSellPrice().ToString();
+            nameText.text = sellingEquipItem.name;
+            sellEach.text = sellingEquipItem.sellValue.ToString();
         }            
         else
         {
             sellingUseItem = useItem;
-            itemCost = sellingUseItem.GetSell();
+            itemCost = sellingUseItem.sellValue;
             costText.text = string.Format("Total Cost: {0:n0}", itemCost);
-            itemQuantity = sellingUseItem.GetQuantity();
+            itemQuantity = sellingUseItem.quantity;
             sellQuantity = 1;
             totalCost = itemCost * sellQuantity;
             quantityText.text = sellQuantity.ToString();
-            nameText.text = sellingUseItem.GetName();
-            sellEach.text = sellingUseItem.GetSell().ToString();
+            nameText.text = sellingUseItem.name;
+            sellEach.text = sellingUseItem.sellValue.ToString();
         }
 
         if (sellQuantity == itemQuantity)
@@ -117,20 +117,28 @@ public class sellItem : MonoBehaviour {
     {
         if(sellingEquipItem != null)
         {
-            CharacterInventory.charInven.removeEquipableFromInventory(sellingEquipItem);
+            Manager.manager.removeEquipableFromInventory(sellingEquipItem);
             Manager.manager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
             shopSell.shSell.shopSellPanel();
         }
         else
         {
-            sellingUseItem.ChangeQuantity(-sellQuantity);
-            CharacterInventory.charInven.removeUsableFromInventory(sellingUseItem);
+            sellingUseItem.addItem(-sellQuantity);
+            int remainQuantity = sellingUseItem.quantity;
+
+            if(remainQuantity <= 0)
+                Manager.manager.removeUsableFromInventory(sellingUseItem);
+
             Manager.manager.changeGold(totalCost);
             CloseSellPanel.closeSellPanel.updateGold();
             shopSell.shSell.shopSellPanel();
         }
 
+        quantityUpButton.interactable = true;
+        quantityDownButton.interactable = true;
+
+        CloseSellPanel.closeSellPanel.updateGold();
         closePanel();
     }
 }
