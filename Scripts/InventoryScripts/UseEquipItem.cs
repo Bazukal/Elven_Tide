@@ -16,7 +16,7 @@ public class UseEquipItem : MonoBehaviour {
     EquipableItem equipSelected;
     UsableItem useSelected;
 
-    ScriptablePlayerClasses usingChar = null;
+    ScriptablePlayer usingChar = null;
 
     public GameObject weaponEquip;
     public GameObject healWindow;
@@ -42,7 +42,7 @@ public class UseEquipItem : MonoBehaviour {
 
     private bool isEquipable;
 
-    private Dictionary<string, ScriptablePlayerClasses> chars = new Dictionary<string, ScriptablePlayerClasses>();
+    private Dictionary<string, ScriptablePlayer> chars = new Dictionary<string, ScriptablePlayer>();
 
     private void Start()
     {
@@ -356,7 +356,7 @@ public class UseEquipItem : MonoBehaviour {
                 break;
             case "Armor":
                 string armorType = equipSelected.equipType;
-                string maxArmor = usingChar.maxArmor;
+                string maxArmor = usingChar.maxArmor.ToString();
                 bool canShield = usingChar.canShield;
 
                 switch (armorType)

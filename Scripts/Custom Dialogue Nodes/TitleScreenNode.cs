@@ -9,8 +9,9 @@ public class TitleScreenNode : ActionNodeBase {
     public override void OnExecute(IDialogueOwner dialogueOwner)
     {
         Manager.manager.DestroyManager();
+        MiniStats.stats.destroyThis();
 
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("TitleScreen");
 
         Finish(true);
     }

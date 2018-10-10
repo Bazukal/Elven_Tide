@@ -16,6 +16,7 @@ public class UsableItem : ScriptableObject {
     public int quantity;
 
     public int healAmount;
+    public string healStat;
     public float reviveAmount;
 
     public int minLevel;
@@ -52,7 +53,7 @@ public class UsableItem : ScriptableObject {
     public void useItem() { quantity--; }
     public void addItem(int add) { quantity += add; } 
 
-    public void usedOnChar(ScriptablePlayerClasses player)
+    public void usedOnChar(ScriptablePlayer player)
     {
         if (type.Equals("Heal"))
             player.changeHP(healAmount);

@@ -97,7 +97,7 @@ public class EquipUpgrade : MonoBehaviour {
 
         foreach(string tag in playerTags)
         {
-            ScriptablePlayerClasses player = Manager.manager.GetPlayer(tag);
+            ScriptablePlayer player = Manager.manager.GetPlayer(tag);
 
             List<EquipableItem> equipment = new List<EquipableItem>() { player.weapon, player.offHand,
             player.armor, player.accessory};
