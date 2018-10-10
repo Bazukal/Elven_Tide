@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d6ffef6d4cbd9489305c1b215a35a1, type: 3}
+  m_Name: Lvl1ItemDrops
+  m_EditorClassIdentifier: 
+  Mythical:
+  - {fileID: 11400000, guid: b6cfef0ea18b4d2419c2c3cbbe409c6f, type: 2}
+  Rare:
+  - {fileID: 11400000, guid: 2881aacc1f4f0ac43ad2669f0376d229, type: 2}
+  UnCommon:
+  - {fileID: 11400000, guid: 809a1b718bcab2b44ae40a9e6342fb63, type: 2}
+  Common:
+  - {fileID: 11400000, guid: 8709db97640ce1140bd348ca1487d099, type: 2}

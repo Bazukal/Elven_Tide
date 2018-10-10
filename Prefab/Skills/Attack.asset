@@ -14,6 +14,7 @@ MonoBehaviour:
   skillName: Attack
   skillType: Damage
   damageType: Physical
+  passiveType: 
   ailment: 
   buffStat: 
   skillDescription: Physical Attack
@@ -23,7 +24,8 @@ MonoBehaviour:
   effectTurns: 0
   debuffChance: 0
   skillModifier: 1
+  passiveChance: 0
   isAOE: 0
   targetEnemy: 0
-  skillAnimation: {fileID: 1911870341849444, guid: 1ec6e066e22441846a749f9fbc92576d,
-    type: 2}
+  skillAnimation: {fileID: 128288, guid: 6965152b75011401c897f9d58bd017f8, type: 2}
+  buffIcon: {fileID: 0}

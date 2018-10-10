@@ -14,6 +14,7 @@ MonoBehaviour:
   skillName: Poison
   skillType: Damage
   damageType: Magic
+  passiveType: 
   ailment: Poison
   buffStat: 
   skillDescription: Deals Minor Damage to Enemy over Time.
@@ -22,7 +23,8 @@ MonoBehaviour:
   skillBase: 0
   effectTurns: 3
   debuffChance: 1
-  skillModifier: 0.4
+  skillModifier: 0.75
+  passiveChance: 0
   isAOE: 0
   targetEnemy: 1
   skillAnimation: {fileID: 1910659334168456, guid: 2d995921c7b7ce248b3b1d9cd4332d62,

@@ -14,6 +14,7 @@ MonoBehaviour:
   skillName: Poison
   skillType: Damage
   damageType: Magic
+  passiveType: 
   ailment: Poison
   buffStat: 
   skillDescription: Enemy Damage over Time Spell
@@ -22,7 +23,8 @@ MonoBehaviour:
   skillBase: 1
   effectTurns: 3
   debuffChance: 0.5
-  skillModifier: 0.35
+  skillModifier: 0.75
+  passiveChance: 0
   isAOE: 0
   targetEnemy: 0
   skillAnimation: {fileID: 1910659334168456, guid: 2d995921c7b7ce248b3b1d9cd4332d62,

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c52a59b5657ce45bf511091361c255, type: 3}
+  m_Name: White Mage
+  m_EditorClassIdentifier: 
+  name: 
+  battleSprite: {fileID: 21300008, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
+  level: 1
+  currentHp: 0
+  currentMp: 0
+  knownSkills:
+  - {fileID: 11400000, guid: 6d803b26b7160ca4eab6b17901bfd2d9, type: 2}
+  - {fileID: 11400000, guid: ecf24fd44100a2942b61ac52cfb6d298, type: 2}
+  - {fileID: 11400000, guid: 27d29bc40e7403341b88d9a71e110faf, type: 2}
+  - {fileID: 11400000, guid: 6ab50bac8d2cb0943aae4fa42f83b47f, type: 2}
+  - {fileID: 11400000, guid: b7bda03990af3824ab440f0b645aa6d4, type: 2}
+  levelHp: 00000000b9000000c5000000d2000000df000000ed000000fb0000000a01000019010000290100003a010000
+  levelMp: 00000000150000001b00000021000000270000002d000000340000003a000000420000004900000050000000
+  levelStrength: 000000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000
+  levelAgility: 000000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000
+  levelMind: 000000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
+  levelSoul: 000000000f000000100000001100000012000000130000001400000015000000160000001700000019000000
+  levelDefense: 000000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
+  charClass: 6
+  maxArmor: 0
+  classHead: {fileID: 21300032, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
+  currentExp: 0
+  expChart: {fileID: 11400000, guid: 19b412fbd783000468bd471f48c67bc8, type: 2}
+  canShield: 0
+  canDuelWield: 0
+  canSword: 0
+  canDagger: 0
+  canMace: 0
+  canBow: 0
+  canStaff: 1
+  canRod: 0
+  canFists: 0
+  weapon: {fileID: 11400000, guid: ac470c1d749909b47ae64d26962996a3, type: 2}
+  offHand: {fileID: 0}
+  armor: {fileID: 11400000, guid: bf4cd621b0b5f504c9585feb6dd5a575, type: 2}
+  accessory: {fileID: 11400000, guid: 2120fbe4b5772cc44808fc908c4a9616, type: 2}

@@ -684,10 +684,7 @@ GameObject:
   - component: {fileID: 114023452681506484}
   - component: {fileID: 114478120167748700}
   - component: {fileID: 114750770813227682}
-  - component: {fileID: 114431999349849716}
-  - component: {fileID: 114677033848060608}
   - component: {fileID: 114166322839724388}
-  - component: {fileID: 114555762933800386}
   - component: {fileID: 114328973068852166}
   m_Layer: 8
   m_Name: QuestAcceptPanel
@@ -1415,22 +1412,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632e95701aad0cd44af0896f86a324a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  archerSprite: {fileID: 21300032, guid: 3baa2ce69f16b574498d660dd5c1a2c4, type: 3}
-  blackSprite: {fileID: 21300032, guid: 28f7954cd148dbe4582c665b81676cf7, type: 3}
-  monkSprite: {fileID: 21300032, guid: d546bb5e93024244a8b7b702179ffe96, type: 3}
-  paladinSprite: {fileID: 21300032, guid: 69b32174477be5c469cefbce8f0edb1c, type: 3}
-  thiefSprite: {fileID: 21300032, guid: e136a8be3491fdf42a4b5e12f57f382f, type: 3}
-  warriorSprite: {fileID: 21300032, guid: 72b91ab4f5051c54d88282f9d9b24f6b, type: 3}
-  whiteSprite: {fileID: 21300032, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
-  archerBattleSprite: {fileID: 21300008, guid: 3baa2ce69f16b574498d660dd5c1a2c4, type: 3}
-  blackBattleSprite: {fileID: 21300008, guid: 28f7954cd148dbe4582c665b81676cf7, type: 3}
-  monkBattleSprite: {fileID: 21300008, guid: d546bb5e93024244a8b7b702179ffe96, type: 3}
-  paladinBattleSprite: {fileID: 21300008, guid: 69b32174477be5c469cefbce8f0edb1c,
-    type: 3}
-  thiefBattleSprite: {fileID: 21300008, guid: e136a8be3491fdf42a4b5e12f57f382f, type: 3}
-  warriorBattleSprite: {fileID: 21300008, guid: 72b91ab4f5051c54d88282f9d9b24f6b,
-    type: 3}
-  whiteBattleSprite: {fileID: 21300008, guid: 6a4f67c4bfee6344f8207d9ec308a32b, type: 3}
+  lowLevelValue: 17
+  maxLevelValue: 71
+  gameUsables:
+  - {fileID: 11400000, guid: 809a1b718bcab2b44ae40a9e6342fb63, type: 2}
+  - {fileID: 11400000, guid: 8709db97640ce1140bd348ca1487d099, type: 2}
+  - {fileID: 11400000, guid: 2881aacc1f4f0ac43ad2669f0376d229, type: 2}
+  gameEquipables:
+  - {fileID: 11400000, guid: c59ef48136adbd148ae19dcee3fff094, type: 2}
+  - {fileID: 11400000, guid: 72479bdc1aaf2dc40a3420e89ed1fc60, type: 2}
+  - {fileID: 11400000, guid: ac470c1d749909b47ae64d26962996a3, type: 2}
+  - {fileID: 11400000, guid: fd788c528c7e8c94caf20341eca45a51, type: 2}
+  - {fileID: 11400000, guid: c9b374b1e54a6a24abfdb1ed24013f9b, type: 2}
+  - {fileID: 11400000, guid: 05e2dec4f107e19478c40811399ceeaa, type: 2}
+  - {fileID: 11400000, guid: 89149fe317e64a64ba28d8b6b61abe77, type: 2}
+  - {fileID: 11400000, guid: bf4cd621b0b5f504c9585feb6dd5a575, type: 2}
+  - {fileID: 11400000, guid: c4b79c79b25c1a84bae75097f7444c25, type: 2}
+  - {fileID: 11400000, guid: bd0237c69e1beb549afd62b34c0923e8, type: 2}
+  - {fileID: 11400000, guid: ab49d2bc637f8e1458c08a47a273bdcb, type: 2}
+  - {fileID: 11400000, guid: 85128e463a454da43b6dda011a660b9e, type: 2}
+  - {fileID: 11400000, guid: 2120fbe4b5772cc44808fc908c4a9616, type: 2}
+  - {fileID: 11400000, guid: e59e9fcd911e1bb449f5a60a8a8119cf, type: 2}
+  - {fileID: 11400000, guid: 61f7147ed456b5041bb7d24720ba38bf, type: 2}
+  - {fileID: 11400000, guid: bbcd5b8ca9ee0a44fb5caba11fb9dd8b, type: 2}
+  - {fileID: 11400000, guid: 7aa64d8dbcaa7c445ab3cd127c55652f, type: 2}
+  - {fileID: 11400000, guid: a253e44e01cca974ea036d3e460d0d80, type: 2}
+  - {fileID: 11400000, guid: 3a4e94c99af48f548bf118bd4892f4aa, type: 2}
   animations:
   - {fileID: 1911870341849444, guid: 1ec6e066e22441846a749f9fbc92576d, type: 2}
   - {fileID: 1541368003467946, guid: 9021e63676c1d994ba649d31f3c2d3cb, type: 2}
@@ -1445,6 +1452,10 @@ MonoBehaviour:
   - {fileID: 1820742284154122, guid: 6b62f75a4b6d1cd4c8a69cbb48306aba, type: 2}
   - {fileID: 1301823708423434, guid: 79ecf1ee3fefd394ca244256c7d99f09, type: 2}
   - {fileID: 1158943442814210, guid: b112cf10ba861c34a8f08c9982229dea, type: 2}
+  attackNum: 8
+  defense: 10
+  skillBase: 1
+  skillMod: 1
 --- !u!114 &114170223206934522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1938,17 +1949,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Cancel
---- !u!114 &114431999349849716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1706811453753938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188903c592b63ec4398afdda856d2055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114445044276679906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2231,17 +2231,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114555762933800386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1706811453753938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d50648f3b92e8a4a8c98210010819cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114561431426600364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2569,17 +2558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &114677033848060608
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1706811453753938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c3909f0848b82448117873cb4038e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114685283364546716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3517,7 +3495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 0.0000064382343}
+  m_AnchoredPosition: {x: 1, y: 0.000011482627}
   m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224014853078476348
@@ -3748,8 +3726,8 @@ RectTransform:
   m_Father: {fileID: 224802387281176812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 320, y: 0}
   m_Pivot: {x: 0.5, y: 1}

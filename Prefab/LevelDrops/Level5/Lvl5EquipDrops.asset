@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2199881a0290e24bb077fa9d391a7b1, type: 3}
+  m_Name: Lvl5EquipDrops
+  m_EditorClassIdentifier: 
+  Mythical:
+  - {fileID: 11400000, guid: 3f616bc2fd4cb2b4394e54ff3a20743c, type: 2}
+  Rare:
+  - {fileID: 11400000, guid: a4d72f61abd3e3f4b9064de6d4977f8c, type: 2}
+  - {fileID: 11400000, guid: d2b26f9c118298b478109371ba428ae5, type: 2}
+  - {fileID: 11400000, guid: 50e25dc1d2326f54e8aab36dfd4511d9, type: 2}
+  - {fileID: 11400000, guid: c7e277bc08879c74388eb142765a65ab, type: 2}
+  - {fileID: 11400000, guid: f335f4e9b3f12314883dc77e75fe8e66, type: 2}
+  UnCommon:
+  - {fileID: 11400000, guid: 3290b5d6be38f784f97569f8d4de26bd, type: 2}
+  - {fileID: 11400000, guid: 776be35e3575ce14aa38f925838b29d1, type: 2}
+  - {fileID: 11400000, guid: c2385106dc999f64c8fd475aacbebd56, type: 2}
+  - {fileID: 11400000, guid: 580ce114b657bf74e827715037138df8, type: 2}
+  - {fileID: 11400000, guid: b159cb7e8e9af7a4baf164de8f1dfdb0, type: 2}
+  Common:
+  - {fileID: 11400000, guid: 2e71ec586be1d4248a67235f0f9dd446, type: 2}
+  - {fileID: 11400000, guid: 0460534bce08c89458d5feb694699499, type: 2}
+  - {fileID: 11400000, guid: 1f7afe4aa55e92041b2581ca355e08b8, type: 2}
+  - {fileID: 11400000, guid: fa14f1a5359f5874c8e1427d6159f776, type: 2}
+  - {fileID: 11400000, guid: 3133e99c951efb74e99982a7b3489a8c, type: 2}
+  - {fileID: 11400000, guid: 5a87708595c36014ea09e05cf2b6d46f, type: 2}
+  - {fileID: 11400000, guid: 941c542808be0e045b8c7314a60e00f0, type: 2}
