@@ -8,6 +8,7 @@ public class SkillScriptObject : ScriptableObject {
     public string skillName;
     public string skillType;
     public string damageType;
+    public string passiveType;
     public string ailment;
     public string buffStat;
     public string skillDescription;
@@ -19,6 +20,7 @@ public class SkillScriptObject : ScriptableObject {
 
     public float debuffChance;
     public float skillModifier;
+    public float passiveChance;
 
     public bool isAOE;
     public bool targetEnemy;

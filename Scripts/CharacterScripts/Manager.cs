@@ -9,8 +9,8 @@ using System.Linq;
 public class Manager : MonoBehaviour {
 
     public static Manager manager;
-    
-    private Dictionary<string, ScriptablePlayerClasses> players = new Dictionary<string, ScriptablePlayerClasses>();
+
+    private Dictionary<string, ScriptablePlayer> players = new Dictionary<string, ScriptablePlayer>();
     private Dictionary<string, int> ores = new Dictionary<string, int>();
 
     public List<UsableItem> gameUsables = new List<UsableItem>();
@@ -31,15 +31,19 @@ public class Manager : MonoBehaviour {
 
     private bool isEquipDung = false;
 
-    public List<GameObject> animations;
     private Dictionary<string, GameObject> animDict = new Dictionary<string, GameObject>();
 
     private Dictionary<string, UsableItem> heldUsableInventory = new Dictionary<string, UsableItem>();
     private SortedDictionary<int, EquipableItem> heldEquipableInventory = new SortedDictionary<int, EquipableItem>();
 
-    public int enemyGold;
-    public int enemyExp;
-    public int enemyLevel;
+    public int attackNum;
+    public int defense;
+    public int skillBase;
+    public float skillMod;
+
+    //public int enemyGold;
+    //public int enemyExp;
+    //public int enemyLevel;
 
     // Use this for initialization
     void Start () {
@@ -49,8 +53,7 @@ public class Manager : MonoBehaviour {
         //enemyExp = Mathf.RoundToInt(enemyExp * (Mathf.Pow(enemyLevel, dropExpon)));
 
         //Debug.Log(string.Format("For Enemy Level: {0}\nExp Given: {1}\nGold Given: {2}", enemyLevel, enemyExp, enemyGold));
-
-
+        
         manager = this;
 
         DontDestroyOnLoad(gameObject);
@@ -77,11 +80,6 @@ public class Manager : MonoBehaviour {
         ores.Add("Large Ragalyte", 0);
         ores.Add("Gigantic Ragalyte", 0);
 
-        foreach (GameObject anim in animations)
-        {
-            animDict.Add(anim.name, anim);
-        }
-
         foreach(UsableItem usable in gameUsables)
         {
             usableDictionary.Add(usable.name, usable);
@@ -91,18 +89,9 @@ public class Manager : MonoBehaviour {
         {
             equipableDictionary.Add(equipable.name, equipable);
         }
-
-
-        //for (int i = 0; i < 11; i++)
-        //{
-        //    float expon = 1.5f;
-        //    int baseExp = 25;
-
-        //    Debug.Log(Mathf.RoundToInt(baseExp * (Mathf.Pow(i, expon))));
-        //}
     }
 
-    public void newCharacters(ScriptablePlayerClasses newChar)
+    public void newCharacters(ScriptablePlayer newChar)
     {
         int playerSize = players.Count;
 
@@ -123,8 +112,8 @@ public class Manager : MonoBehaviour {
         }
     }
 
-    public void inputPlayers(ScriptablePlayerClasses player1, ScriptablePlayerClasses player2,
-        ScriptablePlayerClasses player3, ScriptablePlayerClasses player4)
+    public void inputPlayers(ScriptablePlayer player1, ScriptablePlayer player2,
+        ScriptablePlayer player3, ScriptablePlayer player4)
     {
         players.Add("Player1", player1);
         players.Add("Player2", player2);
@@ -133,10 +122,10 @@ public class Manager : MonoBehaviour {
     }
 
     //get select character
-    public ScriptablePlayerClasses GetPlayer(string player)
+    public ScriptablePlayer GetPlayer(string player)
     {
         return players[player];
-    }    
+    }
 
     //checks whether the dungeon entered is an Equipment Dungeon or not
     public bool getDungeonType() { return isEquipDung; }
@@ -330,10 +319,10 @@ public class Manager : MonoBehaviour {
 
             SortedDictionary<int, EquipableItem> equippedItems = new SortedDictionary<int, EquipableItem>();
 
-            foreach(KeyValuePair<string, ScriptablePlayerClasses> player in players)
+            foreach(KeyValuePair<string, ScriptablePlayer> player in players)
             {
                 string key = player.Key;
-                ScriptablePlayerClasses tempPlayer = players[key];                
+                ScriptablePlayer tempPlayer = players[key];                
 
                 equippedItems.Add(tempPlayer.weapon.ID, tempPlayer.weapon);
                 try

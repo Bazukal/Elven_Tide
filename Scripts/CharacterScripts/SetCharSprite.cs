@@ -28,23 +28,22 @@ public class SetCharSprite : MonoBehaviour {
 	
 	public void SetCharacter()
     {
-        ScriptablePlayerClasses p1 = Manager.manager.GetPlayer("Player1");
-        ScriptablePlayerClasses p2 = Manager.manager.GetPlayer("Player2");
-        ScriptablePlayerClasses p3 = Manager.manager.GetPlayer("Player3");
-        ScriptablePlayerClasses p4 = Manager.manager.GetPlayer("Player4");
+        ScriptablePlayer p1 = Manager.manager.GetPlayer("Player1");
+        ScriptablePlayer p2 = Manager.manager.GetPlayer("Player2");
+        ScriptablePlayer p3 = Manager.manager.GetPlayer("Player3");
+        ScriptablePlayer p4 = Manager.manager.GetPlayer("Player4");
 
         string playerClass = null;
 
         if (p1.currentHp > 0)
-            playerClass = p1.charClass;
+            playerClass = p1.GetClass();
         else if (p2.currentHp > 0)
-            playerClass = p2.charClass;
+            playerClass = p2.GetClass();
         else if (p3.currentHp > 0)
-            playerClass = p3.charClass;
+            playerClass = p3.GetClass();
         else if (p4.currentHp > 0)
-            playerClass = p4.charClass;
+            playerClass = p4.GetClass();
 
-        Debug.Log(playerClass);
         GetComponent<SpriteRenderer>().sprite = spriteDict[playerClass];
         GetComponent<Animator>().runtimeAnimatorController = animationDict[playerClass];
     }

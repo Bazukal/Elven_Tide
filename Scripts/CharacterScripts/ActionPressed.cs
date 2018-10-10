@@ -18,7 +18,6 @@ public class ActionPressed : MonoBehaviour {
     {
         inRange = Manager.manager.getObject();
         string objectTag = inRange.tag;
-        Debug.Log(inRange.name);
 
         switch(objectTag)
         {             

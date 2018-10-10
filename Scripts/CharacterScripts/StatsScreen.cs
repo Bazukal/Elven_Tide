@@ -78,7 +78,7 @@ public class StatsScreen : MonoBehaviour {
     public Text GiganticRagalyteValue;
 
     //Characters
-    private List<ScriptablePlayerClasses> characters = new List<ScriptablePlayerClasses>();
+    private List<ScriptablePlayer> characters = new List<ScriptablePlayer>();
 
     //Currently Selected Player
     private int charSelected;
@@ -99,7 +99,7 @@ public class StatsScreen : MonoBehaviour {
     public int GetCharSelect() { return charSelected; }
 
     //Character Casting spell
-    public ScriptablePlayerClasses GetPlayerObject() { return characters[charSelected]; }
+    public ScriptablePlayer GetPlayerObject() { return characters[charSelected]; }
 
     //what happens when screen is opened
     public void ScreenOpened()
@@ -334,7 +334,7 @@ public class StatsScreen : MonoBehaviour {
         bool equippedSelected = EquippedScreen.activeSelf;
         bool skillSelected = SkillsScreen.activeSelf;
 
-        ScriptablePlayerClasses selectedChar = characters[charSelected];
+        ScriptablePlayer selectedChar = characters[charSelected];
 
         CharNameValue.text = selectedChar.name;
 
@@ -352,10 +352,10 @@ public class StatsScreen : MonoBehaviour {
     //Populates Stat Screen
     public void SetStats()
     {
-        ScriptablePlayerClasses selectedChar = characters[charSelected];
+        ScriptablePlayer selectedChar = characters[charSelected];
 
         CharNameValue.text = selectedChar.name;
-        ClassValue.text = selectedChar.charClass;
+        ClassValue.text = selectedChar.GetClass();
         int charLevel = selectedChar.level;
         LevelValue.text = charLevel.ToString();
         HealthValue.text = string.Format("{0} / {1}", selectedChar.currentHp, selectedChar.levelHp[charLevel]);
@@ -373,7 +373,10 @@ public class StatsScreen : MonoBehaviour {
     //Populates Characters Skills
     private void SetSkills()
     {
-        Dictionary<string, SkillScriptObject> charSkills = characters[charSelected].GetAllSkills();
+        Dictionary<string, SkillScriptObject> charSkills = new Dictionary<string, SkillScriptObject>();
+        charSkills = characters[charSelected].GetAllActiveSkills();
+        Dictionary<string, SkillScriptObject> passiveSkills = new Dictionary<string, SkillScriptObject>();
+        passiveSkills = characters[charSelected].GetAllPassiveSkills();
 
         foreach (KeyValuePair<string, SkillScriptObject> skills in charSkills)
         {
@@ -387,6 +390,17 @@ public class StatsScreen : MonoBehaviour {
                 PopulateSkillName skillNames = skillBut.GetComponent<PopulateSkillName>();
                 skillNames.skillName(charSkills[key]);
             }            
+        }
+
+        foreach(KeyValuePair<string, SkillScriptObject> passive in passiveSkills)
+        {
+            string key = passive.Key;
+
+            GameObject skillBut = (GameObject)Instantiate(skillButton) as GameObject;
+            skillBut.transform.SetParent(skillScroll.transform, false);
+
+            PopulateSkillName skillNames = skillBut.GetComponent<PopulateSkillName>();
+            skillNames.skillName(passiveSkills[key]);
         }
     }
 

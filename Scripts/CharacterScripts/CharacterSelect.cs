@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour {
 
-    public List<ScriptablePlayerClasses> charClasses = new List<ScriptablePlayerClasses>();
-    private Dictionary<string, ScriptablePlayerClasses> classDict = new Dictionary<string, ScriptablePlayerClasses>();
+    public List<ScriptablePlayer> charClasses = new List<ScriptablePlayer>();
+    private Dictionary<string, ScriptablePlayer> classDict = new Dictionary<string, ScriptablePlayer>();
 
     //determines how many characters are completed
     private int charsCreated = 0;
@@ -24,12 +24,12 @@ public class CharacterSelect : MonoBehaviour {
     private string attackPriority = "The characters higher on the list are more prone to attacks than those lower on the list.  Putting your weaker characters near the bottom will help with their survival.";
 
     private Dictionary<string, string> descStrings = new Dictionary<string, string>();
-    private string archerDesc = "An Elf that has trained to use the bow and arrow to shoot from a far.  From training, the Archer has the chance to shoot more than one arrow at a time, to hit more enemies.";
+    private string archerDesc = "An Elf that has trained to use the bow and arrow to shoot from a far.  From training, the Archer has the chance to shoot more than one arrow at a time, to hit all enemies.";
     private string blackDesc = "An Elf taught in the arts of destructive magic.  Casts devastating spells to damage single or multiple enemies.";
-    private string monkDesc = "Unarmed Elf that prefers to use their hands and feet to fight with.  Can hit an enemy multiple times with its fast fists.";
+    private string monkDesc = "Elf that prefers to use their hands and feet to fight with.  Uses its speed to get the jump on enemies.";
     private string palDesc = "An Elf that prefers to take damage and shield their allies.  Wears a weapon and a shield for extra protection, and can cast weaker White Mage Spells.";
     private string thiefDesc = "A sneaky Elf that lingers in the shadows.  Can only use daggers, however is able to poison the dagger for extra damage.  May find extra gold from battles.";
-    private string warDesc = "An all around fighter that can use any type of melee weapon.  Is able to use two weapons at once, or a weapon and a shield.";
+    private string warDesc = "An all around fighter that can use any type of melee weapon.  Is able to use two weapons at once, or a weapon and a shield.  Can learn to Counter attacks at certain levels.";
     private string whiteDesc = "This Elf prefers to stay back from the fighting, and tend to others wounds.  Can heal damage that its allies has sustained in fighting.";
 
     //error strings
@@ -67,9 +67,9 @@ public class CharacterSelect : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        foreach(ScriptablePlayerClasses classes in charClasses)
+        foreach(ScriptablePlayer classes in charClasses)
         {
-            classDict.Add(classes.charClass, classes);
+            classDict.Add(classes.GetClass(), classes);
         }
 
         //assign beginning items to equipables variable
@@ -126,8 +126,8 @@ public class CharacterSelect : MonoBehaviour {
         }            
         else
         {
-            ScriptablePlayerClasses classSelected = ScriptableObject.CreateInstance(typeof(ScriptablePlayerClasses)) as ScriptablePlayerClasses;
-            ScriptablePlayerClasses chosen = classDict[classChosen];
+            ScriptablePlayer classSelected = ScriptableObject.CreateInstance(typeof(ScriptablePlayer)) as ScriptablePlayer;
+            ScriptablePlayer chosen = classDict[classChosen];
 
             EquipableItem weapon = null;
             EquipableItem weapTemp;
@@ -165,12 +165,13 @@ public class CharacterSelect : MonoBehaviour {
                 accessory = createEquip(accessoryTemp);
             }
 
-            classSelected.Init(nameChosen, classChosen, 1, 0, chosen.classHead, chosen.battleSprite,
-                chosen.maxArmor, chosen.expChart, chosen.levelHp, chosen.levelMp, chosen.levelStrength,
-                chosen.levelAgility, chosen.levelMind, chosen.levelSoul, chosen.levelDefense, false,
-                chosen.canShield, chosen.canDuelWield, chosen.canSword, chosen.canDagger, chosen.canMace,
-                chosen.canBow, chosen.canStaff, chosen.canRod, chosen.canFists, weapon,
-                offHand, armor, accessory, chosen.knownSkills, null, null);
+            classSelected.PlayerInit(chosen.charClass, chosen.maxArmor, chosen.classHead,
+                chosen.currentExp, chosen.expChart, chosen.canShield, chosen.canDuelWield,
+                chosen.canSword, chosen.canDagger, chosen.canMace, chosen.canBow, chosen.canStaff,
+                chosen.canRod, chosen.canFists, weapon, offHand, armor, accessory, nameChosen, 
+                chosen.battleSprite, chosen.level, chosen.knownSkills, chosen.levelHp, 
+                chosen.levelMp, chosen.levelStrength, chosen.levelAgility, chosen.levelMind, 
+                chosen.levelSoul, chosen.levelDefense);
 
             Manager.manager.newCharacters(classSelected);
             charsCreated++;

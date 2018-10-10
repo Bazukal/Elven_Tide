@@ -14,9 +14,9 @@ public class PlayerClass {
     private string weapon;
     private int weaponUpgrades;
     private int weaponID;
-    private string offHand;
-    private int offHandUpgrades;
-    private int offHandID;
+    private string offHand = null;
+    private int offHandUpgrades = 0;
+    private int offHandID = 0;
     private string armor;
     private int armorUpgrades;
     private int armorID;
@@ -27,8 +27,7 @@ public class PlayerClass {
     public PlayerClass() { }
 
     public PlayerClass(string Name, string CharClass, int Level, int CurrentExp, string Weapon, 
-        int WeaponUpgrades, int WeaponID, string OffHand, int OffHandUpgrades, int OffHandID, 
-        string Armor, int ArmorUpgrades, int ArmorID, string Accessory, int AccessoryUpgrades, 
+        int WeaponUpgrades, int WeaponID, string Armor, int ArmorUpgrades, int ArmorID, string Accessory, int AccessoryUpgrades, 
         int AccessoryID)
     {
         name = Name;
@@ -39,9 +38,6 @@ public class PlayerClass {
         weapon = Weapon;
         weaponUpgrades = WeaponUpgrades;
         weaponID = WeaponID;
-        offHand = OffHand;
-        offHandUpgrades = OffHandUpgrades;
-        offHandID = OffHandID;
         armor = Armor;
         armorUpgrades = ArmorUpgrades;
         armorID = ArmorID;
@@ -68,4 +64,9 @@ public class PlayerClass {
     public string GetAccessory() { return accessory; }
     public int GetAccessoryUgrades() { return accessoryUpgrades; }
     public int GetAccessoryID() { return accessoryID; }
+
+    //offhand setters
+    public void SetOffHand(string offHandName) { offHand = offHandName; }
+    public void SetOffHandUpgrades(int offHandUpgrade) { offHandUpgrades = offHandUpgrade; }
+    public void SetOffHandID(int _offHandID) { offHandID = _offHandID; }
 }
