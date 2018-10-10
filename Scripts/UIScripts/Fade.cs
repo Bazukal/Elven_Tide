@@ -28,7 +28,6 @@ public class Fade : MonoBehaviour {
     //fades to regular screen
     public void fadeIn()
     {
-        Debug.Log("Fade In Triggered");
         fading.SetTrigger("FadeIn");
     }
 }

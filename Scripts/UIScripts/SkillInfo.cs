@@ -32,10 +32,10 @@ public class SkillInfo : MonoBehaviour {
     public Text char3Name;
     public Text char4Name;
 
-    private ScriptablePlayerClasses char1;
-    private ScriptablePlayerClasses char2;
-    private ScriptablePlayerClasses char3;
-    private ScriptablePlayerClasses char4;
+    private ScriptablePlayer char1;
+    private ScriptablePlayer char2;
+    private ScriptablePlayer char3;
+    private ScriptablePlayer char4;
 
 
     private void Start()
@@ -61,7 +61,7 @@ public class SkillInfo : MonoBehaviour {
 
         string skillType = skill.skillType;
 
-        ScriptablePlayerClasses castingChar = StatsScreen.stats.GetPlayerObject();
+        ScriptablePlayer castingChar = StatsScreen.stats.GetPlayerObject();
         if (castingChar.currentHp > 0) 
         {
             if (castingChar.currentMp >= skill.manaCost)

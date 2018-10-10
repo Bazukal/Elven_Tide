@@ -6,10 +6,10 @@ public class castHeals : MonoBehaviour {
 
     public static castHeals heal;
 
-    private List<ScriptablePlayerClasses> chars = new List<ScriptablePlayerClasses>();
+    private List<ScriptablePlayer> chars = new List<ScriptablePlayer>();
 
     SkillScriptObject castedSkill;
-    ScriptablePlayerClasses castingChar;
+    ScriptablePlayer castingChar;
 
     // Use this for initialization
     void Start () {

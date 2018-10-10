@@ -176,70 +176,68 @@ public class InnKeeperSave : MonoBehaviour {
         //stores player data to the PlayerData class
         data = new PlayerData();
 
-        ScriptablePlayerClasses p1 = Manager.manager.GetPlayer("Player1");
-        string p1OffHand = "Empty";
-        int p1OffHandUpgrades = 0;
-        int p1OffHandID = 0;
-        if(p1.offHand != null)
-        {
-            p1OffHand = p1.offHand.name;
-            p1OffHandUpgrades = p1.offHand.upgradesDone;
-            p1OffHandID = p1.offHand.ID;
-        }
-        PlayerClass p1Save = new PlayerClass(p1.name, p1.charClass, p1.level, p1.currentExp, p1.weapon.name,
-            p1.weapon.upgradesDone, p1.weapon.ID, p1OffHand, p1OffHandUpgrades, p1OffHandID, 
-            p1.armor.name, p1.armor.upgradesDone, p1.armor.ID, p1.accessory.name, 
+        ScriptablePlayer p1 = Manager.manager.GetPlayer("Player1");
+        ScriptablePlayer p2 = Manager.manager.GetPlayer("Player2");
+        ScriptablePlayer p3 = Manager.manager.GetPlayer("Player3");
+        ScriptablePlayer p4 = Manager.manager.GetPlayer("Player4");
+
+        PlayerClass player1 = new PlayerClass(p1.name, p1.charClass.ToString(), p1.level, p1.currentExp, p1.weapon.name,
+            p1.weapon.upgradesDone, p1.weapon.ID, p1.armor.name, p1.armor.upgradesDone, p1.armor.ID, p1.accessory.name, 
             p1.accessory.upgradesDone, p1.accessory.ID);
 
-        ScriptablePlayerClasses p2 = Manager.manager.GetPlayer("Player2");
-        string p2OffHand = "Empty";
-        int p2OffHandUpgrades = 0;
-        int p2OffHandID = 0;
-        if (p2.offHand != null)
+        try
         {
-            p2OffHand = p2.offHand.name;
-            p2OffHandUpgrades = p2.offHand.upgradesDone;
-            p2OffHandID = p2.offHand.ID;
+            EquipableItem p1OffHand = p1.offHand;
+            player1.SetOffHand(p1OffHand.name);
+            player1.SetOffHandUpgrades(p1OffHand.upgradesDone);
+            player1.SetOffHandID(p1OffHand.ID);
         }
-        PlayerClass p2Save = new PlayerClass(p2.name, p2.charClass, p2.level, p2.currentExp, p2.weapon.name,
-            p2.weapon.upgradesDone, p2.weapon.ID, p2OffHand, p2OffHandUpgrades, p2OffHandID,
-            p2.armor.name, p2.armor.upgradesDone, p2.armor.ID, p2.accessory.name,
+        catch { }
+
+        PlayerClass player2 = new PlayerClass(p2.name, p2.charClass.ToString(), p2.level, p2.currentExp, p2.weapon.name,
+            p2.weapon.upgradesDone, p2.weapon.ID, p2.armor.name, p2.armor.upgradesDone, p2.armor.ID, p2.accessory.name, 
             p2.accessory.upgradesDone, p2.accessory.ID);
 
-        ScriptablePlayerClasses p3 = Manager.manager.GetPlayer("Player3");
-        string p3OffHand = "Empty";
-        int p3OffHandUpgrades = 0;
-        int p3OffHandID = 0;
-        if (p3.offHand != null)
+        try
         {
-            p3OffHand = p3.offHand.name;
-            p3OffHandUpgrades = p3.offHand.upgradesDone;
-            p3OffHandID = p3.offHand.ID;
+            EquipableItem p2OffHand = p2.offHand;
+            player2.SetOffHand(p2OffHand.name);
+            player2.SetOffHandUpgrades(p2OffHand.upgradesDone);
+            player2.SetOffHandID(p2OffHand.ID);
         }
-        PlayerClass p3Save = new PlayerClass(p3.name, p3.charClass, p3.level, p3.currentExp, p3.weapon.name,
-            p3.weapon.upgradesDone, p3.weapon.ID, p3OffHand, p3OffHandUpgrades, p3OffHandID,
-            p3.armor.name, p3.armor.upgradesDone, p3.armor.ID, p3.accessory.name,
+        catch { }
+
+        PlayerClass player3 = new PlayerClass(p3.name, p3.charClass.ToString(), p3.level, p3.currentExp, p3.weapon.name,
+            p3.weapon.upgradesDone, p3.weapon.ID, p3.armor.name, p3.armor.upgradesDone, p3.armor.ID, p3.accessory.name, 
             p3.accessory.upgradesDone, p3.accessory.ID);
 
-        ScriptablePlayerClasses p4 = Manager.manager.GetPlayer("Player4");
-        string p4OffHand = "Empty";
-        int p4OffHandUpgrades = 0;
-        int p4OffHandID = 0;
-        if (p4.offHand != null)
+        try
         {
-            p4OffHand = p4.offHand.name;
-            p4OffHandUpgrades = p4.offHand.upgradesDone;
-            p4OffHandID = p4.offHand.ID;
+            EquipableItem p3OffHand = p3.offHand;
+            player3.SetOffHand(p3OffHand.name);
+            player3.SetOffHandUpgrades(p3OffHand.upgradesDone);
+            player3.SetOffHandID(p3OffHand.ID);
         }
-        PlayerClass p4Save = new PlayerClass(p4.name, p4.charClass, p4.level, p4.currentExp, p4.weapon.name,
-            p4.weapon.upgradesDone, p4.weapon.ID, p4OffHand, p4OffHandUpgrades, p4OffHandID,
-            p4.armor.name, p4.armor.upgradesDone, p4.armor.ID, p4.accessory.name,
+        catch { }
+
+        PlayerClass player4 = new PlayerClass(p4.name, p4.charClass.ToString(), p4.level, p4.currentExp, p4.weapon.name,
+            p4.weapon.upgradesDone, p4.weapon.ID, p4.armor.name, p4.armor.upgradesDone, p4.armor.ID, p4.accessory.name, 
             p4.accessory.upgradesDone, p4.accessory.ID);
 
-        data.character1 = p1Save;
-        data.character2 = p2Save;
-        data.character3 = p3Save;
-        data.character4 = p4Save;
+        try
+        {
+            EquipableItem p4OffHand = p4.offHand;
+            player4.SetOffHand(p4OffHand.name);
+            player4.SetOffHandUpgrades(p4OffHand.upgradesDone);
+            player4.SetOffHandID(p4OffHand.ID);
+        }
+        catch { }
+
+        data.character1 = player1;
+        data.character2 = player2;
+        data.character3 = player3;
+        data.character4 = player4;
+
 
         SortedDictionary<int, EquipableItem> heldEquipableInventory = Manager.manager.getEquipableInventory();
         Dictionary<string, UsableItem> heldUsableInventory = Manager.manager.getUsableInventory();

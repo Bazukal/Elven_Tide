@@ -51,18 +51,18 @@ public class PurchaseItem : MonoBehaviour {
         costText.text = string.Format("Total Cost: {0:n0}", totalCost);
 
         StringBuilder strb = new StringBuilder();
-        if (item.currentDamage > 0)
-            strb.Append("Attack: " + item.currentDamage + "\n");
-        if (item.currentArmor > 0)
-            strb.Append("Armor: " + item.currentArmor + "\n");
-        if (item.currentStrength > 0)
-            strb.Append("Strength: " + item.currentStrength + "\n");
-        if (item.currentAgility > 0)
-            strb.Append("Agility: " + item.currentAgility + "\n");
-        if (item.currentMind > 0)
-            strb.Append("Mind: " + item.currentMind + "\n");
-        if (item.currentSoul > 0)
-            strb.Append("Soul: " + item.currentSoul + "\n");
+        if (item.damage[0] > 0)
+            strb.Append("Attack: " + item.damage[0] + "\n");
+        if (item.armor[0] > 0)
+            strb.Append("Armor: " + item.armor[0] + "\n");
+        if (item.strength[0] > 0)
+            strb.Append("Strength: " + item.strength[0] + "\n");
+        if (item.agility[0] > 0)
+            strb.Append("Agility: " + item.agility[0] + "\n");
+        if (item.mind[0] > 0)
+            strb.Append("Mind: " + item.mind[0] + "\n");
+        if (item.soul[0] > 0)
+            strb.Append("Soul: " + item.soul[0] + "\n");
         strb.Append("\nCost: " + item.buyValue);
 
         stats.text = strb.ToString();

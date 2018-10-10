@@ -12,8 +12,8 @@ public class LoadGame : MonoBehaviour {
 
     public static LoadGame load;
 
-    public List<ScriptablePlayerClasses> charClasses = new List<ScriptablePlayerClasses>();
-    private Dictionary<string, ScriptablePlayerClasses> classDict = new Dictionary<string, ScriptablePlayerClasses>();
+    public List<ScriptablePlayer> charClasses = new List<ScriptablePlayer>();
+    private Dictionary<string, ScriptablePlayer> classDict = new Dictionary<string, ScriptablePlayer>();
 
     private int townStage = 1;
 
@@ -44,9 +44,9 @@ public class LoadGame : MonoBehaviour {
     void Start () {
         load = this;
 
-        foreach (ScriptablePlayerClasses classes in charClasses)
+        foreach (ScriptablePlayer classes in charClasses)
         {
-            classDict.Add(classes.charClass, classes);
+            classDict.Add(classes.GetClass(), classes);
         }
 
         managers = GameObject.Find("Game Manager");
@@ -149,12 +149,20 @@ public class LoadGame : MonoBehaviour {
         EquipableItem usingArmor;
         EquipableItem usingAccessory;
 
-        List<ScriptablePlayerClasses> loadingPlayers = new List<ScriptablePlayerClasses>();
+        List<ScriptablePlayer> loadingPlayers = new List<ScriptablePlayer>();
 
-        foreach(PlayerClass player in players)
+        foreach (PlayerClass player in players)
         {
-            ScriptablePlayerClasses pLoad = ScriptableObject.CreateInstance(typeof(ScriptablePlayerClasses)) as ScriptablePlayerClasses;
-            ScriptablePlayerClasses pTemp = classDict[player.GetClass()];
+            ScriptablePlayer pLoad = ScriptableObject.CreateInstance(typeof(ScriptablePlayer)) as ScriptablePlayer;
+
+            string savedClass = player.GetClass();
+
+            if (savedClass.Equals("BlackMage"))
+                savedClass = "Black Mage";
+            if (savedClass.Equals("WhiteMage"))
+                savedClass = "White Mage";
+
+            ScriptablePlayer pTemp = classDict[savedClass];
 
             weapon = Manager.manager.findEquipItem(player.GetWeapon());
             usingWeapon = createEquip(weapon, player);
@@ -177,16 +185,14 @@ public class LoadGame : MonoBehaviour {
             usingAccessory = createEquip(accessory, player);
             usingAccessory.ID = player.GetAccessoryID();
 
-            pLoad.Init(player.GetName(), player.GetClass(), player.GetLevel(), player.GetExp(), 
-                pTemp.classHead, pTemp.battleSprite, pTemp.maxArmor, pTemp.expChart, pTemp.levelHp, 
-                pTemp.levelMp, pTemp.levelStrength, pTemp.levelAgility, pTemp.levelMind, 
-                pTemp.levelSoul, pTemp.levelDefense, false, pTemp.canShield, pTemp.canDuelWield, 
-                pTemp.canSword, pTemp.canDagger, pTemp.canMace, pTemp.canBow, pTemp.canStaff, 
-                pTemp.canRod, pTemp.canFists, usingWeapon, usingOffHand, usingArmor, usingAccessory,
-                pTemp.knownSkills, null, null);
+            pLoad.PlayerInit(pTemp.charClass, pTemp.maxArmor, pTemp.classHead, player.GetExp(), pTemp.expChart, pTemp.canShield,
+                pTemp.canDuelWield, pTemp.canSword, pTemp.canDagger, pTemp.canMace, pTemp.canBow, pTemp.canStaff, pTemp.canRod,
+                pTemp.canFists, usingWeapon, usingOffHand, usingArmor, usingAccessory, player.GetName(), pTemp.battleSprite,
+                player.GetLevel(), pTemp.knownSkills, pTemp.levelHp, pTemp.levelMp, pTemp.levelStrength, pTemp.levelAgility,
+                pTemp.levelMind, pTemp.levelSoul, pTemp.levelDefense);
 
             loadingPlayers.Add(pLoad);
-        }        
+        }
 
         Manager.manager.inputPlayers(loadingPlayers[0], loadingPlayers[1], loadingPlayers[2],
             loadingPlayers[3]);
@@ -269,7 +275,7 @@ public class LoadGame : MonoBehaviour {
         EquipableItem newItem = ScriptableObject.CreateInstance(typeof(EquipableItem)) as EquipableItem;
         newItem.Init(item.name, item.type, item.equipType, item.rarity, item.damage,
                 item.armor, item.strength, item.agility, item.mind, item.soul, item.minLevel,
-                item.maxLevel, item.buyValue, item.sellValue, item.bought, item.chest, 
+                item.maxLevel, item.buyValue, item.sellValue, item.bought, item.chest,
                 item.maxUpgrades, item.upgradeCosts, item.minRange, item.maxRange);
         newItem.upgradesDone = player.GetWeaponUpgrades();
         newItem.ID = item.ID;

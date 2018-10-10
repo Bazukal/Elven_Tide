@@ -10,7 +10,7 @@ public class EquippedButtonEvent : MonoBehaviour {
 
     public static EquippedButtonEvent butEvent;
 
-    private ScriptablePlayerClasses currentPlayer;
+    private ScriptablePlayer currentPlayer;
 
     public GameObject statCanvas;
 
@@ -60,9 +60,7 @@ public class EquippedButtonEvent : MonoBehaviour {
 
         float height = Screen.height * 0.25f;
         float width = Screen.width * 0.2f;
-
-        Debug.Log(string.Format("Height of the Current Screen: {0}.\nWidth of the Current Screen: {1}.\nOne Quarter Height of the Current Screen is: {2}.\nOne Quarter Width of the Current Screen is: {3}.", Screen.height, Screen.width, height, width));
-
+        
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
 	}
 

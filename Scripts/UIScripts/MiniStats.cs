@@ -28,12 +28,12 @@ public class MiniStats : MonoBehaviour {
     public Slider p4MP;
     public Slider p4Exp;
 
-    private ScriptablePlayerClasses p1;
-    private ScriptablePlayerClasses p2;
-    private ScriptablePlayerClasses p3;
-    private ScriptablePlayerClasses p4;
+    private ScriptablePlayer p1;
+    private ScriptablePlayer p2;
+    private ScriptablePlayer p3;
+    private ScriptablePlayer p4;
 
-    private List<ScriptablePlayerClasses> players = new List<ScriptablePlayerClasses>();
+    private List<ScriptablePlayer> players = new List<ScriptablePlayer>();
     private List<Slider> hpSliders = new List<Slider>();
     private List<Slider> mpSliders = new List<Slider>();
     private List<Slider> expSliders = new List<Slider>();
@@ -82,7 +82,6 @@ public class MiniStats : MonoBehaviour {
     //call to update slider values
     public void updateSliders()
     {
-        Debug.Log("Reseting Sliders");
         for(int i = 0;i < players.Count;i++)
         {
             int playerLevel = players[i].level;
@@ -96,5 +95,11 @@ public class MiniStats : MonoBehaviour {
             float expValue = (float)players[i].currentExp / (float)players[i].expChart.experience[playerLevel];
             expSliders[i].value = expValue;
         }
+    }
+
+    //Destroys when going back to title screen from Innkeeper
+    public void destroyThis()
+    {
+        Destroy(gameObject);
     }
 }
