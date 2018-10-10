@@ -3,23 +3,29 @@
 public class EnemyInteractions : MonoBehaviour {
 
     private bool targeted = false;
+    public GameObject target;
 	
 	public void enemyTargeted(int slot)
     {
         if (targeted == true)
         {
-            removeTarget();
+            targeted = false;
+            target.SetActive(false);
             BattleScript.battleOn.removeEnemySelected();
         }
         else
         {
             targeted = true;
-            BattleScript.battleOn.selectedEnemy(slot);
-        }
-    }
+            try
+            {
+                HoleBattle.battle.selectedEnemy(slot);
+            }
+            catch
+            {
+                DungeonBattle.battle.selectedEnemy(slot);
+            }
 
-    public void removeTarget()
-    {
-        targeted = false;
+            target.SetActive(true);
+        }
     }
 }

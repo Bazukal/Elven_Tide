@@ -23,10 +23,10 @@ public class BattleStats : MonoBehaviour {
     public Text play4HP;
     public Text play4MP;
 
-    private ScriptablePlayerClasses Player1;
-    private ScriptablePlayerClasses Player2;
-    private ScriptablePlayerClasses Player3;
-    private ScriptablePlayerClasses Player4;
+    private ScriptablePlayer Player1;
+    private ScriptablePlayer Player2;
+    private ScriptablePlayer Player3;
+    private ScriptablePlayer Player4;
 
     // Use this for initialization
     void Awake () {

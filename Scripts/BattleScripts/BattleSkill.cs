@@ -21,7 +21,14 @@ public class BattleSkill : MonoBehaviour {
     {
         if (selectedSkill.targetEnemy == true)
         {
-            BattleScript.battleOn.attackSkill(selectedSkill);
+            try
+            {
+                HoleBattle.battle.attackSkill(selectedSkill);
+            }
+            catch
+            {
+                DungeonBattle.battle.attackSkill(selectedSkill);
+            }
         }            
         else
         {

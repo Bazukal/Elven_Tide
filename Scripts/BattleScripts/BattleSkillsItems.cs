@@ -20,7 +20,7 @@ public class BattleSkillsItems : MonoBehaviour {
     public GameObject instantItem;
     public GameObject instantScroll;
 
-    private List<ScriptablePlayerClasses> chars = new List<ScriptablePlayerClasses>();
+    private List<ScriptablePlayer> chars;
     private Dictionary<string, DebuffClass> char1Debuffs = new Dictionary<string, DebuffClass>();
     private Dictionary<string, DebuffClass> char2Debuffs = new Dictionary<string, DebuffClass>();
     private Dictionary<string, DebuffClass> char3Debuffs = new Dictionary<string, DebuffClass>();
@@ -32,7 +32,7 @@ public class BattleSkillsItems : MonoBehaviour {
     private void Awake()
     {
         view = this;
-        chars = new List<ScriptablePlayerClasses>();
+        chars = new List<ScriptablePlayer>();
 
         chars.Add(Manager.manager.GetPlayer("Player1"));
         chars.Add(Manager.manager.GetPlayer("Player2"));
@@ -58,9 +58,9 @@ public class BattleSkillsItems : MonoBehaviour {
     public void showSkills()
     {
         removeObjects();
-        ScriptablePlayerClasses castingChar = getCastingChar();
+        ScriptablePlayer castingChar = getCastingChar();
 
-        Dictionary<string, SkillScriptObject> skills = castingChar.GetAllSkills();
+        Dictionary<string, SkillScriptObject> skills = castingChar.GetAllActiveSkills();
 
         resetListing();
 
@@ -167,7 +167,7 @@ public class BattleSkillsItems : MonoBehaviour {
     private void healButtons()
     {
         int index = 0;
-        foreach (ScriptablePlayerClasses characters in chars)
+        foreach (ScriptablePlayer characters in chars)
         {
             if (characters.currentHp > 0 && characters.currentHp < characters.levelHp[characters.level])
             {
@@ -185,7 +185,7 @@ public class BattleSkillsItems : MonoBehaviour {
     private void reviveButtons()
     {
         int index = 0;
-        foreach (ScriptablePlayerClasses characters in chars)
+        foreach (ScriptablePlayer characters in chars)
         {
             if (characters.currentHp == 0)
             {
@@ -204,7 +204,7 @@ public class BattleSkillsItems : MonoBehaviour {
     {
         int index = 0;
 
-        foreach (ScriptablePlayerClasses characters in chars)
+        foreach (ScriptablePlayer characters in chars)
         {
             bool afflicted = characters.CheckAffliction(ailment);
             if (afflicted)
@@ -238,9 +238,9 @@ public class BattleSkillsItems : MonoBehaviour {
         }
     }
 
-    private ScriptablePlayerClasses getCastingChar()
+    private ScriptablePlayer getCastingChar()
     {
-        ScriptablePlayerClasses charTurn = BattleScript.battleOn.getCharactersTurn();
+        ScriptablePlayer charTurn = BattleScript.battleOn.getCharactersTurn();
 
         return charTurn;
     }

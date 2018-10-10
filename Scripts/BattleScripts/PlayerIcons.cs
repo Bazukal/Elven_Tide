@@ -10,7 +10,6 @@ public class PlayerIcons : MonoBehaviour {
     public void addIcons(GameObject icon)
     {
         string iconName = icon.name;
-        Debug.Log(iconName + " Icon being Added to Panel");
 
         if(!buffIcons.ContainsKey(iconName))
         {
@@ -23,11 +22,9 @@ public class PlayerIcons : MonoBehaviour {
     //remove icons
     public void removeIcons(string name)
     {
-        Debug.Log(name + " Debuff Icon Being Removed");
 
         if(buffIcons.ContainsKey(name))
         {
-            Debug.Log("Debuff Icon Found in Dictionary for: " + name);
             Destroy(buffIcons[name]);
             buffIcons.Remove(name);
         }
