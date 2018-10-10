@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
   m_Name: ClothRobe
   m_EditorClassIdentifier: 
+  ID: 0
   name: Cloth Robe
   type: Armor
   equipType: Cloth
@@ -25,15 +26,16 @@ MonoBehaviour:
   currentMind: 0
   currentSoul: 0
   damage: 000000000000000000000000000000000000000000000000
-  armor: 010000000200000003000000040000000500000006000000
+  armor: 05000000060000000700000008000000090000000a000000
   strength: 000000000000000000000000000000000000000000000000
   agility: 000000000000000000000000000000000000000000000000
   mind: 000000000000000001000000020000000300000004000000
   soul: 000000000000000001000000020000000300000004000000
   minLevel: 1
   maxLevel: 5
-  buyValue: 26
-  sellValue: 2
-  dropped: 1
+  buyValue: 13
+  sellValue: 1
   bought: 1
   chest: 1
+  minRange: 0
+  maxRange: 0

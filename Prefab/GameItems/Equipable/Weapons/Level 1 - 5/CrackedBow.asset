@@ -16,7 +16,7 @@ MonoBehaviour:
   type: Weapon
   equipType: Bow
   rarity: Common
-  maxUpgrades: 5
+  maxUpgrades: 45
   upgradesDone: 0
   upgradeCosts: 4b00000096000000e10000002c01000077010000
   currentDamage: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   currentAgility: 0
   currentMind: 0
   currentSoul: 0
-  damage: 040000000500000006000000080000000a0000000c000000
+  damage: 0f0000001000000011000000120000001300000014000000
   armor: 000000000000000000000000000000000000000000000000
   strength: 000000000000000000000000010000000200000003000000
   agility: 000000000000000000000000010000000200000003000000
@@ -33,9 +33,8 @@ MonoBehaviour:
   soul: 000000000000000000000000000000000000000000000000
   minLevel: 1
   maxLevel: 5
-  buyValue: 40
-  sellValue: 4
-  dropped: 0
+  buyValue: 20
+  sellValue: 2
   bought: 1
   chest: 1
   minRange: 1.4

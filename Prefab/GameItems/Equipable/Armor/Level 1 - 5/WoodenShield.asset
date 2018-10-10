@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
   m_Name: WoodenShield
   m_EditorClassIdentifier: 
+  ID: 0
   name: Wooden Shield
   type: Armor
   equipType: Shield
@@ -25,15 +26,16 @@ MonoBehaviour:
   currentMind: 0
   currentSoul: 0
   damage: 000000000000000000000000000000000000000000000000
-  armor: 020000000300000004000000050000000600000007000000
+  armor: 040000000500000006000000070000000800000009000000
   strength: 000000000000000000000000000000000100000002000000
   agility: 000000000000000000000000000000000000000000000000
   mind: 000000000000000000000000000000000000000000000000
   soul: 000000000000000000000000000000000000000001000000
   minLevel: 1
   maxLevel: 5
-  buyValue: 22
-  sellValue: 2
-  dropped: 1
+  buyValue: 11
+  sellValue: 1
   bought: 1
   chest: 1
+  minRange: 0
+  maxRange: 0

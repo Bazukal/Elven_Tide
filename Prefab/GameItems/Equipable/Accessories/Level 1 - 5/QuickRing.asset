@@ -11,13 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
   m_Name: QuickRing
   m_EditorClassIdentifier: 
+  ID: 0
   name: Quick Ring
   type: Accessory
   equipType: Accessory
   rarity: Rare
   maxUpgrades: 5
   upgradesDone: 0
-  upgradeCosts: 320000006400000096000000c8000000fa000000
+  upgradeCosts: 4100000082000000c30000000401000045010000
   currentDamage: 0
   currentArmor: 0
   currentStrength: 0
@@ -32,8 +33,9 @@ MonoBehaviour:
   soul: 000000000000000000000000000000000000000000000000
   minLevel: 1
   maxLevel: 5
-  buyValue: 75
-  sellValue: 7
-  dropped: 1
+  buyValue: 45
+  sellValue: 4
   bought: 1
   chest: 1
+  minRange: 0
+  maxRange: 0

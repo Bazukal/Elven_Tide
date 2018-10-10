@@ -9,33 +9,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
-  m_Name: SmartRing
+  m_Name: SilverPendant
   m_EditorClassIdentifier: 
   ID: 0
-  name: Smart Ring
+  name: Silver Pendant
   type: Accessory
   equipType: Accessory
-  rarity: Rare
-  maxUpgrades: 5
+  rarity: Mythical
+  maxUpgrades: 0
   upgradesDone: 0
-  upgradeCosts: 4100000082000000c30000000401000045010000
+  upgradeCosts: 00000000
   currentDamage: 0
   currentArmor: 0
   currentStrength: 0
   currentAgility: 0
   currentMind: 0
   currentSoul: 0
-  damage: 000000000000000000000000000000000000000000000000
-  armor: 000000000000000000000000000000000000000000000000
-  strength: 000000000000000000000000000000000000000000000000
-  agility: 000000000000000000000000000000000000000000000000
-  mind: 010000000200000003000000040000000500000006000000
-  soul: 000000000000000000000000000000000000000000000000
+  damage: 00000000
+  armor: 00000000
+  strength: 00000000
+  agility: 00000000
+  mind: 00000000
+  soul: 00000000
   minLevel: 1
   maxLevel: 5
-  buyValue: 45
-  sellValue: 4
-  bought: 1
+  buyValue: 0
+  sellValue: 100
+  bought: 0
   chest: 1
   minRange: 0
   maxRange: 0

@@ -9,33 +9,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51b81b7d0fe1fe74ea04c95263b24460, type: 3}
-  m_Name: RustyDagger
+  m_Name: PineStaff
   m_EditorClassIdentifier: 
   ID: 0
-  name: Rusty Dagger
+  name: Pine Staff
   type: Weapon
-  equipType: Dagger
+  equipType: Staff
   rarity: Common
-  maxUpgrades: 5
+  maxUpgrades: 0
   upgradesDone: 0
-  upgradeCosts: 4b00000096000000e10000002c01000077010000
+  upgradeCosts: 64000000c80000002c01000090010000f4010000
   currentDamage: 0
   currentArmor: 0
   currentStrength: 0
   currentAgility: 0
   currentMind: 0
   currentSoul: 0
-  damage: 0a0000000b0000000c0000000d0000000e0000000f000000
+  damage: 0b0000000c0000000d0000000e0000000f00000010000000
   armor: 000000000000000000000000000000000000000000000000
-  strength: 000000000000000000000000000000000100000002000000
-  agility: 000000000000000001000000020000000300000005000000
+  strength: 000000000000000000000000000000000000000000000000
+  agility: 000000000000000000000000000000000000000000000000
   mind: 000000000000000000000000000000000000000000000000
-  soul: 000000000000000000000000000000000000000000000000
-  minLevel: 1
-  maxLevel: 5
-  buyValue: 25
-  sellValue: 2
+  soul: 040000000500000006000000070000000800000009000000
+  minLevel: 6
+  maxLevel: 10
+  buyValue: 56
+  sellValue: 5
   bought: 1
   chest: 1
-  minRange: 0.9
-  maxRange: 1.1
+  minRange: 1.25
+  maxRange: 1.25
