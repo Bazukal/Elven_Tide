@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00d6afb351cc274ea91d9832f4f713b, type: 3}
+  m_Name: Antidote
+  m_EditorClassIdentifier: 
+  name: Antidote
+  type: Cure
+  rarity: UnCommon
+  cureAilment: Poison
+  description: Cures Poison
+  quantity: 0
+  healAmount: 0
+  healStat: 
+  reviveAmount: 0
+  minLevel: 1
+  maxLevel: 100
+  buyValue: 5
+  sellValue: 1
+  dropped: 1
+  bought: 1
+  chest: 1
