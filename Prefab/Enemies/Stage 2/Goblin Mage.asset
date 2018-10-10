@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a412a518aca4e429e1b3426e684adc, type: 3}
+  m_Name: Goblin Mage
+  m_EditorClassIdentifier: 
+  name: Goblin Mage
+  battleSprite: {fileID: 21300012, guid: d5fedec452a5c0e4f9d7e632e36656db, type: 3}
+  level: 1
+  currentHp: 0
+  currentMp: 0
+  knownSkills:
+  - {fileID: 11400000, guid: 6d803b26b7160ca4eab6b17901bfd2d9, type: 2}
+  - {fileID: 11400000, guid: 141fafc59a598b2408db440763392bfc, type: 2}
+  - {fileID: 11400000, guid: 520d42c46d438cb49ad8e2905fe02caf, type: 2}
+  maxHp: 45
+  maxMp: 0
+  strength: 8
+  agility: 7
+  mind: 14
+  soul: 13
+  defense: 14
+  weapon: {fileID: 11400000, guid: 72479bdc1aaf2dc40a3420e89ed1fc60, type: 2}
+  offHand: {fileID: 0}
+  armor: {fileID: 11400000, guid: bf4cd621b0b5f504c9585feb6dd5a575, type: 2}
+  accessory: {fileID: 11400000, guid: 2120fbe4b5772cc44808fc908c4a9616, type: 2}
+  gold: 9
+  exp: 12
+  progress:
+    quest: {fileID: 11400000, guid: c6975f724b4e54d4eb2f4baece5fcb2e, type: 2}
+    taskName: Mage
+    type: 0
+    progress: 1
+    useTaskProgressCap: 1
+  questIndicator: Defeated a Goblin Mage

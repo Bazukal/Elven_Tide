@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c1275c424a2314cb1d6f30b4b117ea, type: 3}
+  m_Name: Dwarf Lord Equip
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 11400000, guid: 05e2dec4f107e19478c40811399ceeaa, type: 2}
+  - {fileID: 11400000, guid: 1f7afe4aa55e92041b2581ca355e08b8, type: 2}
+  offHands:
+  - {fileID: 11400000, guid: 85128e463a454da43b6dda011a660b9e, type: 2}
+  - {fileID: 11400000, guid: 580ce114b657bf74e827715037138df8, type: 2}
+  armors:
+  - {fileID: 11400000, guid: ab49d2bc637f8e1458c08a47a273bdcb, type: 2}
+  - {fileID: 11400000, guid: 3290b5d6be38f784f97569f8d4de26bd, type: 2}
+  accessories:
+  - {fileID: 11400000, guid: e59e9fcd911e1bb449f5a60a8a8119cf, type: 2}
+  - {fileID: 11400000, guid: a4d72f61abd3e3f4b9064de6d4977f8c, type: 2}
