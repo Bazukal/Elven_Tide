@@ -9,24 +9,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
-  m_Name: Bash
+  m_Name: Concussion Blow
   m_EditorClassIdentifier: 
-  skillName: Bash
+  skillName: Concussion Blow
   skillType: Damage
   damageType: Physical
   passiveType: 
-  ailment: Confused
+  ailment: Paralyzed
   buffStat: 
-  skillDescription: Bash an enemy for minor damage. Very small chance to confuse enemy.
-  skillLevel: 1
-  manaCost: 2
+  skillDescription: Small Amount of Damage with the Chance of Paralyzing the Enemy
+  skillLevel: 5
+  manaCost: 12
   skillBase: 1
-  effectTurns: 2
-  debuffChance: 0.15
+  effectTurns: 3
+  debuffChance: 0.35
   skillModifier: 1
   passiveChance: 0
   isAOE: 0
   targetEnemy: 1
-  skillAnimation: {fileID: 1541368003467946, guid: 9021e63676c1d994ba649d31f3c2d3cb,
+  skillAnimation: {fileID: 1230103613998824, guid: b8824f7b79c78b944a36ae133ae2682b,
     type: 2}
-  buffIcon: {fileID: 1967851137671200, guid: e7157d643e84b054b9ca256d33de1026, type: 2}
+  buffIcon: {fileID: 1667326322055674, guid: 5ffc87cb25f628e43997a6e31e0b6acf, type: 2}

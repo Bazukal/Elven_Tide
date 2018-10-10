@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
-  m_Name: Minor Heal
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  skillName: Minor Heal
+  skillName: Heal
   skillType: Heal
   damageType: 
   passiveType: 
   ailment: 
   buffStat: 
-  skillDescription: Heals player by a small amount.
-  skillLevel: 1
-  manaCost: 3
-  skillBase: 100
+  skillDescription: Heals a Moderate Amount of Health
+  skillLevel: 10
+  manaCost: 10
+  skillBase: 200
   effectTurns: 0
   debuffChance: 0
-  skillModifier: 1
+  skillModifier: 1.1
   passiveChance: 0
   isAOE: 0
   targetEnemy: 0

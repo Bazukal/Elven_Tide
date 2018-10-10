@@ -9,24 +9,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
-  m_Name: Minor Heal
+  m_Name: BuffAgility
   m_EditorClassIdentifier: 
-  skillName: Minor Heal
-  skillType: Heal
+  skillName: 'Buff: Minor Agility'
+  skillType: Buff
   damageType: 
   passiveType: 
   ailment: 
-  buffStat: 
-  skillDescription: Heals player by a small amount.
-  skillLevel: 1
-  manaCost: 3
-  skillBase: 100
-  effectTurns: 0
+  buffStat: Agility
+  skillDescription: Buffs Agility by a Small Amount
+  skillLevel: 10
+  manaCost: 10
+  skillBase: 3
+  effectTurns: 3
   debuffChance: 0
-  skillModifier: 1
+  skillModifier: 0
   passiveChance: 0
   isAOE: 0
   targetEnemy: 0
-  skillAnimation: {fileID: 1872883539832030, guid: 19850b7085b3bd54a8f95f45774fea43,
+  skillAnimation: {fileID: 1106369041356836, guid: a825d71cbe73a364c8b24579503b78ef,
     type: 2}
-  buffIcon: {fileID: 0}
+  buffIcon: {fileID: 1806706838060996, guid: 20a54e7505539d641ae76c2fd2b87d10, type: 2}

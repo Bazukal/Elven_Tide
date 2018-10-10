@@ -9,24 +9,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f069fe7c558ac44db564927da15b552, type: 3}
-  m_Name: Minor Heal
+  m_Name: Smite
   m_EditorClassIdentifier: 
-  skillName: Minor Heal
-  skillType: Heal
-  damageType: 
+  skillName: Smite
+  skillType: Damage
+  damageType: Physical
   passiveType: 
   ailment: 
   buffStat: 
-  skillDescription: Heals player by a small amount.
-  skillLevel: 1
-  manaCost: 3
-  skillBase: 100
+  skillDescription: Magical Attack that uses the characters Strength to drop a Giant
+    Sword.
+  skillLevel: 5
+  manaCost: 10
+  skillBase: 8
   effectTurns: 0
   debuffChance: 0
-  skillModifier: 1
+  skillModifier: 1.1
   passiveChance: 0
   isAOE: 0
-  targetEnemy: 0
-  skillAnimation: {fileID: 1872883539832030, guid: 19850b7085b3bd54a8f95f45774fea43,
+  targetEnemy: 1
+  skillAnimation: {fileID: 1703696321606812, guid: d15d0db2c0736384187bb701120fbe7d,
     type: 2}
   buffIcon: {fileID: 0}
